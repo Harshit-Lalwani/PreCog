@@ -1,0 +1,5 @@
+2025-02-01 21:12:01,479 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-01 21:12:27,003 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-01 21:12:27,011 - Engine: gpt-4o-mini
+2025-02-01 21:12:27,011 - Prompt: Hello world!
+2025-02-01 21:12:27,011 - Response: ChatCompletionMessage(content='This is a test. How can I assist you further?', refusal=None, role='assistant', audio=None, function_call=None, tool_calls=None)

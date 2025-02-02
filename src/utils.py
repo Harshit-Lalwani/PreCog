@@ -3,8 +3,7 @@ import pickle
 import random
 import networkx as nx
 import matplotlib.pyplot as plt
-
-
+import logging
 
 M = 10
 
@@ -101,3 +100,7 @@ def generate_graph(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/NISdb_
     
     return G
 
+def log_conversation(engine, prompt, response):
+    logging.info(f"Engine: {engine}")
+    logging.info(f"Prompt: {prompt}")
+    logging.info(f"Response: {response}")

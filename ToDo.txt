@@ -1,0 +1,5 @@
+1. Generate multiple puzzles from one graph
+2. Create test set
+3. random aphabets
+4. randomize index of transitions, otherwise last transition will always be largest
+5. 
