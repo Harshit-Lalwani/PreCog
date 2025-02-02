@@ -1,0 +1,8 @@
+output_id,engine,system_prompt,train_set,test_set,t,d,score,accuracy,remarks
+
+1,gpt-4o,"
+Provide solutions for test puzzles
+",single_3_3_0,single_3_3_1,3,3,0,0.0000,
+2,gpt-4o,"
+Provide solutions for test puzzles
+",single_3_3_0,single_3_3_0,3,3,0,1.0000,

@@ -1,5 +1,27 @@
+2. Output store (list of solutions, add field is_valid, default NULL)
+3. Result evaluator
+4. Result store (output_id, system prompt, training set, test set, score, accuracy, engine)
+
+
+Issues:
+1. is_valid is null
+2. use get_problem_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. Generate multiple puzzles from one graph
 2. Create test set
 3. random aphabets
 4. randomize index of transitions, otherwise last transition will always be largest
-5. 
+5. mention that "-1" should never occur in any string

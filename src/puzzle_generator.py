@@ -21,17 +21,19 @@ def generate_single_path(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/
             transition_history.append(j)
             new_node = tuple(list(current_node) + [i])
             G.add_node(new_node, string=new_string)
-            G.add_edge(current_node, new_node, label=f"{transition[0]} -> {transition[1]}")
+            # Fix: Use transition["src"] and transition["tgt"] 
+            G.add_edge(current_node, new_node, label=f"{transition['src']} -> {transition['tgt']}")
             current_node = new_node
             current_string = new_string
     
-    transitions.append([current_string, ''])
+    # Fix: Append dictionary format transition
+    transitions.append({"src": current_string, "tgt": ""})
     transition_history.append(t)
     
     return G, root, transitions, transition_history
 
 def puzzle_generator(count=10, t=3, d=3):
-    base_dir = f"data/single_{t}_{d}"
+    base_dir = f"data/OneShot_{t}_{d}"
     i = 0
     while os.path.exists(f"{base_dir}_{i}"):
         i += 1
@@ -49,7 +51,8 @@ def puzzle_generator(count=10, t=3, d=3):
         puzzle = {
             "problem_id": f"{i:03d}",
             "initial_string": root,
-            "transitions": [{"src": t[0], "tgt": t[1]} for t in transitions]
+            # Remove list comprehension as transitions are already in correct format
+            "transitions": transitions
         }
         
         solution = {
@@ -62,10 +65,8 @@ def puzzle_generator(count=10, t=3, d=3):
         
         with open(os.path.join(solutions_dir, f"{i:03d}.json"), 'w') as f:
             json.dump(solution, f, indent=4)  
-            
-                 
+                           
 # Example usage
 if __name__ == "__main__":
-    puzzle_generator(count=10)
-    
-    
+    for i in range(10):
+        puzzle_generator(count=1)
