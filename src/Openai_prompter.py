@@ -35,7 +35,7 @@ completion = client.beta.chat.completions.parse(
 # Print and log the response
 response_text = str(completion.choices[0].message.parsed)
 parsed_response = parse_solutions_string(response_text)
-print(parsed_response)
+# print(parsed_response)
 log_conversation(engine, user_prompt, parsed_response)
 
 # # Apply store_output

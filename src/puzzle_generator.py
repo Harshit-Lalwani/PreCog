@@ -1,6 +1,9 @@
 from utils import *
 import json
 import os
+from global_var import *
+
+base_path = "data/OneShot/t_variation"
 
 def generate_single_path(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/NISdb_flat.pkl'):        
     root = sample_random_string(n, file_path)
@@ -17,7 +20,7 @@ def generate_single_path(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/
         j = random.choice(range(t))
         transition = transitions[j]        
         new_string = apply_transition(current_string, transition)
-        if new_string is not None:
+        if new_string != "-1":
             transition_history.append(j)
             new_node = tuple(list(current_node) + [i])
             G.add_node(new_node, string=new_string)
@@ -32,41 +35,57 @@ def generate_single_path(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/
     
     return G, root, transitions, transition_history
 
-def puzzle_generator(count=10, t=3, d=3):
-    base_dir = f"data/OneShot_{t}_{d}"
-    i = 0
-    while os.path.exists(f"{base_dir}_{i}"):
+def get_next_E_number(base_path: str) -> int:
+    """Find smallest unused E<q> number"""
+    i = 1
+    while True:
+        if not os.path.exists(os.path.join(base_path, f"E{i}")):
+            return i
         i += 1
-    output_dir = f"{base_dir}_{i}"
+
+def puzzle_generator(count=10, t=3, d=3, E_num=1):
+    # base_path = "data/OneShot/t_variation"
+    E_dir = f"E{E_num}"
+    base_dir = os.path.join(base_path, E_dir, f"OneShot_{t}_{d}")
+    
+    j = get_problem_id()
+    output_dir = f"{base_dir}_{j}"
     
     puzzles_dir = os.path.join(output_dir, 'puzzles')
     solutions_dir = os.path.join(output_dir, 'solutions')
     
-    os.makedirs(puzzles_dir)
-    os.makedirs(solutions_dir)
+    os.makedirs(puzzles_dir, exist_ok=True)
+    os.makedirs(solutions_dir, exist_ok=True)
     
     for i in range(count):
         G, root, transitions, transition_history = generate_single_path(t=t, d=d)
         
         puzzle = {
-            "problem_id": f"{i:03d}",
+            "problem_id": f"{j:03d}",
             "initial_string": root,
             # Remove list comprehension as transitions are already in correct format
             "transitions": transitions
         }
         
         solution = {
-            "problem_id": f"{i:03d}",
+            "problem_id": f"{j:03d}",
             "solution": transition_history
         }
         
-        with open(os.path.join(puzzles_dir, f"{i:03d}.json"), 'w') as f:
+        with open(os.path.join(puzzles_dir, f"{j:03d}.json"), 'w') as f:
             json.dump(puzzle, f, indent=4)
         
-        with open(os.path.join(solutions_dir, f"{i:03d}.json"), 'w') as f:
+        with open(os.path.join(solutions_dir, f"{j:03d}.json"), 'w') as f:
             json.dump(solution, f, indent=4)  
+            
+def puzzle_set_generator(set_count=10, puzzles_per_set=10, t=3, d=3):
+    # base_path = "data/OneShot/t_variation"
+    E_num = get_next_E_number(base_path)
+    
+    for i in range(set_count):
+        puzzle_generator(count=puzzles_per_set, t=t, d=d, E_num=E_num)
                            
 # Example usage
 if __name__ == "__main__":
-    for i in range(10):
-        puzzle_generator(count=1)
+    puzzle_set_generator(set_count=10, puzzles_per_set=1, t=6, d=3)
+    # print(get_next_E_number("data/OneShot/t_variation"))

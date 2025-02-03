@@ -10,6 +10,8 @@ from solver.solver_utils import *
 from schema import Solution, Solutions
 import os
 import csv
+import pandas as pd
+from datetime import datetime
 
 M = 10
 
@@ -83,7 +85,7 @@ def plot_graph(G):
     plt.show()
     
     
-def generate_graph(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/NISdb_flat.pkl'):        
+def generate_graph(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/NISdb_flat.pkl'):
     root = sample_random_string(n, file_path)
     transitions = create_transitions_array(n, t, file_path)
     
@@ -205,7 +207,7 @@ def store_output(
       }
     and the solutions list is of dictionaries {id, solution, is_valid}.
 
-    Also appends a line to /root/PreCog/data/Outputs/Results.csv with columns:
+    Also appends a line to /root/PreCog/data/Outputs/../../Results.csv with columns:
       output_id, engine, system_prompt, train_set, test_set, t, d, score, accuracy, remarks (empty).
     Note: The first and second numbers in the name of the training dataset folder represent t and d.
     """
@@ -214,18 +216,25 @@ def store_output(
     test_puzzles_dir = Path(test_path) / "puzzles"
     
     for sol in solutions_obj.solutions:
-        # Read puzzle file
-        puzzle_file = test_puzzles_dir / f"{sol.problem_id}.json"
-        with open(puzzle_file, "r") as pf:
-            puzzle_data = json.load(pf)
+        try:
+            # Read puzzle file
+            puzzle_file = test_puzzles_dir / f"{sol.problem_id}.json"
+            with open(puzzle_file, "r") as pf:
+                puzzle_data = json.load(pf)
+                
+            # Validate using our new function
+            is_valid = validate_solution_sequence(
+                initial_string=puzzle_data["initial_string"],
+                transitions=[{"src": t["src"], "tgt": t["tgt"]} for t in puzzle_data["transitions"]],
+                solution_steps=sol.solution
+            )
+        except FileNotFoundError:
+            logging.warning(f"Puzzle file not found: {puzzle_file}. Marking solution as invalid.")
+            is_valid = 0
+        except Exception as e:
+            logging.warning(f"Error processing puzzle {sol.problem_id}: {str(e)}. Marking solution as invalid.")
+            is_valid = 0
             
-        # Validate using our new function
-        is_valid = validate_solution_sequence(
-            initial_string=puzzle_data["initial_string"],
-            transitions=[{"src": t["src"], "tgt": t["tgt"]} for t in puzzle_data["transitions"]],
-            solution_steps=sol.solution
-        )
-        
         validated_solutions.append({
             "problem_id": sol.problem_id,
             "solution": sol.solution,
@@ -274,7 +283,7 @@ def store_output(
 
     print(f"Solved correctly: {correct}/{total} (Accuracy: {accuracy:.2f})")
 
-    results_file = output_dir / "Results.csv"
+    results_file = output_dir / "../../Results.csv"
     csv_headers = ["output_id", "engine", "system_prompt", "train_set", "test_set", "t", "d", "score", "accuracy", "remarks"]
     write_header = not results_file.exists()
 
@@ -291,7 +300,33 @@ def store_output(
             "test_set": test_folder,
             "t": t_val,
             "d": d_val,
-            "score": 0,
+            "score": correct,
             "accuracy": f"{accuracy:.4f}",
             "remarks": ""
         })
+
+def save_results_to_csv(df: pd.DataFrame, filename: str = None, base_dir: str = "/root/PreCog/Results") -> str:
+    """Save results DataFrame to CSV with user-provided filename"""
+    Path(base_dir).mkdir(parents=True, exist_ok=True)
+    
+    while True:
+        if not filename:
+            print("\nSaving results...")
+            filename = input("Enter filename for results (with .csv extension): ")
+            filename = f"{filename}.csv" if not filename.endswith('.csv') else filename
+        
+        if not filename.endswith('.csv'):
+            print("Filename must end with .csv")
+            filename = None
+            continue
+            
+        filepath = Path(base_dir) / filename
+        if not filepath.exists():
+            break
+            
+        print(f"File {filepath} already exists.")
+        filename = None  # Reset to prompt again
+    
+    df.to_csv(filepath, index=False)
+    print(f"Results saved to {filepath}")
+    return str(filepath)

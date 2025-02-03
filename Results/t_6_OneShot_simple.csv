@@ -1,0 +1,271 @@
+,output_id,engine,system_prompt,train_set,test_set,t,d,score,accuracy,remarks
+727,758,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_81,6,3,0,0.0,
+728,759,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_82,6,3,0,0.0,
+729,760,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_83,6,3,0,0.0,
+730,761,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_84,6,3,0,0.0,
+731,762,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_85,6,3,0,0.0,
+732,763,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_86,6,3,1,1.0,
+733,764,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_87,6,3,0,0.0,
+734,765,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_88,6,3,0,0.0,
+735,766,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_80,OneShot_6_3_89,6,3,1,1.0,
+736,767,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_80,6,3,0,0.0,
+737,768,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_82,6,3,0,0.0,
+738,769,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_83,6,3,0,0.0,
+739,770,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_84,6,3,0,0.0,
+740,771,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_85,6,3,1,1.0,
+741,772,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_86,6,3,1,1.0,
+742,773,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_87,6,3,0,0.0,
+743,774,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_88,6,3,0,0.0,
+744,775,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_81,OneShot_6_3_89,6,3,1,1.0,
+745,776,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_80,6,3,0,0.0,
+746,777,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_81,6,3,0,0.0,
+747,778,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_83,6,3,0,0.0,
+748,779,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_84,6,3,0,0.0,
+749,780,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_85,6,3,1,1.0,
+750,781,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_86,6,3,0,0.0,
+751,782,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_87,6,3,0,0.0,
+752,783,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_88,6,3,0,0.0,
+753,784,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_82,OneShot_6_3_89,6,3,0,0.0,
+754,785,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_80,6,3,0,0.0,
+755,786,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_81,6,3,1,1.0,
+756,787,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_82,6,3,0,0.0,
+757,788,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_84,6,3,0,0.0,
+758,789,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_85,6,3,1,1.0,
+759,790,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_86,6,3,1,1.0,
+760,791,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_87,6,3,0,0.0,
+761,792,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_88,6,3,0,0.0,
+762,793,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_83,OneShot_6_3_89,6,3,1,1.0,
+763,794,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_80,6,3,0,0.0,
+764,795,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_81,6,3,0,0.0,
+765,796,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_82,6,3,0,0.0,
+766,797,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_83,6,3,0,0.0,
+767,798,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_85,6,3,1,1.0,
+768,799,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_86,6,3,1,1.0,
+769,800,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_87,6,3,0,0.0,
+770,801,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_88,6,3,0,0.0,
+771,802,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_84,OneShot_6_3_89,6,3,1,1.0,
+772,803,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_80,6,3,0,0.0,
+773,804,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_81,6,3,1,1.0,
+774,805,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_82,6,3,0,0.0,
+775,806,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_83,6,3,0,0.0,
+776,807,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_84,6,3,0,0.0,
+777,808,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_86,6,3,1,1.0,
+778,809,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_87,6,3,0,0.0,
+779,810,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_88,6,3,0,0.0,
+780,811,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_85,OneShot_6_3_89,6,3,1,1.0,
+781,812,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_80,6,3,0,0.0,
+782,813,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_81,6,3,1,1.0,
+783,814,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_82,6,3,0,0.0,
+784,815,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_83,6,3,0,0.0,
+785,816,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_84,6,3,0,0.0,
+786,817,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_85,6,3,1,1.0,
+787,818,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_87,6,3,0,0.0,
+788,819,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_88,6,3,0,0.0,
+789,820,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_86,OneShot_6_3_89,6,3,1,1.0,
+790,821,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_80,6,3,0,0.0,
+791,822,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_81,6,3,1,1.0,
+792,823,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_82,6,3,0,0.0,
+793,824,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_83,6,3,0,0.0,
+794,825,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_84,6,3,0,0.0,
+795,826,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_85,6,3,1,1.0,
+796,827,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_86,6,3,1,1.0,
+797,828,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_88,6,3,0,0.0,
+798,829,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_87,OneShot_6_3_89,6,3,1,1.0,
+799,830,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_80,6,3,0,0.0,
+800,831,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_81,6,3,1,1.0,
+801,832,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_82,6,3,0,0.0,
+802,833,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_83,6,3,0,0.0,
+803,834,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_84,6,3,0,0.0,
+804,835,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_85,6,3,1,1.0,
+805,836,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_86,6,3,0,0.0,
+806,837,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_87,6,3,0,0.0,
+807,838,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_88,OneShot_6_3_89,6,3,1,1.0,
+808,839,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_80,6,3,0,0.0,
+809,840,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_81,6,3,1,1.0,
+810,841,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_82,6,3,0,0.0,
+811,842,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_83,6,3,0,0.0,
+812,843,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_84,6,3,0,0.0,
+813,844,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_85,6,3,1,1.0,
+814,845,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_86,6,3,1,1.0,
+815,846,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_87,6,3,0,0.0,
+816,847,gpt-4o,"
+Provide solutions for test puzzles.
+",OneShot_6_3_89,OneShot_6_3_88,6,3,0,0.0,
