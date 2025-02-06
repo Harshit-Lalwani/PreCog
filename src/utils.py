@@ -17,7 +17,7 @@ M = 10
 
 # ! handle M else where
 
-def sample_gaussian_n(mean=None, std_dev=None):
+def sample_gaussian_n(mean=None, std_dev=None, M=M):
     min_n = 1
     max_n = M
     if(mean==None):

@@ -33,6 +33,7 @@ def parse_solutions_string(solutions_str: str) -> Solutions:
         found_solutions.append(Solution(problem_id=problem_id, solution=int_numbers))
 
     if not found_solutions:
+        print(solutions_str)
         raise ValueError("No solutions found in input string")
 
     return Solutions(solutions=found_solutions)

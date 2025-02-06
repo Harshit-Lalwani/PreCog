@@ -1,0 +1,2 @@
+puzzle_id,predicted_solution,is_valid,run_id,train_count,train_t,train_d,test_count,test_t,test_d,sys_prompt,model,M
+000,"[0, 1]",1,1,2,2,1,1,1,1,Solve the puzzle by providing step sequence,gpt-4o,3
