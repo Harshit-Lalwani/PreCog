@@ -5,9 +5,10 @@ from global_var import *
 
 base_path = "data/OneShot/t_variation"
 
-def generate_single_path(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/NISdb_flat.pkl'):        
-    root = sample_random_string(n, file_path)
-    transitions = create_transitions_array(n, t, file_path)
+def generate_single_path(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/NISdb_flat.pkl', string_sampler=sample_random_string, transition_array_maker= create_transitions_array):  
+          
+    root = string_sampler(n, file_path)
+    transitions = transition_array_maker(n, t, file_path)
     
     G = nx.DiGraph()
     G.add_node((-1,), string=root)

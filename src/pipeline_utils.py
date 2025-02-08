@@ -110,7 +110,7 @@ def save_study_results(study_dir: Path, all_experiments: List[Dict]) -> None:
     
     # Save results
     df = pd.DataFrame(all_experiments)
-    df['self_consistency'] = df.apply(calculate_self_consistency, axis=1, study_dir=study_dir)
+    # df['self_consistency'] = df.apply(calculate_self_consistency, axis=1, study_dir=study_dir)
     df.to_csv(results_dir / "Results.csv", index=False)
 
 def calculate_self_consistency(row: pd.Series, study_dir: Path) -> float:

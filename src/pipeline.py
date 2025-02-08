@@ -1,3 +1,11 @@
+#!/root/PreCog/venv/bin/python
+import sys
+import os
+
+# Add project root to Python path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
+
 """
 Input:
 train_count[] - list of possible values for "count" variable for train set
@@ -49,6 +57,7 @@ from parse_utils import *
 from puzzle_generator import *
 from openai import OpenAI
 from datetime import datetime
+from puzzle_generator import create_transitions_array 
 
 def get_next_study_number(base_dir: Path) -> int:
     """Find smallest unused Study<i> number"""
@@ -94,7 +103,9 @@ Response:
         """Get experiment directory path"""
         return self.study_dir / "Experiments" / f"Experiment{experiment_id}"
 
-    def generate_dataset(self, count: int, t: int, d: int, M: int, output_dir: Path):
+    def generate_dataset(self, count: int, t: int, d: int, M: int, 
+                        string_sampler: Callable, transition_array_maker: Callable,  # Changed parameter name
+                        output_dir: Path):
         """Generate puzzles with solutions"""
         puzzles_dir = output_dir / "puzzles" 
         solutions_dir = output_dir / "solutions"
@@ -106,7 +117,9 @@ Response:
             G, root, transitions, transition_history = generate_single_path(
                 n=sample_gaussian_n(M=M), 
                 t=t, 
-                d=d
+                d=d,
+                string_sampler=string_sampler,
+                transition_array_maker=transition_array_maker  # Changed parameter name
             )
             
             puzzle = {
@@ -152,6 +165,8 @@ Response:
                 t=params['train_t'],
                 d=params['train_d'],
                 M=params['M'],
+                string_sampler=params['string_sampler'],
+                transition_array_maker=params['transition_array_maker'],  # Fixed parameter name
                 output_dir=train_dir
             )
             
@@ -162,6 +177,8 @@ Response:
                 t=params['test_t'],
                 d=params['test_d'],
                 M=params['M'],
+                string_sampler=params['string_sampler'],
+                transition_array_maker=params['transition_array_maker'],  # Fixed parameter name
                 output_dir=test_dir
             )
 
@@ -174,7 +191,9 @@ Response:
                       'test_count': List[int],
                       'test_t': List[int],
                       'test_d': List[int],
-                      'M': List[int]
+                      'M': List[int],
+                      'string_samplers': List[Callable],
+                      'transition_array_makers': List[Callable]  # Changed from transition_samplers
                   },
                   # Parameters for testing
                   for_test = {
@@ -191,7 +210,9 @@ Response:
             for_data['test_count'], 
             for_data['test_t'], 
             for_data['test_d'],
-            for_data['M']
+            for_data['M'],
+            for_data['string_samplers'],
+            for_data['transition_array_makers']  # Changed from transition_samplers
         ]
         
         # Generate all datasets first
@@ -204,7 +225,9 @@ Response:
                 'test_count': for_data['test_count'][data_indices[3]],
                 'test_t': for_data['test_t'][data_indices[4]],
                 'test_d': for_data['test_d'][data_indices[5]],
-                'M': for_data['M'][data_indices[6]]
+                'M': for_data['M'][data_indices[6]],
+                'string_sampler': for_data['string_samplers'][data_indices[7]],
+                'transition_array_maker': for_data['transition_array_makers'][data_indices[8]]  # Changed from transition_sampler
             }
             self.create_dataset(dataset_id, params, num_runs)
 
@@ -330,8 +353,8 @@ Response:
         **params
     }
 
+# Update the example usage
 if __name__ == "__main__":
-    # Example usage
     pipeline = Pipeline()
     pipeline.run_study(
         for_data={
@@ -341,7 +364,9 @@ if __name__ == "__main__":
             'test_count': [1],
             'test_t': [1],
             'test_d': [1],
-            'M': [3]
+            'M': [10],
+            'string_samplers': [get_string_sampler],
+            'transition_array_makers': [create_transitions_array]  # Changed from transition_samplers
         },
         for_test={
             'sys_prompts': ["Solve the puzzle"],
