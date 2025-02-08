@@ -1,3 +1,0 @@
-run_id,valid_predictions,total_predictions,train_count,train_t,train_d,test_count,test_t,test_d,sys_prompt,model,M,experiment_id,accuracy
-0,0,1,1,1,1,1,1,1,Solve the puzzle by providing step sequence,gpt-4o,3,000000000,0.0
-1,1,1,1,1,1,1,1,1,Solve the puzzle by providing step sequence,gpt-4o,3,000000000,1.0

@@ -1,5 +1,0 @@
-experiment_id,accuracy,train_count,train_t,train_d,test_count,test_t,test_d,sys_prompt,model,M,self_consistency
-000000000,0.5,1,1,1,1,1,1,Solve the puzzle by providing step sequence,gpt-4o,3,-0.41421356237309515
-010000000,1.0,1,2,1,1,1,1,Solve the puzzle by providing step sequence,gpt-4o,3,1.0
-100000000,0.5,2,1,1,1,1,1,Solve the puzzle by providing step sequence,gpt-4o,3,-0.41421356237309515
-110000000,1.0,2,2,1,1,1,1,Solve the puzzle by providing step sequence,gpt-4o,3,1.0

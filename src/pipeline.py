@@ -70,6 +70,10 @@ class Pipeline:
         # Study-specific log file
         self.log_file = self.study_dir / "llm_responses.txt"
         
+        # Add data directory
+        self.data_dir = self.study_dir / "Data"
+        self.data_dir.mkdir(exist_ok=True)
+        
     def log_llm_response(self, experiment_id: str, run_id: int, prompt: str, response: str):
         """Log raw LLM interaction"""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -126,82 +130,142 @@ Response:
             
         return puzzles
 
+    def generate_data_id(self, data_indices: tuple, num_params: int) -> str:
+        """Generate dataset ID from parameter indices"""
+        return ''.join(str(i) for i in data_indices).zfill(num_params)
+
+    def create_dataset(self, dataset_id: str, params: Dict, num_runs: int):
+        """Create a dataset with multiple runs"""
+        dataset_dir = self.data_dir / f"Data_{dataset_id}"
+        dataset_dir.mkdir(parents=True, exist_ok=True)
+        
+        for run_id in range(num_runs):
+            run_dir = dataset_dir / f"Run{run_id}"
+            run_dir.mkdir(parents=True, exist_ok=True)
+            
+            data_run_dir = run_dir / f"{dataset_id}_{run_id}"
+            
+            # Generate train data
+            train_dir = data_run_dir / "train"
+            self.generate_dataset(
+                count=params['train_count'],
+                t=params['train_t'],
+                d=params['train_d'],
+                M=params['M'],
+                output_dir=train_dir
+            )
+            
+            # Generate test data
+            test_dir = data_run_dir / "test"
+            self.generate_dataset(
+                count=params['test_count'],
+                t=params['test_t'],
+                d=params['test_d'],
+                M=params['M'],
+                output_dir=test_dir
+            )
+
     def run_study(self,
-                  train_count: List[int],
-                  train_t: List[int], 
-                  train_d: List[int],
-                  test_count: List[int],
-                  test_t: List[int],
-                  test_d: List[int],
-                  sys_prompts: List[str],
-                  transition_samplers: List[Callable],
-                  string_samplers: List[Callable],
-                  models: List[str],
-                  M_values: List[int],  # Add M parameter list
-                  num_runs: int):
+                  # Parameters for data generation
+                  for_data = {
+                      'train_count': List[int],
+                      'train_t': List[int],
+                      'train_d': List[int],
+                      'test_count': List[int],
+                      'test_t': List[int],
+                      'test_d': List[int],
+                      'M': List[int]
+                  },
+                  # Parameters for testing
+                  for_test = {
+                      'sys_prompts': List[str],
+                      'models': List[str]
+                  },
+                  num_runs: int = 1):
         
         # Create parameter combinations
-        param_lists = [train_count, train_t, train_d, 
-                      test_count, test_t, test_d,
-                      sys_prompts, models, M_values]  # Add M_values
+        data_param_lists = [
+            for_data['train_count'], 
+            for_data['train_t'], 
+            for_data['train_d'],
+            for_data['test_count'], 
+            for_data['test_t'], 
+            for_data['test_d'],
+            for_data['M']
+        ]
         
+        # Generate all datasets first
+        for data_indices in itertools.product(*[range(len(x)) for x in data_param_lists]):
+            dataset_id = self.generate_data_id(data_indices, len(data_param_lists))
+            params = {
+                'train_count': for_data['train_count'][data_indices[0]],
+                'train_t': for_data['train_t'][data_indices[1]],
+                'train_d': for_data['train_d'][data_indices[2]],
+                'test_count': for_data['test_count'][data_indices[3]],
+                'test_t': for_data['test_t'][data_indices[4]],
+                'test_d': for_data['test_d'][data_indices[5]],
+                'M': for_data['M'][data_indices[6]]
+            }
+            self.create_dataset(dataset_id, params, num_runs)
+
+        # Run experiments
+        test_param_lists = [for_test['sys_prompts'], for_test['models']]
         all_experiments = []
         
-        for params_indices in itertools.product(*[range(len(x)) for x in param_lists]):
-            experiment_id = generate_experiment_id(params_indices, len(param_lists))
-            params = {
-                'train_count': train_count[params_indices[0]],
-                'train_t': train_t[params_indices[1]],
-                'train_d': train_d[params_indices[2]],
-                'test_count': test_count[params_indices[3]],
-                'test_t': test_t[params_indices[4]],
-                'test_d': test_d[params_indices[5]],
-                'sys_prompt': sys_prompts[params_indices[6]],
-                'model': models[params_indices[7]],
-                'M': M_values[params_indices[8]]  # Add M
-            }
+        for data_indices in itertools.product(*[range(len(x)) for x in data_param_lists]):
+            dataset_id = self.generate_data_id(data_indices, len(data_param_lists))
             
-            experiment_results = self.run_experiment(experiment_id, params, num_runs)
-            all_experiments.append(experiment_results)
-            
+            for test_indices in itertools.product(*[range(len(x)) for x in test_param_lists]):
+                experiment_id = self.generate_data_id(
+                    data_indices + test_indices,
+                    len(data_param_lists) + len(test_param_lists)
+                )
+                
+                params = {
+                    **{k: for_data[k][i] for k, i in zip(
+                        ['train_count', 'train_t', 'train_d', 'test_count', 'test_t', 'test_d', 'M'],
+                        data_indices
+                    )},
+                    'sys_prompt': for_test['sys_prompts'][test_indices[0]],
+                    'model': for_test['models'][test_indices[1]],
+                    'dataset_id': dataset_id
+                }
+                
+                experiment_results = self.run_experiment(experiment_id, dataset_id, params, num_runs)
+                all_experiments.append(experiment_results)
+        
         save_study_results(self.study_dir, all_experiments)
 
-    def run_experiment(self, experiment_id: str, params: Dict[str, Any], num_runs: int) -> Dict:
+    def run_experiment(self, experiment_id: str, dataset_id: str, params: Dict[str, Any], num_runs: int) -> Dict:
         experiment_dir = self.get_experiment_dir(experiment_id)
+        dataset_dir = self.data_dir / f"Data_{dataset_id}"
         all_runs = []
         
         for run_id in range(num_runs):
             run_dir = experiment_dir / f"Run{run_id}"
-            data_dir = run_dir / "Data"
+            output_dir = run_dir / "Output"
+            output_dir.mkdir(parents=True, exist_ok=True)
             
-            # Create directories
-            run_dir.mkdir(parents=True, exist_ok=True)
-            data_dir.mkdir(parents=True, exist_ok=True)
+            # Write dataset description
+            with open(run_dir / "description.txt", "w") as f:
+                f.write(f"Dataset: Data_{dataset_id}/Run{run_id}/{dataset_id}_{run_id}\n")
+                f.write(f"Parameters: {json.dumps(params, indent=2)}")
             
-            # Generate datasets with solutions
-            train_puzzles = self.generate_dataset(
-                count=params['train_count'],
-                t=params['train_t'],
-                d=params['train_d'], 
-                M=params['M'],
-                output_dir=data_dir / "Train"
-            )
+            # Get data paths
+            data_run_dir = dataset_dir / f"Run{run_id}" / f"{dataset_id}_{run_id}"
+            train_dir = data_run_dir / "train"
+            test_dir = data_run_dir / "test"
             
-            test_puzzles = self.generate_dataset(
-                count=params['test_count'],
-                t=params['test_t'],
-                d=params['test_d'],
-                M=params['M'], 
-                output_dir=data_dir / "Test"
-            )
+            # Load test puzzles
+            test_puzzles = []
+            for puzzle_file in (test_dir / "puzzles").glob("*.json"):
+                with open(puzzle_file) as f:
+                    test_puzzles.append(json.load(f))
             
             # Get predictions using OpenAI API
             predictions = []
             for test_puzzle in test_puzzles:
-                user_prompt = user_prompt_generator(
-                    data_dir / "Train",
-                    data_dir / "Test"
-                )
+                user_prompt = user_prompt_generator(train_dir, test_dir)
                 
                 # do not change to create. parse is a beta function, but necessary to use response_format
                 response = self.client.beta.chat.completions.parse( 
@@ -236,15 +300,14 @@ Response:
                 }
                 predictions.append(prediction)
                 
-                # Save prediction with .json extension
-                prediction_file = data_dir / "Test" / "Predictions" / f"{test_puzzle['problem_id']}.json"
-                prediction_file.parent.mkdir(parents=True, exist_ok=True)
+                # Save prediction to Output directory
+                prediction_file = output_dir / f"{test_puzzle['problem_id']}.json"
                 with open(prediction_file, 'w') as f:
                     json.dump(prediction, f, indent=4)
             
-            # Save results with proper path
+            # Save results
             run_params = {**params, 'run_id': run_id}
-            save_run_results(run_dir, predictions, run_params)
+            save_run_results(run_dir / f"Results_{run_id}.csv", predictions, run_params)
             
             run_results = {
                 'run_id': run_id,
@@ -254,31 +317,35 @@ Response:
             }
             all_runs.append(run_results)
         
-        # Save experiment results
+        # Save experiment results directly to experiment directory
         exp_params = {**params, 'experiment_id': experiment_id}
-        save_experiment_results(experiment_dir, all_runs, exp_params)
+        results_file = experiment_dir / "results.csv"  # Save directly to experiment dir
+        save_experiment_results(results_file, all_runs, exp_params)
         
         return {
-            'experiment_id': experiment_id,
-            'accuracy': sum(r['valid_predictions'] for r in all_runs) / 
-                       sum(r['total_predictions'] for r in all_runs),
-            **params
-        }
+        'experiment_id': experiment_id,
+        'dataset_id': dataset_id,
+        'accuracy': sum(r['valid_predictions'] for r in all_runs) / 
+                   sum(r['total_predictions'] for r in all_runs),
+        **params
+    }
 
 if __name__ == "__main__":
     # Example usage
     pipeline = Pipeline()
     pipeline.run_study(
-        train_count=[1,2],
-        train_t=[1,2],
-        train_d=[1],
-        test_count=[1],
-        test_t=[1], 
-        test_d=[1],
-        sys_prompts=["Solve the puzzle by providing step sequence"],
-        transition_samplers=[create_transition],
-        string_samplers=[sample_random_string],
-        models=["gpt-4o"],
-        M_values=[3],  # Add M values
-        num_runs=2
+        for_data={
+            'train_count': [1],
+            'train_t': [1,2],
+            'train_d': [1],
+            'test_count': [1],
+            'test_t': [1],
+            'test_d': [1],
+            'M': [3]
+        },
+        for_test={
+            'sys_prompts': ["Solve the puzzle"],
+            'models': ["gpt-4o"]
+        },
+        num_runs=1
     )

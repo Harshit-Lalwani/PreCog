@@ -91,10 +91,10 @@ def save_experiment_results(exp_dir: Path, all_runs: List[Dict], params: Dict) -
     
     # Create DataFrame with results
     df = pd.DataFrame(all_runs)
-    df['experiment_id'] = params['experiment_id']
+    
+    # Add all parameters including experiment_id
     for k, v in params.items():
-        if k != 'experiment_id':
-            df[k] = str(v)
+        df[k] = str(v)
     
     df['accuracy'] = df['valid_predictions'] / df['total_predictions']
     
@@ -114,15 +114,10 @@ def save_study_results(study_dir: Path, all_experiments: List[Dict]) -> None:
     df.to_csv(results_dir / "Results.csv", index=False)
 
 def calculate_self_consistency(row: pd.Series, study_dir: Path) -> float:
-    """Calculate self-consistency score for an experiment using the formula:
-    1 - (std dev of accuracies / mean accuracy)
-    
-    A higher score indicates more consistent performance across runs.
-    Returns 1 if mean accuracy is 0 to avoid division by zero.
-    """
-    # Load the experiment's results file to get all run accuracies
+    """Calculate self-consistency score for an experiment"""
     exp_dir = study_dir / "Experiments" / f"Experiment{row['experiment_id']}"
-    exp_results = pd.read_csv(exp_dir / f"Results_{row['experiment_id']}.csv")
+    results_file = exp_dir / "results.csv"  # Look for file directly in experiment dir
+    exp_results = pd.read_csv(results_file)
     
     accuracies = exp_results['valid_predictions'] / exp_results['total_predictions']
     mean_accuracy = accuracies.mean()
