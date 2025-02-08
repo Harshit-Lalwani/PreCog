@@ -128,10 +128,25 @@ Response:
                 n=n,
                 t=t,
                 d=d,
-                string_sampler=string_sampler,  # Add this
+                string_sampler=string_sampler,
                 transition_array_sampler=transition_array_sampler
             )
             
+            # Generate step by step explanation
+            current_string = root
+            explanation_steps = []
+            for step_num, trans_idx in enumerate(transition_history, 1):
+                if (trans_idx == t):  # Final empty transition
+                    explanation_steps.append(f"STEP{step_num}: \"{current_string}\" occurs in \"{current_string}\"\n"
+                                          f"applying final transition (\"{current_string}\"->\"\") gives \"\"")
+                    break
+                    
+                transition = transitions[trans_idx]
+                next_string = apply_transition(current_string, transition)
+                explanation_steps.append(f"STEP{step_num}: \"{transition['src']}\" occurs in \"{current_string}\"\n"
+                                      f"applying transition {trans_idx} (\"{transition['src']}\"->\"{transition['tgt']}\") gives \"{next_string}\"")
+                current_string = next_string
+                
             puzzle = {
                 "problem_id": f"{i:03d}",
                 "initial_string": root,
@@ -140,7 +155,8 @@ Response:
             
             solution = {
                 "problem_id": f"{i:03d}",
-                "solution": transition_history  
+                "solution": transition_history,
+                "explanation": "\n".join(explanation_steps)
             }
             
             # Save puzzle and solution
@@ -207,7 +223,9 @@ Response:
                   },
                   # Parameters for testing
                   for_test = {
-                      'prompt_titles': List[str],  # Changed from sys_prompts to prompt_titles
+                      'prompt_titles': List[str],  # List of prompt titles from prompts.json
+                      'give_explanation_flags': [0, 1],  # Whether to include explanation in prompts
+                      'ask_explanation_flags': [0, 1],   # Whether to expect explanation in response
                       'models': List[str]
                   },
                   num_runs: int = 1):
@@ -242,7 +260,12 @@ Response:
             self.create_dataset(dataset_id, params, num_runs)
 
         # Run experiments
-        test_param_lists = [for_test['prompt_titles'], for_test['models']]
+        test_param_lists = [
+            for_test['prompt_titles'],
+            for_test['give_explanation_flags'], 
+            for_test['ask_explanation_flags'],
+            for_test['models']
+        ]
         all_experiments = []
         
         # Calculate total number of combinations
@@ -268,9 +291,11 @@ Response:
                          'string_sampler_types', 'transition_array_sampler_types'],  # Fixed name
                         data_indices
                     )},
-                    'prompt_title': for_test['prompt_titles'][test_indices[0]],  # Store title
+                    'prompt_title': for_test['prompt_titles'][test_indices[0]],  # Get title
                     'sys_prompt': self.prompt_manager.get_prompt(for_test['prompt_titles'][test_indices[0]]),  # Get content
-                    'model': for_test['models'][test_indices[1]],
+                    'give_explanation_flag': for_test['give_explanation_flags'][test_indices[1]],  # Store flag
+                    'ask_explanation_flag': for_test['ask_explanation_flags'][test_indices[2]],  # Store flag
+                    'model': for_test['models'][test_indices[3]],
                     'dataset_id': dataset_id
                 }
                 
@@ -528,19 +553,21 @@ if __name__ == "__main__":
 
     pipeline.run_study(
         for_data={
-            'train_count': [0],
-            'train_t': [0],
-            'train_d': [0],
-            'test_count': [10],
+            'train_count': [1],
+            'train_t': [3],
+            'train_d': [3],
+            'test_count': [1],
             'test_t': [3],
             'test_d': [3],
-            'M': [5],
-            'string_sampler_types': [0], #problem with shuffling: has to be accomodated for transitions as well. how to ensure transitions are sampled from non isomorphic set?
+            'M': [7],
+            'string_sampler_types': [0],
             'transition_array_sampler_types': [1]
         },
         for_test={
-            # 'prompt_titles': ["baseline", "problem_defined", "go_step_by_step"],  
-            'prompt_titles': ["baseline"],
+
+            'prompt_titles': [ 'go_step_by_step'],  # Add this line            
+            'give_explanation_flags': [0, 1],  # Whether to include explanation in prompts
+            'ask_explanation_flags': [0, 1],   # Whether to expect explanation in response
             'models': ["gpt-4o"]
         },
         num_runs=1

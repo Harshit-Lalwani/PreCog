@@ -122,7 +122,7 @@ def log_conversation(engine, prompt, response):
     logging.info(f"Prompt: {prompt}")
     logging.info(f"Response: {response}")
     
-def user_prompt_generator(train_path, test_path):
+def user_prompt_generator(train_dir: Path, test_dir: Path, give_explanation_flag= 0) -> str:
     """Generate prompts of the form:
     Training:
     Puzzle:{problem_id, initial_string, transitions}
@@ -136,8 +136,8 @@ def user_prompt_generator(train_path, test_path):
         test_path (Path):has subfolder puzzles with json files <id>.json
     """
     
-    train_path = Path(train_path)
-    test_path = Path(test_path)
+    train_path = Path(train_dir)
+    test_path = Path(test_dir)
 
     train_puzzles_dir = train_path / "puzzles"
     train_solutions_dir = train_path / "solutions"
@@ -180,6 +180,22 @@ def user_prompt_generator(train_path, test_path):
     )
     
     return user_prompt
+
+    # If give_explanation_flag is 1, include explanations from solution files
+    train_examples = []
+    for puzzle_file in (train_dir / "puzzles").glob("*.json"):
+        puzzle_id = puzzle_file.stem
+        puzzle = json.load(open(puzzle_file))
+        solution = json.load(open(train_dir / "solutions" / f"{puzzle_id}.json"))
+        
+        example = {
+            "puzzle": puzzle,
+            "solution": solution["solution"]
+        }
+        if give_explanation_flag:
+            example["explanation"] = solution["explanation"]
+            
+        train_examples.append(example)
 
 def validate_solution_sequence(initial_string: str, transitions: list, solution_steps: list) -> int:
     """

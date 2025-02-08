@@ -1,7 +1,14 @@
 - Add explanation field to schema (in response format, in dataset, or in both)
-    Make sure to try on same dataset with and without explanation (generate with explanation and mask it later)
+    - Make sure to try on same dataset with and without explanation (generate with explanation and mask it later)
+    - Also add solutions that fail
+    - keep flags for what to show in prompt and what not
+
+- For all puzzles, add field: Markov_Entropy (=markov entropy of solution sequence generated while creating puzzle. should not be visible in prompt)
+
+
 - letter shuffling
 - calculate self consistency score
+
 
 
 

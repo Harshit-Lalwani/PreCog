@@ -2,7 +2,7 @@
 
 
 import pydantic
-from typing import List
+from typing import List, Optional
 
 class Transition(pydantic.BaseModel):
     src: str
@@ -74,6 +74,7 @@ class Solution(pydantic.BaseModel):
     """
     problem_id: str
     solution: List[int]
+    explanation: Optional[str] = None  # Only required if ask_explanation_flag is 1
 
     # Check if the solution list is non-empty
     @pydantic.model_validator(mode="after")
