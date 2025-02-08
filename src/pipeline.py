@@ -58,6 +58,7 @@ from puzzle_generator import *
 from openai import OpenAI
 from datetime import datetime
 from puzzle_generator import create_transitions_array 
+from prompt_manager import PromptManager
 
 def get_next_study_number(base_dir: Path) -> int:
     """Find smallest unused Study<i> number"""
@@ -70,6 +71,7 @@ class Pipeline:
     def __init__(self, base_dir: Path = Path("/root/PreCog/studies")):
         self.base_dir = base_dir
         self.client = OpenAI()
+        self.prompt_manager = PromptManager()
         
         # Create study directory with next available number
         study_num = get_next_study_number(base_dir)
@@ -104,7 +106,8 @@ Response:
         return self.study_dir / "Experiments" / f"Experiment{experiment_id}"
 
     def generate_dataset(self, count: int, t: int, d: int, M: int, 
-                        string_sampler: Callable, transition_array_maker: Callable,  # Changed parameter name
+                        string_sampler_type: int,
+                        transition_array_sampler_type: int,
                         output_dir: Path):
         """Generate puzzles with solutions"""
         puzzles_dir = output_dir / "puzzles" 
@@ -114,12 +117,19 @@ Response:
         
         puzzles = []
         for i in range(count):
-            G, root, transitions, transition_history = generate_single_path(
-                n=sample_gaussian_n(M=M), 
-                t=t, 
+            n = sample_gaussian_n(M=M)
+            
+            # Get samplers based on specified types
+            string_sampler = get_string_sampler(n, string_sampler_type)
+            transition_array_sampler = get_transition_array_sampler(n, transition_array_sampler_type)
+            
+            # Pass both samplers to generate_single_path_for_pipeline
+            G, root, transitions, transition_history = generate_single_path_for_pipeline(
+                n=n,
+                t=t,
                 d=d,
-                string_sampler=string_sampler,
-                transition_array_maker=transition_array_maker  # Changed parameter name
+                string_sampler=string_sampler,  # Add this
+                transition_array_sampler=transition_array_sampler
             )
             
             puzzle = {
@@ -165,8 +175,8 @@ Response:
                 t=params['train_t'],
                 d=params['train_d'],
                 M=params['M'],
-                string_sampler=params['string_sampler'],
-                transition_array_maker=params['transition_array_maker'],  # Fixed parameter name
+                string_sampler_type=params['string_sampler_type'],
+                transition_array_sampler_type=params['transition_array_sampler_type'],  # Fixed name
                 output_dir=train_dir
             )
             
@@ -177,8 +187,8 @@ Response:
                 t=params['test_t'],
                 d=params['test_d'],
                 M=params['M'],
-                string_sampler=params['string_sampler'],
-                transition_array_maker=params['transition_array_maker'],  # Fixed parameter name
+                string_sampler_type=params['string_sampler_type'],
+                transition_array_sampler_type=params['transition_array_sampler_type'],  # Fixed name
                 output_dir=test_dir
             )
 
@@ -192,12 +202,12 @@ Response:
                       'test_t': List[int],
                       'test_d': List[int],
                       'M': List[int],
-                      'string_samplers': List[Callable],
-                      'transition_array_makers': List[Callable]  # Changed from transition_samplers
+                      'string_sampler_types': List[int],    # Added
+                      'transition_array_sampler_types': List[int] # Renamed
                   },
                   # Parameters for testing
                   for_test = {
-                      'sys_prompts': List[str],
+                      'prompt_titles': List[str],  # Changed from sys_prompts to prompt_titles
                       'models': List[str]
                   },
                   num_runs: int = 1):
@@ -211,8 +221,8 @@ Response:
             for_data['test_t'], 
             for_data['test_d'],
             for_data['M'],
-            for_data['string_samplers'],
-            for_data['transition_array_makers']  # Changed from transition_samplers
+            for_data['string_sampler_types'],
+            for_data['transition_array_sampler_types']
         ]
         
         # Generate all datasets first
@@ -226,14 +236,22 @@ Response:
                 'test_t': for_data['test_t'][data_indices[4]],
                 'test_d': for_data['test_d'][data_indices[5]],
                 'M': for_data['M'][data_indices[6]],
-                'string_sampler': for_data['string_samplers'][data_indices[7]],
-                'transition_array_maker': for_data['transition_array_makers'][data_indices[8]]  # Changed from transition_sampler
+                'string_sampler_type': for_data['string_sampler_types'][data_indices[7]],
+                'transition_array_sampler_type': for_data['transition_array_sampler_types'][data_indices[8]]  # Fixed name
             }
             self.create_dataset(dataset_id, params, num_runs)
 
         # Run experiments
-        test_param_lists = [for_test['sys_prompts'], for_test['models']]
+        test_param_lists = [for_test['prompt_titles'], for_test['models']]
         all_experiments = []
+        
+        # Calculate total number of combinations
+        data_combinations = len(list(itertools.product(*[range(len(x)) for x in data_param_lists])))
+        test_combinations = len(list(itertools.product(*[range(len(x)) for x in test_param_lists])))
+        total_combinations = data_combinations * test_combinations
+        current = 0
+        
+        print(f"Starting study with {total_combinations} total experiments...")
         
         for data_indices in itertools.product(*[range(len(x)) for x in data_param_lists]):
             dataset_id = self.generate_data_id(data_indices, len(data_param_lists))
@@ -246,28 +264,112 @@ Response:
                 
                 params = {
                     **{k: for_data[k][i] for k, i in zip(
-                        ['train_count', 'train_t', 'train_d', 'test_count', 'test_t', 'test_d', 'M'],
+                        ['train_count', 'train_t', 'train_d', 'test_count', 'test_t', 'test_d', 'M', 
+                         'string_sampler_types', 'transition_array_sampler_types'],  # Fixed name
                         data_indices
                     )},
-                    'sys_prompt': for_test['sys_prompts'][test_indices[0]],
+                    'prompt_title': for_test['prompt_titles'][test_indices[0]],  # Store title
+                    'sys_prompt': self.prompt_manager.get_prompt(for_test['prompt_titles'][test_indices[0]]),  # Get content
                     'model': for_test['models'][test_indices[1]],
                     'dataset_id': dataset_id
                 }
                 
                 experiment_results = self.run_experiment(experiment_id, dataset_id, params, num_runs)
                 all_experiments.append(experiment_results)
+                
+                # Update and display progress
+                current += 1
+                progress = (current / total_combinations) * 100
+                print(f"Progress: {progress:.1f}% ({current}/{total_combinations} experiments)", end='\r')
         
+        print("\nStudy completed!") 
         save_study_results(self.study_dir, all_experiments)
+        
+        # Convert enum values to names for study description
+        string_sampler_names = [StringSamplerType(t).name for t in for_data['string_sampler_types']]
+        transition_array_names = [TransitionArraySamplerType(t).name for t in for_data['transition_array_sampler_types']]
+        
+        # Create study description
+        description = f"""# Study Description
+
+## Parameters
+### Data Generation Parameters
+- Train Count: {for_data['train_count']}
+- Train t: {for_data['train_t']}
+- Train d: {for_data['train_d']}
+- Test Count: {for_data['test_count']}
+- Test t: {for_data['test_t']}
+- Test d: {for_data['test_d']}
+- M: {for_data['M']}
+- String Sampler Types: {string_sampler_names}
+- Transition Array Types: {transition_array_names}
+
+### Testing Parameters
+- System Prompts: {len(for_test['prompt_titles'])} prompts
+- Models: {for_test['models']}
+- Number of Runs: {num_runs}
+
+## Results Summary
+Total Experiments: {total_combinations}
+
+### Model-wise Accuracies
+"""
+        
+        # Calculate and add model-wise accuracies
+        model_results = {}
+        for exp in all_experiments:
+            model = exp['model']
+            if model not in model_results:
+                model_results[model] = {'total': 0, 'count': 0}
+            model_results[model]['total'] += exp['accuracy']
+            model_results[model]['count'] += 1
+        
+        for model, results in model_results.items():
+            avg_accuracy = results['total'] / results['count']
+            description += f"- {model}: {avg_accuracy:.2%}\n"
+        
+        description += "\n## Remarks\n"
+        description += "<!-- Add your remarks here -->"
+        
+        # Save description
+        with open(self.study_dir / "description.md", "w") as f:
+            f.write(description)
 
     def run_experiment(self, experiment_id: str, dataset_id: str, params: Dict[str, Any], num_runs: int) -> Dict:
         experiment_dir = self.get_experiment_dir(experiment_id)
         dataset_dir = self.data_dir / f"Data_{dataset_id}"
         all_runs = []
         
+        # Add error log file
+        error_log = experiment_dir / "validation_errors.log"
+        
+        # Convert enum values to names
+        string_sampler_name = StringSamplerType(params['string_sampler_types']).name
+        transition_array_name = TransitionArraySamplerType(params['transition_array_sampler_types']).name
+        
+        # Create experiment description at the start
+        exp_description = f"""# Experiment {experiment_id}
+
+## Parameters
+- Train Count: {params['train_count']}
+- Train t: {params['train_t']}
+- Train d: {params['train_d']}
+- Test Count: {params['test_count']}
+- Test t: {params['test_t']}
+- Test d: {params['test_d']}
+- M: {params['M']}
+- String Sampler Type: {string_sampler_name}
+- Transition Array Type: {transition_array_name}
+- System Prompt: {params['sys_prompt']}
+- Model: {params['model']}
+
+## Results
+"""
+        
         for run_id in range(num_runs):
             run_dir = experiment_dir / f"Run{run_id}"
-            output_dir = run_dir / "Output"
-            output_dir.mkdir(parents=True, exist_ok=True)
+            output_dir = run_dir / "Output"  # Add this line
+            output_dir.mkdir(parents=True, exist_ok=True)  # Add this line
             
             # Write dataset description
             with open(run_dir / "description.txt", "w") as f:
@@ -288,88 +390,157 @@ Response:
             # Get predictions using OpenAI API
             predictions = []
             for test_puzzle in test_puzzles:
-                user_prompt = user_prompt_generator(train_dir, test_dir)
-                
-                # do not change to create. parse is a beta function, but necessary to use response_format
-                response = self.client.beta.chat.completions.parse( 
-                    model=params['model'],
-                    messages=[
-                        {"role": "system", "content": params['sys_prompt']},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    response_format=Solutions
-                )
-                
-                # Log raw response before parsing
-                self.log_llm_response(
-                    experiment_id,
-                    run_id,
-                    user_prompt,
-                    response.choices[0].message.content
-                )
-                
-                # Parse response
-                response_text = response.choices[0].message.content
-                parsed_response = parse_solution_with_fallback(response_text)
-                
-                prediction = {
-                    'puzzle_id': test_puzzle['problem_id'],
-                    'predicted_solution': str(parsed_response.solutions[0].solution),
-                    'is_valid': validate_solution_sequence(
-                        test_puzzle['initial_string'],
-                        test_puzzle['transitions'],
-                        parsed_response.solutions[0].solution
+                try:
+                    user_prompt = user_prompt_generator(train_dir, test_dir)
+                    
+                    response = self.client.beta.chat.completions.parse(
+                        model=params['model'],
+                        messages=[
+                            {"role": "system", "content": params['sys_prompt']},
+                            {"role": "user", "content": user_prompt}
+                        ],
+                        response_format=Solutions
                     )
-                }
+                    
+                    # Log raw response
+                    self.log_llm_response(
+                        experiment_id,
+                        run_id,
+                        user_prompt,
+                        response.choices[0].message.content
+                    )
+                    
+                    try:
+                        # Parse response
+                        response_text = response.choices[0].message.content
+                        parsed_response = parse_solution_with_fallback(response_text)
+                        
+                        # Validate solution with error handling
+                        try:
+                            is_valid = validate_solution_sequence(
+                                test_puzzle['initial_string'],
+                                test_puzzle['transitions'],
+                                parsed_response.solutions[0].solution
+                            )
+                        except Exception as e:
+                            # Log validation error
+                            error_msg = (f"Validation error for puzzle {test_puzzle['problem_id']}\n"
+                                       f"Run: {run_id}, Experiment: {experiment_id}\n"
+                                       f"Error: {str(e)}\n"
+                                       f"Solution: {parsed_response.solutions[0].solution}\n"
+                                       f"Initial string: {test_puzzle['initial_string']}\n"
+                                       f"Transitions: {test_puzzle['transitions']}\n"
+                                       "----------------------------------------\n")
+                            with open(error_log, "a") as f:
+                                f.write(error_msg)
+                            is_valid = False
+
+                        prediction = {
+                            'puzzle_id': test_puzzle['problem_id'],
+                            'predicted_solution': str(parsed_response.solutions[0].solution),
+                            'is_valid': is_valid,
+                            'error': None if is_valid else "Validation failed"
+                        }
+
+                    except Exception as e:
+                        # Handle parsing errors
+                        error_msg = (f"Parsing error for puzzle {test_puzzle['problem_id']}\n"
+                                   f"Run: {run_id}, Experiment: {experiment_id}\n"
+                                   f"Error: {str(e)}\n"
+                                   f"Response: {response_text}\n"
+                                   "----------------------------------------\n")
+                        with open(error_log, "a") as f:
+                            f.write(error_msg)
+                            
+                        prediction = {
+                            'puzzle_id': test_puzzle['problem_id'],
+                            'predicted_solution': "[]",
+                            'is_valid': False,
+                            'error': f"Parsing failed: {str(e)}"
+                        }
+
+                except Exception as e:
+                    # Handle API errors
+                    error_msg = (f"API error for puzzle {test_puzzle['problem_id']}\n"
+                               f"Run: {run_id}, Experiment: {experiment_id}\n"
+                               f"Error: {str(e)}\n"
+                               "----------------------------------------\n")
+                    with open(error_log, "a") as f:
+                        f.write(error_msg)
+                        
+                    prediction = {
+                        'puzzle_id': test_puzzle['problem_id'],
+                        'predicted_solution': "[]",
+                        'is_valid': False,
+                        'error': f"API error: {str(e)}"
+                    }
+
                 predictions.append(prediction)
                 
-                # Save prediction to Output directory
+                # Save prediction with error information
                 prediction_file = output_dir / f"{test_puzzle['problem_id']}.json"
                 with open(prediction_file, 'w') as f:
                     json.dump(prediction, f, indent=4)
-            
-            # Save results
-            run_params = {**params, 'run_id': run_id}
-            save_run_results(run_dir / f"Results_{run_id}.csv", predictions, run_params)
-            
-            run_results = {
-                'run_id': run_id,
-                'valid_predictions': sum(p['is_valid'] for p in predictions),
-                'total_predictions': len(predictions),
-                **params
-            }
-            all_runs.append(run_results)
+
+        # Save results
+        run_params = {**params, 'run_id': run_id}
+        save_run_results(run_dir, predictions, run_params)
+        
+        run_results = {
+            'run_id': run_id,
+            'valid_predictions': sum(p['is_valid'] for p in predictions),
+            'total_predictions': len(predictions),
+            **params
+        }
+        all_runs.append(run_results)
         
         # Save experiment results directly to experiment directory
         exp_params = {**params, 'experiment_id': experiment_id}
         results_file = experiment_dir / "results.csv"  # Save directly to experiment dir
         save_experiment_results(results_file, all_runs, exp_params)
         
+        # After all runs are complete, add run accuracies to description
+        total_accuracy = 0
+        for run_result in all_runs:
+            accuracy = run_result['valid_predictions'] / run_result['total_predictions']
+            total_accuracy += accuracy
+            exp_description += f"Run {run_result['run_id']}: {accuracy:.2%} accuracy\n"
+        
+        # Add average accuracy
+        avg_accuracy = total_accuracy / len(all_runs)
+        exp_description += f"\nAverage Accuracy: {avg_accuracy:.2%}"
+        
+        # Save experiment description
+        with open(experiment_dir / "description.md", "w") as f:
+            f.write(exp_description)
+        
         return {
         'experiment_id': experiment_id,
         'dataset_id': dataset_id,
-        'accuracy': sum(r['valid_predictions'] for r in all_runs) / 
-                   sum(r['total_predictions'] for r in all_runs),
+        'accuracy': avg_accuracy,
+        'num_runs': num_runs,  # Add this line
         **params
     }
 
-# Update the example usage
+# Example usage
 if __name__ == "__main__":
     pipeline = Pipeline()
+
     pipeline.run_study(
         for_data={
-            'train_count': [1],
-            'train_t': [1,2],
-            'train_d': [1],
-            'test_count': [1],
-            'test_t': [1],
-            'test_d': [1],
-            'M': [10],
-            'string_samplers': [get_string_sampler],
-            'transition_array_makers': [create_transitions_array]  # Changed from transition_samplers
+            'train_count': [0],
+            'train_t': [0],
+            'train_d': [0],
+            'test_count': [10],
+            'test_t': [3],
+            'test_d': [3],
+            'M': [5],
+            'string_sampler_types': [0], #problem with shuffling: has to be accomodated for transitions as well. how to ensure transitions are sampled from non isomorphic set?
+            'transition_array_sampler_types': [1]
         },
         for_test={
-            'sys_prompts': ["Solve the puzzle"],
+            # 'prompt_titles': ["baseline", "problem_defined", "go_step_by_step"],  
+            'prompt_titles': ["baseline"],
             'models': ["gpt-4o"]
         },
         num_runs=1

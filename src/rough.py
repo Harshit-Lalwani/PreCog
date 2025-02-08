@@ -1,3 +1,10 @@
-import sys
-print("Python path:", sys.path)
-print("Python version:", sys.version)
+import random
+
+s = "abcabc"
+
+unique_chars = list(set(s))
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+for char in unique_chars:
+    new_char = random.choice(alphabet)
+    s = s.replace(char, new_char)
+print(s)

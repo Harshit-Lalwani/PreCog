@@ -1,0 +1,2 @@
+run_id,valid_predictions,total_predictions,train_count,train_t,train_d,test_count,test_t,test_d,M,string_sampler_types,transition_array_sampler_types,prompt_title,sys_prompt,model,dataset_id,experiment_id,accuracy
+0,0,1,0,0,0,1,1,1,5,0,1,baseline,Solve the puzzle,gpt-4o,000000000,00000000000,0.0

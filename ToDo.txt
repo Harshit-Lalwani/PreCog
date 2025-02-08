@@ -1,3 +1,6 @@
+- Add explanation field to schema (in response format, in dataset, or in both)
+    Make sure to try on same dataset with and without explanation (generate with explanation and mask it later)
+- letter shuffling
 - calculate self consistency score
 
 

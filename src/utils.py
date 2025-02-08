@@ -34,7 +34,7 @@ def load_dataset(file_path='data/NIS/NISdb_flat.pkl'):
     return flat_dataset
 
 # Function to Sample a random string of size n from NISdb_flat
-def sample_random_string(n, file_path='data/NIS/NISdb_flat.pkl'):
+def sample_random_string(n = sample_gaussian_n, file_path='data/NIS/NISdb_flat.pkl'):
     flat_dataset = load_dataset(file_path)
     
     if n not in flat_dataset or not flat_dataset[n]:
@@ -43,25 +43,35 @@ def sample_random_string(n, file_path='data/NIS/NISdb_flat.pkl'):
     return random.choice(flat_dataset[n])
 
 # Function to create transitions
-def create_transition(n, file_path='data/NIS/NISdb_flat.pkl'):
+def create_transition(n: int, initial_string: str, file_path='data/NIS/NISdb_flat.pkl'):
+    """Create a transition using characters from initial string"""
     Max_size = min(2*n, M)
+    unique_chars = list(set(initial_string))  # Get unique characters from initial string
+    
     while True:
         p = int(np.clip(np.random.exponential(scale=n), 1, Max_size))
         q = int(np.clip(np.random.exponential(scale=n), 1, Max_size))
         
-        s1 = sample_random_string(p, file_path)
-        s2 = sample_random_string(q, file_path)
+        # Generate s1 using characters from initial string
+        s1 = ''.join(random.choice(unique_chars) for _ in range(p))
+        
+        # Generate s2 using characters from initial string
+        # Also include empty string as a possible target with some probability
+        if random.random() < 0.2:  # 20% chance of empty target
+            s2 = ''
+        else:
+            s2 = ''.join(random.choice(unique_chars) for _ in range(q))
         
         if s1 != s2:
             break
-        
+    
     return {"src": s1, "tgt": s2}
 
 # Function to create an array of transitions of size t for a given n
-def create_transitions_array(n, t, file_path='data/NIS/NISdb_flat.pkl'):
+def create_transitions_array(n: int, t: int, initial_string: str, file_path='data/NIS/NISdb_flat.pkl'):
     transitions = []
     for _ in range(t):
-        transitions.append(create_transition(n, file_path))
+        transitions.append(create_transition(n, initial_string, file_path))
     return transitions
 
 # To apply a transition [s1, s2] to a string s, we find the first occurrence of s1 in s and replace it with s2:
@@ -85,9 +95,9 @@ def plot_graph(G):
     plt.show()
     
     
-def generate_graph(n = sample_gaussian_n(), t=3, d=3, file_path='data/NIS/NISdb_flat.pkl'):
+def generate_graph(n=sample_gaussian_n(), t=3, d=3, file_path='data/NIS/NISdb_flat.pkl'):
     root = sample_random_string(n, file_path)
-    transitions = create_transitions_array(n, t, file_path)
+    transitions = create_transitions_array(n, t, root, file_path)  # Pass root string
     
     G = nx.DiGraph()
     G.add_node((-1,), string=root)
