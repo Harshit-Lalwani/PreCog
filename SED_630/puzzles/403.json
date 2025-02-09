@@ -1,0 +1,32 @@
+{
+    "problem_id": "403",
+    "initial_string": "aabcabc",
+    "transitions": [
+        {
+            "src": "cdea",
+            "tgt": ""
+        },
+        {
+            "src": "d",
+            "tgt": ""
+        },
+        {
+            "src": "b",
+            "tgt": "c"
+        },
+        {
+            "src": "d",
+            "tgt": "adbddcdadc"
+        },
+        {
+            "src": "d",
+            "tgt": "ea"
+        },
+        {
+            "src": "accceea",
+            "tgt": ""
+        }
+    ],
+    "markov_entropy": 1.584962500721156,
+    "pattern_score": 0.20751874963942196
+}

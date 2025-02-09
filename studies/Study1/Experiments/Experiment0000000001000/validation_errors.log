@@ -1,0 +1,7 @@
+API error for puzzle 005
+Run: 0, Experiment: 0000000001000
+Error: 1 validation error for Solutions
+solutions.8
+  Value error, Solution list is empty [type=value_error, input_value={'problem_id': '008', 'so...not match the process."}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/value_error
+----------------------------------------

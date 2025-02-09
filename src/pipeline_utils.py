@@ -150,10 +150,21 @@ def save_run_results(results_path: Path, predictions: List[Dict], run_params: Di
     # Add run parameters as columns
     for k, v in run_params.items():
         df[k] = str(v)
-    
-    df['accuracy'] = accuracy
-    df['valid_predictions'] = valid_count
-    df['total_predictions'] = total_count
+
+    # Calculate pattern weighted accuracy
+    pattern_weighted_sum = 0
+    pattern_score_sum = 0
+    for p in predictions:
+        # Get is_valid as int (0 or 1)
+        is_valid = 1 if p['is_valid'] else 0
+        # Get pattern score from basic_results since it's already loaded there
+        pattern_score = next(r['pattern_score'] for r in basic_results if r['problem_id'] == p['puzzle_id'])
+        pattern_weighted_sum += is_valid * pattern_score
+        pattern_score_sum += pattern_score
+
+    pattern_weighted_accuracy = pattern_weighted_sum / pattern_score_sum if pattern_score_sum > 0 else 0
+
+    df['pattern_weighted_accuracy'] = pattern_weighted_accuracy
     
     return df
 
@@ -283,48 +294,57 @@ def generate_single_path_for_pipeline(n: int, t: int, d: int,
                                     string_sampler: Callable,
                                     transition_array_sampler: Callable) -> Tuple[nx.DiGraph, str, List[Dict], List[int]]:
     """
-    Pipeline-specific version of generate_single_path that uses provided samplers
+    Pipeline-specific version of generate_single_path that uses provided samplers.
+    Restarts with new root string if d valid transitions cannot be found.
     
     Args:
         n: Length of strings
         t: Number of transitions
-        d: Maximum path depth
+        d: Exact number of transitions required
         string_sampler: Function to generate initial string
         transition_array_sampler: Function to generate array of transitions
     """
-    # Get root string first
-    root = string_sampler()
-    
-    # Initialize graph
-    G = nx.DiGraph()
-    G.add_node((-1,), string=root)
-    current_node = (-1,)
-    current_string = root
-    
-    # Get transitions using initial string
-    transitions = transition_array_sampler(t, root)  # Modified to pass root string
-    
-    transition_history = []
-    
-    # Build path through graph
-    for i in range(d):
-        j = random.choice(range(t))
-        transition = transitions[j]
-        new_string = apply_transition(current_string, transition)
+    while True:  # Keep trying until we get a valid path
+        # Get root string
+        root = string_sampler()
         
-        if new_string != "-1":
-            transition_history.append(j)
-            new_node = tuple(list(current_node) + [i])
-            G.add_node(new_node, string=new_string)
-            G.add_edge(current_node, new_node, label=f"{transition['src']} -> {transition['tgt']}")
-            current_node = new_node
-            current_string = new_string
-    
-    # Add final empty transition
-    transitions.append({"src": current_string, "tgt": ""})
-    transition_history.append(t)
-    
-    return G, root, transitions, transition_history
+        # Initialize graph
+        G = nx.DiGraph()
+        G.add_node((-1,), string=root)
+        current_node = (-1,)
+        current_string = root
+        
+        # Get transitions using initial string
+        transitions = transition_array_sampler(t, root)
+        
+        transition_history = []
+        attempts = 0
+        max_attempts = 100  # Max attempts per root string
+        
+        # Try to build path with exactly d transitions
+        while len(transition_history) < d and attempts < max_attempts:
+            j = random.choice(range(t))
+            transition = transitions[j]
+            new_string = apply_transition(current_string, transition)
+            
+            if new_string != "-1":
+                transition_history.append(j)
+                new_node = tuple(list(current_node) + [len(transition_history)-1])
+                G.add_node(new_node, string=new_string)
+                G.add_edge(current_node, new_node, label=f"{transition['src']} -> {transition['tgt']}")
+                current_node = new_node
+                current_string = new_string
+            
+            attempts += 1
+        
+        # If we got exactly d transitions, we're done
+        if len(transition_history) == d:
+            # Add final empty transition
+            transitions.append({"src": current_string, "tgt": ""})
+            transition_history.append(t)
+            return G, root, transitions, transition_history
+        
+        # Otherwise, loop will continue with new root string
 
 def calculate_markov_entropy(sequence: List[int]) -> float:
     """Calculate the Markov entropy of a sequence of transitions."""

@@ -1,2 +1,0 @@
-experiment_id,run_id,run_accuracy,experiment_accuracy,self_consistency,train_count,train_t,train_d,test_count,test_t,test_d,M,string_sampler_type,transition_array_type,prompt_title,model,dataset_id
-0000000000000,0,0.1,0.1,1.0,0,3,3,10,3,3,7,GAUSSIAN_simple,STANDARD,baseline,gpt-4o,000000000

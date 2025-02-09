@@ -1,0 +1,32 @@
+{
+    "problem_id": "115",
+    "initial_string": "a",
+    "transitions": [
+        {
+            "src": "a",
+            "tgt": "aa"
+        },
+        {
+            "src": "a",
+            "tgt": "aa"
+        },
+        {
+            "src": "aa",
+            "tgt": "a"
+        },
+        {
+            "src": "aa",
+            "tgt": "a"
+        },
+        {
+            "src": "a",
+            "tgt": ""
+        },
+        {
+            "src": "aa",
+            "tgt": ""
+        }
+    ],
+    "markov_entropy": 2.725480556997868,
+    "pattern_score": 0.17954859974466675
+}

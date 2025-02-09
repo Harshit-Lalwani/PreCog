@@ -578,18 +578,18 @@ if __name__ == "__main__":
 
     pipeline.run_study(
         for_data={
-            'train_count': [0],
+            'train_count': [5],
             'train_t': [3],
             'train_d': [3],
-            'test_count': [10],
+            'test_count': [5],
             'test_t': [3],
             'test_d': [3],
             'M': [7],
             'string_sampler_types': [0],
-            'transition_array_sampler_types': [0]  # Fixed name to match the parameter expected
+            'transition_array_sampler_types': [0]  
         },
         for_test={
-            'prompt_titles': ['baseline'],
+            'prompt_titles': ['baseline', 'problem_defined', 'go_step_by_step'],
             'give_explanation_flags': [0],
             'ask_explanation_flags': [1],
             'models': ['gpt-4o']

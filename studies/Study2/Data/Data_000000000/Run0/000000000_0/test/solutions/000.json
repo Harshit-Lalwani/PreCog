@@ -1,0 +1,9 @@
+{
+    "problem_id": "000",
+    "solution": [
+        0,
+        0,
+        3
+    ],
+    "explanation": "STEP1: \"d\" occurs in \"abacd\"\napplying transition 0 (\"d\"->\"dbadaabbcb\") gives \"abacdbadaabbcb\"\nSTEP2: \"d\" occurs in \"abacdbadaabbcb\"\napplying transition 0 (\"d\"->\"dbadaabbcb\") gives \"abacdbadaabbcbbadaabbcb\"\nSTEP3: \"abacdbadaabbcbbadaabbcb\" occurs in \"abacdbadaabbcbbadaabbcb\"\napplying final transition (\"abacdbadaabbcbbadaabbcb\"->\"\") gives \"\""
+}

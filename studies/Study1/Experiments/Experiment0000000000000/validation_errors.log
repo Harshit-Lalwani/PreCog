@@ -1,0 +1,17 @@
+API error for puzzle 004
+Run: 0, Experiment: 0000000000000
+Error: 2 validation errors for Solutions
+solutions.1
+  Value error, Solution list is empty [type=value_error, input_value={'problem_id': '001', 'so... lead to empty string."}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/value_error
+solutions.5
+  Value error, Solution list is empty [type=value_error, input_value={'problem_id': '005', 'so...ts in an empty string.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/value_error
+----------------------------------------
+API error for puzzle 002
+Run: 0, Experiment: 0000000000000
+Error: 1 validation error for Solutions
+solutions.2
+  Value error, Solution list is empty [type=value_error, input_value={'problem_id': '002', 'so...lification completely."}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/value_error
+----------------------------------------

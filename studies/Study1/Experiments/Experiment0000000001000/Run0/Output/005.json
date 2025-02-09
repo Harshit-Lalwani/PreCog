@@ -1,0 +1,6 @@
+{
+    "puzzle_id": "005",
+    "predicted_solution": "[]",
+    "is_valid": false,
+    "error": "API error: 1 validation error for Solutions\nsolutions.8\n  Value error, Solution list is empty [type=value_error, input_value={'problem_id': '008', 'so...not match the process.\"}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.10/v/value_error"
+}

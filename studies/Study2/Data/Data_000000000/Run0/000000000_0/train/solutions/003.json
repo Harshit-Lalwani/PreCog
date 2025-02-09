@@ -1,0 +1,8 @@
+{
+    "problem_id": "003",
+    "solution": [
+        0,
+        3
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"ab\"\napplying transition 0 (\"a\"->\"aaaa\") gives \"aaaab\"\nSTEP2: \"aaaab\" occurs in \"aaaab\"\napplying final transition (\"aaaab\"->\"\") gives \"\""
+}

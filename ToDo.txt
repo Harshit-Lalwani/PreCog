@@ -1,9 +1,4 @@
-- in run csv, add markov entropy as well (of actual solution and of given solution)
-
-
-ISSUE:
-- explanation field, flags aren't working (explanation always comes in prompt and output)
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+IMP: add explanation field to puzzles in SED datasets
 
 
 
@@ -12,14 +7,6 @@ ISSUE:
 
 - letter shuffling
 - test implementation of self consistency score
-
-
-
-
-
-
-
-
 
 
 

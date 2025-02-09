@@ -1,0 +1,20 @@
+{
+    "problem_id": "679",
+    "initial_string": "abbcad",
+    "transitions": [
+        {
+            "src": "bbbbacba",
+            "tgt": ""
+        },
+        {
+            "src": "b",
+            "tgt": "cab"
+        },
+        {
+            "src": "acacabcacb",
+            "tgt": ""
+        }
+    ],
+    "markov_entropy": 1.0,
+    "pattern_score": 0.36907024642854247
+}

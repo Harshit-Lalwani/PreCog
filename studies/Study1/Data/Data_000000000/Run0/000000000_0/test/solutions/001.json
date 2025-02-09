@@ -1,0 +1,10 @@
+{
+    "problem_id": "001",
+    "solution": [
+        2,
+        2,
+        0,
+        3
+    ],
+    "explanation": "STEP1: \"aa\" occurs in \"aaa\"\napplying transition 2 (\"aa\"->\"aaaaaa\") gives \"aaaaaaa\"\nSTEP2: \"aa\" occurs in \"aaaaaaa\"\napplying transition 2 (\"aa\"->\"aaaaaa\") gives \"aaaaaaaaaaa\"\nSTEP3: \"a\" occurs in \"aaaaaaaaaaa\"\napplying transition 0 (\"a\"->\"aa\") gives \"aaaaaaaaaaaa\"\nSTEP4: \"aaaaaaaaaaaa\" occurs in \"aaaaaaaaaaaa\"\napplying final transition (\"aaaaaaaaaaaa\"->\"\") gives \"\""
+}

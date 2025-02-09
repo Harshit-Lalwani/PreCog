@@ -1,0 +1,6 @@
+{
+    "puzzle_id": "002",
+    "predicted_solution": "[1, 2, 2, 2, 2, 0, 2]",
+    "is_valid": 0,
+    "error": "Validation failed"
+}

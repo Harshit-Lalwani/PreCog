@@ -1,0 +1,7 @@
+{
+    "problem_id": "002",
+    "solution": [
+        3
+    ],
+    "explanation": "STEP1: \"aba\" occurs in \"aba\"\napplying final transition (\"aba\"->\"\") gives \"\""
+}
