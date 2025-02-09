@@ -25,7 +25,7 @@ class Transition(pydantic.BaseModel):
 class Problem(pydantic.BaseModel):
     """
     {
-        “problem_id”: “000”,
+        "problem_id": "000",
         "initial_string": "HELLOWORLD",
         "transitions": [
             {
@@ -34,14 +34,18 @@ class Problem(pydantic.BaseModel):
             },
             {
                 "src": "WORLD",
-                "tgt": "”
+                "tgt": ""
             }
-        ]
+        ],
+        "markov_entropy": 0.0,
+        "pattern_score": 1.0
     }
     """
     problem_id: str
     initial_string: str
     transitions: List[Transition]
+    markov_entropy: float
+    pattern_score: float
 
     # Check if the list is non-empty
     @pydantic.model_validator(mode="after")

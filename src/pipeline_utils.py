@@ -9,6 +9,7 @@ from typing import List, Dict, Any, Callable, Tuple
 from enum import Enum
 import networkx as nx
 import random
+import numpy as np
 
 class StringSamplerType(Enum):
     GAUSSIAN_simple = 0
@@ -77,47 +78,69 @@ def get_transition_array_sampler(n: int, sampler_type: int) -> Callable:
     else:
         raise ValueError(f"Unknown transition array sampler type: {sampler_type}")
 
-def generate_dataset(count: int, t: int, d: int, 
-                    M: int,  # Added n parameter
-                    output_dir: Path) -> List[Dict]:
-    """Generate dataset using n-based samplers"""
+# ! this generate_dataset isn't used in the pipeline
+# def generate_dataset(count: int, t: int, d: int, 
+#                     M: int,  # Added n parameter
+#                     output_dir: Path) -> List[Dict]:
+#     """Generate dataset using n-based samplers"""
     
-    # Create sampler functions
-    n = sample_gaussian_n(M)
-    string_sampler = get_string_sampler(n)
-    transition_sampler = get_transition_sampler(n)
+#     # Create sampler functions
+#     n = sample_gaussian_n(M)
+#     string_sampler = get_string_sampler(n)
+#     transition_sampler = get_transition_sampler(n)
     
-    puzzles = []
-    for i in range(count):
-        puzzle = {
-            'problem_id': f"{i:03d}",
-            'initial_string': string_sampler(),
-            'transitions': [transition_sampler() for _ in range(t)]
-        }
+#     puzzles = []
+#     for i in range(count):
+#         puzzle = {
+#             'problem_id': f"{i:03d}",
+#             'initial_string': string_sampler(),
+#             'transitions': [transition_sampler() for _ in range(t)],
+#         }
         
-        # Save puzzle
-        output_dir.mkdir(parents=True, exist_ok=True)
-        with open(output_dir / f"{puzzle['problem_id']}.json", 'w') as f:
-            json.dump(puzzle, f, indent=4)
+#         # Save puzzle
+#         output_dir.mkdir(parents=True, exist_ok=True)
+#         with open(output_dir / f"{puzzle['problem_id']}.json", 'w') as f:
+#             json.dump(puzzle, f, indent=4)
             
-        puzzles.append(puzzle)
-    return puzzles
+#         puzzles.append(puzzle)
+#     return puzzles
 
 def save_run_results(results_path: Path, predictions: List[Dict], run_params: Dict) -> pd.DataFrame:
     """Save run results to CSV and return DataFrame"""
-    # Create basic results DataFrame
-    basic_results = pd.DataFrame([{
-        'problem_id': p['puzzle_id'],
-        'is_valid': p['is_valid'],
-        'predicted_solution': p['predicted_solution']
-    } for p in predictions])
+    # Create basic results DataFrame with additional metrics
+    basic_results = []
+    for p in predictions:
+        # Load original puzzle from Data directory using dataset_id and run_id
+        dataset_id = run_params['dataset_id']
+        run_id = run_params['run_id']
+        
+        # Fixed path to include Study directory
+        puzzle_file = (results_path.parent.parent.parent / "Data" / 
+                      f"Data_{dataset_id}" / f"Run{run_id}" / 
+                      f"{dataset_id}_{run_id}" / "test" / "puzzles" / 
+                      f"{p['puzzle_id']}.json")
+        
+        # Load puzzle to get the metrics
+        with open(puzzle_file) as f:
+            puzzle = json.load(f)
+            
+        result = {
+            'problem_id': p['puzzle_id'],
+            'is_valid': p['is_valid'],
+            'predicted_solution': p['predicted_solution'],
+            'markov_entropy': puzzle['markov_entropy'],
+            'pattern_score': puzzle['pattern_score']
+        }
+        basic_results.append(result)
+    
+    basic_results_df = pd.DataFrame(basic_results)
     
     # Save basic results CSV in run folder
     run_results_file = results_path / "predictions.csv"
-    basic_results.to_csv(run_results_file, index=False)
+    basic_results_df.to_csv(run_results_file, index=False)
     
     # Create full results DataFrame with all parameters
-    df = pd.DataFrame(predictions)
+    df = pd.DataFrame(basic_results)
     
     # Calculate accuracy for this run
     valid_count = sum(p['is_valid'] for p in predictions)
@@ -302,3 +325,23 @@ def generate_single_path_for_pipeline(n: int, t: int, d: int,
     transition_history.append(t)
     
     return G, root, transitions, transition_history
+
+def calculate_markov_entropy(sequence: List[int]) -> float:
+    """Calculate the Markov entropy of a sequence of transitions."""
+    if not sequence:
+        return 0.0
+
+    transition_counts = {}
+    for i in range(len(sequence) - 1):
+        pair = (sequence[i], sequence[i + 1])
+        if pair not in transition_counts:
+            transition_counts[pair] = 0
+        transition_counts[pair] += 1
+
+    total_transitions = sum(transition_counts.values())
+    entropy = 0.0
+    for count in transition_counts.values():
+        probability = count / total_transitions
+        entropy -= probability * np.log2(probability)
+
+    return entropy

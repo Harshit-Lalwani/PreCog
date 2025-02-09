@@ -1,0 +1,18 @@
+Dataset: Data_000000000/Run0/000000000_0
+Parameters: {
+  "train_count": 0,
+  "train_t": 3,
+  "train_d": 3,
+  "test_count": 10,
+  "test_t": 3,
+  "test_d": 3,
+  "M": 7,
+  "string_sampler_types": 0,
+  "transition_array_sampler_types": 0,
+  "prompt_title": "baseline",
+  "sys_prompt": "Solve the puzzle",
+  "give_explanation_flag": 0,
+  "ask_explanation_flag": 1,
+  "model": "gpt-4o",
+  "dataset_id": "000000000"
+}

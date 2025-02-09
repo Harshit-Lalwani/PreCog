@@ -122,7 +122,7 @@ def log_conversation(engine, prompt, response):
     logging.info(f"Prompt: {prompt}")
     logging.info(f"Response: {response}")
     
-def user_prompt_generator(train_dir: Path, test_dir: Path, give_explanation_flag= 0) -> str:
+def user_prompt_generator(train_dir: Path, test_dir: Path, give_explanation_flag=0) -> str:
     """Generate prompts of the form:
     Training:
     Puzzle:{problem_id, initial_string, transitions}
@@ -130,10 +130,10 @@ def user_prompt_generator(train_dir: Path, test_dir: Path, give_explanation_flag
     Test:
     Puzzle:{problem_id, initial_string, transitions}
    
-
     Args:
-        train_path (Path):has subfolders puzzles and solutions with json files <id>.json
-        test_path (Path):has subfolder puzzles with json files <id>.json
+        train_path (Path): has subfolders puzzles and solutions with json files <id>.json
+        test_path (Path): has subfolder puzzles with json files <id>.json
+        give_explanation_flag (int): whether to include explanations in training examples
     """
     
     train_path = Path(train_dir)
@@ -156,10 +156,34 @@ def user_prompt_generator(train_dir: Path, test_dir: Path, give_explanation_flag
                 with open(puzzle_file, "r") as pf, open(solution_file, "r") as sf:
                     puzzle_content = json.load(pf)
                     solution_content = json.load(sf)
-                    training_data.append({
-                        "Puzzle": puzzle_content,
-                        "Solution": solution_content
-                    })
+                    
+                    # Remove metrics from puzzle content
+                    filtered_puzzle = {
+                        'problem_id': puzzle_content['problem_id'],
+                        'initial_string': puzzle_content['initial_string'],
+                        'transitions': puzzle_content['transitions']
+                    }
+                                     
+                    if give_explanation_flag and 'explanation' in solution_content:
+                        training_example = {
+                        "Puzzle": filtered_puzzle,
+                        "Solution": {
+                            'problem_id': solution_content['problem_id'],
+                            'solution': solution_content['solution'],
+                            'explanation': solution_content['explanation']
+                        }
+                    }
+                    else:
+                        training_example = {
+                        "Puzzle": filtered_puzzle,
+                        "Solution": {
+                            'problem_id': solution_content['problem_id'],
+                            'solution': solution_content['solution']
+                        }
+                    }
+
+                    
+                    training_data.append(training_example)
 
     # Collect test puzzles
     if test_puzzles_dir.exists():
@@ -167,9 +191,16 @@ def user_prompt_generator(train_dir: Path, test_dir: Path, give_explanation_flag
         for puzzle_file in test_puzzle_files:
             with open(puzzle_file, "r") as pf:
                 puzzle_content = json.load(pf)
-                test_data.append({"Puzzle": puzzle_content})
+                # Remove metrics from puzzle content
+                filtered_puzzle = {
+                    'problem_id': puzzle_content['problem_id'],
+                    'initial_string': puzzle_content['initial_string'],
+                    'transitions': puzzle_content['transitions']
+                }
+                test_data.append({"Puzzle": filtered_puzzle})
 
     # Format the prompt
+    
     user_prompt = (
         "Training:\n"
         f"{training_data}\n"
@@ -180,22 +211,6 @@ def user_prompt_generator(train_dir: Path, test_dir: Path, give_explanation_flag
     )
     
     return user_prompt
-
-    # If give_explanation_flag is 1, include explanations from solution files
-    train_examples = []
-    for puzzle_file in (train_dir / "puzzles").glob("*.json"):
-        puzzle_id = puzzle_file.stem
-        puzzle = json.load(open(puzzle_file))
-        solution = json.load(open(train_dir / "solutions" / f"{puzzle_id}.json"))
-        
-        example = {
-            "puzzle": puzzle,
-            "solution": solution["solution"]
-        }
-        if give_explanation_flag:
-            example["explanation"] = solution["explanation"]
-            
-        train_examples.append(example)
 
 def validate_solution_sequence(initial_string: str, transitions: list, solution_steps: list) -> int:
     """

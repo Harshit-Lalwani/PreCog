@@ -131,6 +131,13 @@ Response:
                 string_sampler=string_sampler,
                 transition_array_sampler=transition_array_sampler
             )
+
+            # Calculate markov entropy
+            markov_entropy = calculate_markov_entropy(transition_history)
+            
+            # Calculate pattern score
+            solution_length = len(transition_history)
+            pattern_score = 1.0 - (markov_entropy / np.log2(solution_length)) if solution_length > 1 else 1.0
             
             # Generate step by step explanation
             current_string = root
@@ -146,11 +153,15 @@ Response:
                 explanation_steps.append(f"STEP{step_num}: \"{transition['src']}\" occurs in \"{current_string}\"\n"
                                       f"applying transition {trans_idx} (\"{transition['src']}\"->\"{transition['tgt']}\") gives \"{next_string}\"")
                 current_string = next_string
+
+                markov_entropy = calculate_markov_entropy(transition_history)
                 
             puzzle = {
                 "problem_id": f"{i:03d}",
                 "initial_string": root,
-                "transitions": transitions
+                "transitions": transitions,
+                "markov_entropy": markov_entropy,
+                "pattern_score": pattern_score
             }
             
             solution = {
@@ -240,7 +251,7 @@ Response:
             for_data['test_d'],
             for_data['M'],
             for_data['string_sampler_types'],
-            for_data['transition_array_sampler_types']
+            for_data['transition_array_sampler_types']  # Fixed name to match
         ]
         
         # Generate all datasets first
@@ -408,13 +419,16 @@ Total Experiments: {total_combinations}
             
             # Load test puzzles
             test_puzzles = []
+            pattern_scores = []  # Add this line
             for puzzle_file in (test_dir / "puzzles").glob("*.json"):
                 with open(puzzle_file) as f:
-                    test_puzzles.append(json.load(f))
+                    puzzle = json.load(f)
+                    test_puzzles.append(puzzle)
+                    pattern_scores.append(puzzle['pattern_score'])  # Add this line
             
             # Get predictions using OpenAI API
             predictions = []
-            for test_puzzle in test_puzzles:
+            for idx, test_puzzle in enumerate(test_puzzles):  # Modified this line
                 try:
                     user_prompt = user_prompt_generator(train_dir, test_dir)
                     
@@ -511,10 +525,16 @@ Total Experiments: {total_combinations}
         run_params = {**params, 'run_id': run_id}
         save_run_results(run_dir, predictions, run_params)
         
+        pattern_weighted_sum = sum(p['is_valid'] * pattern_scores[i] 
+                                    for i, p in enumerate(predictions))
+        total_pattern_score = sum(pattern_scores)
+        
+        # Add pattern_weighted_accuracy to run_results
         run_results = {
             'run_id': run_id,
             'valid_predictions': sum(p['is_valid'] for p in predictions),
             'total_predictions': len(predictions),
+            'pattern_weighted_accuracy': pattern_weighted_sum / total_pattern_score if total_pattern_score > 0 else 0,
             **params
         }
         all_runs.append(run_results)
@@ -526,26 +546,31 @@ Total Experiments: {total_combinations}
         
         # After all runs are complete, add run accuracies to description
         total_accuracy = 0
+        total_weighted_accuracy = 0
         for run_result in all_runs:
             accuracy = run_result['valid_predictions'] / run_result['total_predictions']
             total_accuracy += accuracy
-            exp_description += f"Run {run_result['run_id']}: {accuracy:.2%} accuracy\n"
+            total_weighted_accuracy += run_result['pattern_weighted_accuracy']
+            exp_description += f"Run {run_result['run_id']}: {accuracy:.2%} accuracy (pattern-weighted: {run_result['pattern_weighted_accuracy']:.2%})\n"
         
-        # Add average accuracy
+        # Add average accuracies
         avg_accuracy = total_accuracy / len(all_runs)
+        avg_weighted_accuracy = total_weighted_accuracy / len(all_runs)
         exp_description += f"\nAverage Accuracy: {avg_accuracy:.2%}"
+        exp_description += f"\nAverage Pattern-Weighted Accuracy: {avg_weighted_accuracy:.2%}"
         
         # Save experiment description
         with open(experiment_dir / "description.md", "w") as f:
             f.write(exp_description)
         
         return {
-        'experiment_id': experiment_id,
-        'dataset_id': dataset_id,
-        'accuracy': avg_accuracy,
-        'num_runs': num_runs,  # Add this line
-        **params
-    }
+            'experiment_id': experiment_id,
+            'dataset_id': dataset_id,
+            'accuracy': avg_accuracy,
+            'pattern_weighted_accuracy': avg_weighted_accuracy,
+            'num_runs': num_runs,
+            **params
+        }
 
 # Example usage
 if __name__ == "__main__":
@@ -553,22 +578,21 @@ if __name__ == "__main__":
 
     pipeline.run_study(
         for_data={
-            'train_count': [1],
+            'train_count': [0],
             'train_t': [3],
             'train_d': [3],
-            'test_count': [1],
+            'test_count': [10],
             'test_t': [3],
             'test_d': [3],
             'M': [7],
             'string_sampler_types': [0],
-            'transition_array_sampler_types': [1]
+            'transition_array_sampler_types': [0]  # Fixed name to match the parameter expected
         },
         for_test={
-
-            'prompt_titles': [ 'go_step_by_step'],  # Add this line            
-            'give_explanation_flags': [0, 1],  # Whether to include explanation in prompts
-            'ask_explanation_flags': [0, 1],   # Whether to expect explanation in response
-            'models': ["gpt-4o"]
+            'prompt_titles': ['baseline'],
+            'give_explanation_flags': [0],
+            'ask_explanation_flags': [1],
+            'models': ['gpt-4o']
         },
         num_runs=1
     )
