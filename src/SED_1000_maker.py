@@ -1,36 +1,3 @@
-"""
-import pandas as pd
-import numpy as np
-from scipy.spatial.distance import cdist
-
-# Load dataset
-df = pd.read_csv("exploration_results.csv")
-
-# 1. Stratified Sampling (70%) - Preserves pattern_score distribution
-bins = np.linspace(df["pattern_score"].min(), df["pattern_score"].max(), 20)  # Create bins for pattern_score
-labels = range(len(bins)-1)
-df["score_bin"] = pd.cut(df["pattern_score"], bins=bins, labels=labels)
-stratified_sample = df.groupby("score_bin", group_keys=False).apply(lambda x: x.sample(frac=0.7, random_state=42))
-
-# 2. Max-Min Diversity Sampling (30%) - Ensures rare points
-remaining_data = df.drop(stratified_sample.index)
-selected_indices = [np.random.randint(0, len(remaining_data))]  # Start with a random point
-
-for _ in range(30):  # Select 30 diverse points
-    dists = cdist(remaining_data.iloc[selected_indices][["pattern_score"]], remaining_data[["pattern_score"]])
-    min_dists = np.min(dists, axis=0)  # Distance to the closest selected point
-    selected_indices.append(np.argmax(min_dists))
-
-diverse_sample = remaining_data.iloc[selected_indices]
-
-# Combine both sets to create the final dataset
-final_sample = pd.concat([stratified_sample, diverse_sample]).sample(n=100, random_state=42)
-
-# Save the selected 100 points
-final_sample.to_csv("representative_sample.csv", index=False)
-print("Representative dataset saved as representative_sample.csv")
-"""
-
 import itertools
 import json
 import matplotlib.pyplot as plt
@@ -38,25 +5,39 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from pathlib import Path
-from pipeline_utils import calculate_markov_entropy
-from puzzle_generator import generate_single_path
+from pipeline_utils import *
+from puzzle_generator import *
+from add_explanation import *
 
 def generate_dataset(size = 1000):
     datasets = []
     # Generate samples
+
     for i in range(size):
-        # Sample n from Gaussian, bounded between 1 and 10
-        n = int(round(np.random.normal(5.5, 2)))
-        n = max(1, min(10, n))
+        # Sample n from Gaussian, bounded between 
+
+        n_min = 1
+        n_max = 4
+        n_ave = (n_min + n_max) / 2
+    
+        n = int(round(np.random.normal(n_ave, 2)))
+        n = max(n_min, min(n_max, n))
+
+        t_min = 1
+        t_max = 4
+        t_ave = (t_min + t_max) / 2
         
         # Sample t from Gaussian, bounded between 1 and 7
-        t = int(round(np.random.normal(4, 2)))
-        t = max(1, min(7, t))
+        t = int(round(np.random.normal(t_ave, 2)))
+        t = max(t_min, min(t_max, t))
+
+        d_min = 1
+        d_max = 4
+        d_ave = (d_min + d_max) / 2
         
         # Sample d from Gaussian between t and 4*t
-        mean_d = (t + 4*t) / 2  # middle of the range
-        d = int(round(np.random.normal(mean_d, 2)))
-        d = max(t, min(4*t, d))  # bound between t and 4*t
+        d = int(round(np.random.normal(d_ave, 2)))
+        d = max(int(d_min), min(int(d_max), d))  # bound between t and 4*t
         
         G, root, transitions, transition_history = generate_single_path(
             n=n,
@@ -67,14 +48,22 @@ def generate_dataset(size = 1000):
     
     return datasets
 
-def save_puzzles_and_solutions(datasets, base_dir):
+def save_puzzles_and_solutions(datasets, base_dir, start_id=0):
+    """
+    Save puzzles and solutions with customizable starting ID
+    
+    Args:
+        datasets: List of generated puzzle data
+        base_dir: Base directory to save files
+        start_id: Starting puzzle ID (default: 0)
+    """
     puzzles_dir = base_dir / "puzzles"
     solutions_dir = base_dir / "solutions"
     puzzles_dir.mkdir(parents=True, exist_ok=True)
     solutions_dir.mkdir(parents=True, exist_ok=True)
 
     results = []
-    for i, (n, t, d, initial_string, transitions, transition_history) in enumerate(datasets):
+    for i, (n, t, d, initial_string, transitions, transition_history) in enumerate(datasets, start=start_id):
         markov_entropy = calculate_markov_entropy(transition_history)
         if len(transition_history) == 1:
             pattern_score = 1
@@ -107,8 +96,50 @@ def save_results_to_csv(results, filepath):
     df = pd.DataFrame(results, columns=['puzzle_id', 'n', 't', 'd', 'markov_entropy', 'pattern_score'])
     df.to_csv(filepath, index=False)
 
+def process_llm_response(self, response_text: str, puzzle: Dict) -> Dict:
+    """Process LLM response and validate solution"""
+    error_log = self.study_dir / "validation_errors.log"
+    
+    try:
+        # Parse response using fallback parser
+        parsed_response = parse_solution_with_fallback(response_text)
+        
+        # Additional validation for empty solution list
+        if not parsed_response.solutions:
+            raise ValueError(f"Empty solution list for puzzle {puzzle['problem_id']}")
+            
+        # Validate solution sequence    
+        is_valid = validate_solution_sequence(
+            puzzle['initial_string'],
+            puzzle['transitions'],
+            parsed_response.solutions[0].solution
+        )
+        
+        return {
+            'puzzle_id': puzzle['problem_id'],
+            'is_valid': int(is_valid),  # Convert bool to 0/1
+            'pattern_score': puzzle['pattern_score']
+        }
+        
+    except Exception as e:
+        # Log error details
+        error_msg = (f"Validation error for puzzle {puzzle['problem_id']}\n"
+                    f"Error: {str(e)}\n"
+                    f"Response text: {response_text}\n"
+                    "----------------------------------------\n")
+        with open(error_log, "a") as f:
+            f.write(error_msg)
+            
+        # Return invalid result on any error
+        return {
+            'puzzle_id': puzzle['problem_id'],
+            'is_valid': 0,
+            'pattern_score': puzzle['pattern_score']
+        }
+
 if __name__ == "__main__":
-    base_dir = Path("New_SED_1000")
-    datasets = generate_dataset(1000)
-    results = save_puzzles_and_solutions(datasets, base_dir)
+    base_dir = Path("MIX_3_3_5_SED_10")
+    start_puzzle_id = 41
+    datasets = generate_dataset(10)
+    results = save_puzzles_and_solutions(datasets, base_dir, start_id=start_puzzle_id)
     save_results_to_csv(results, base_dir / "exploration_results.csv")

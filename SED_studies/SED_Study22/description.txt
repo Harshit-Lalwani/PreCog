@@ -1,0 +1,22 @@
+Study Description
+----------------
+Dataset Path: LESS_SED_1000
+Study Directory: /root/PreCog/SED_studies/SED_Study22
+Timestamp: 2025-02-10 18:58:35
+
+Method = Symbolic
+max_attempts = 
+
+Parameters
+----------
+Prompt Titles: go_step_by_step
+Give Explanation Flags: 1
+Ask Explanation Flags: 1
+Models: gpt-4o
+
+Splits Information
+-----------------
+Total Splits: 10
+Example Split:
+  Train IDs: [0]
+  Test IDs: [1]

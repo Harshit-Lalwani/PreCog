@@ -1,0 +1,22 @@
+{
+    "dataset_path": "EASIER_SED_10",
+    "study_directory": "/root/PreCog/SED_studies/SED_Study6",
+    "parameters": {
+        "prompt_titles": [
+            "problem_defined"
+        ],
+        "give_explanation_flags": [
+            0,
+            1
+        ],
+        "ask_explanation_flags": [
+            1
+        ],
+        "models": [
+            "gpt-4o"
+        ]
+    },
+    "splits": {
+        "total_splits": 1,
+        "example_split": {
+            "train": 

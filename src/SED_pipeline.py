@@ -38,13 +38,14 @@ class SEDPipeline:
         # Study-specific log file
         self.log_file = self.study_dir / "llm_responses.txt"
 
-    def log_llm_response(self, experiment_id: str, run_id: int, prompt: str, response: str):
+    def log_llm_response(self, experiment_id: str, run_id: int, system_prompt,  prompt: str, response: str):
         """Log raw LLM interaction"""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_entry = f"""
 Timestamp: {timestamp}
 Experiment: {experiment_id}
 Run: {run_id}
+System Prompt: {system_prompt}
 Prompt:
 {prompt}
 Response:
@@ -64,11 +65,34 @@ Response:
             solution = json.load(sf)
         return puzzle, solution
 
-    def run_study(self,
-                  train_test_splits: List[Tuple[List[int], List[int]]],
-                  for_test: Dict[str, List[Any]]):
+    def run_study(self, train_test_splits: List[Tuple[List[int], List[int]]], for_test: Dict[str, List[Any]]):
         """Run study with given splits and test parameters"""
-        # Generate parameter combinations for experiments
+        # Save study description
+        description = f"""Study Description
+----------------
+Dataset Path: {self.dataset_path}
+Study Directory: {self.study_dir}
+Timestamp: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+Parameters
+----------
+Prompt Titles: {', '.join(for_test['prompt_titles'])}
+Give Explanation Flags: {', '.join(map(str, for_test['give_explanation_flags']))}
+Ask Explanation Flags: {', '.join(map(str, for_test['ask_explanation_flags']))}
+Models: {', '.join(for_test['models'])}
+
+Splits Information
+-----------------
+Total Splits: {len(train_test_splits)}
+Example Split:
+  Train IDs: {train_test_splits[0][0]}
+  Test IDs: {train_test_splits[0][1]}
+"""
+    
+        with open(self.study_dir / "description.txt", "w") as f:
+            f.write(description)
+        
+        # Rest of the study execution
         param_lists = [
             for_test['prompt_titles'],
             for_test['give_explanation_flags'],
@@ -134,22 +158,29 @@ Response:
                 train_test_split=(train_ids, test_ids),
                 give_explanation_flag=params['give_explanation']
             )
-            
-            # Get LLM response with proper system prompt
-            response = self.client.beta.chat.completions.parse(
-                        model=params['model'],
-                        messages=[
-                            {"role": "system", "content": system_prompt},
-                            {"role": "user", "content": prompt}
-                        ],
-                        response_format=Solutions
-                    )
-            
-            # Log interaction
-            self.log_llm_response(experiment_id, run_id, prompt, response.choices[0].message.content)
-            
-            # Process prediction
-            prediction = self.process_llm_response(response.choices[0].message.content, puzzle)
+            try:
+                # Get LLM response with proper system prompt
+                response = self.client.beta.chat.completions.parse(
+                            model=params['model'],
+                            messages=[
+                                {"role": "system", "content": system_prompt},
+                                {"role": "user", "content": prompt}
+                            ],
+                            response_format=Solutions
+                        )
+                
+                # Log interaction
+                self.log_llm_response(experiment_id, run_id, system_prompt, prompt, response.choices[0].message.content)
+                
+                # Process prediction
+                prediction = self.process_llm_response(response.choices[0].message.content, puzzle)
+            except Exception as e:
+                self.log_llm_response(experiment_id, run_id, system_prompt, prompt, f"Error: {str(e)}")
+            prediction = {
+                'puzzle_id': puzzle['problem_id'],
+                'is_valid': 0,
+                'pattern_score': puzzle['pattern_score']
+            }
             predictions.append(prediction)
         
         # Save run results CSV
@@ -198,6 +229,8 @@ Response:
 
     def process_llm_response(self, response_text: str, puzzle: Dict) -> Dict:
         """Process LLM response and validate solution"""
+        error_log = self.study_dir / "validation_errors.log"
+        
         try:
             # Parse response using fallback parser
             parsed_response = parse_solution_with_fallback(response_text)
@@ -216,6 +249,14 @@ Response:
             }
             
         except Exception as e:
+            # Log error details
+            error_msg = (f"Validation error for puzzle {puzzle['problem_id']}\n"
+                        f"Error: {str(e)}\n"
+                        f"Response text: {response_text}\n"
+                        "----------------------------------------\n")
+            with open(error_log, "a") as f:
+                f.write(error_msg)
+                
             # Return invalid result on any error
             return {
                 'puzzle_id': puzzle['problem_id'],
@@ -238,18 +279,53 @@ def generate_zero_shot_splits() -> List[Tuple[List[int], List[int]]]:
         
         return zero_shot_splits
 
+def generate_few_shot_splits(group_size: int = 5) -> List[Tuple[List[int], List[int]]]:
+    """Generate few-shot splits with reciprocal train/test groups
+    
+    Args:
+        group_size: Number of puzzles in each training/testing group
+        
+    Returns:
+        List of (train_ids, test_ids) tuples for each split
+    """
+    # Read puzzle IDs - Convert string to Path
+    df = pd.read_csv(Path(data_dir) / "exploration_results.csv")
+    puzzle_ids = df["puzzle_id"].tolist()
+    
+    # Shuffle puzzle IDs
+    np.random.seed(42)  # For reproducibility
+    np.random.shuffle(puzzle_ids)
+    
+    # Divide into groups of group_size
+    groups = [puzzle_ids[i:i + group_size] for i in range(0, len(puzzle_ids), group_size)]
+    
+    # Generate reciprocal splits
+    few_shot_splits = []
+    # print(len(groups))
+    for p in range(len(groups)//2):
+        i  = 2*p
+        j = 2*p + 1
+        few_shot_splits.append((groups[i], groups[j]))
+        few_shot_splits.append((groups[j], groups[i]))
+    
+    return few_shot_splits
+
+
 
 # Example usage
 if __name__ == "__main__":
-    data_dir = "SED_100/data"
+    data_dir = Path("MIX_3_3_3_SED_10")  # Convert to Path object
     pipeline = SEDPipeline(data_dir)
 
-    splits = generate_zero_shot_splits()
+    # splits = generate_zero_shot_splits()
+    splits = generate_few_shot_splits()  
+    
+    print(len(splits))  
     
     # Example test parameters
     test_params = {
-        'prompt_titles': ['problem_defined', 'go_step_by_step'],
-        'give_explanation_flags': [0, 1],
+        'prompt_titles': ['go_step_by_step'],
+        'give_explanation_flags': [1],
         'ask_explanation_flags': [1],
         'models': ['gpt-4o']
     }

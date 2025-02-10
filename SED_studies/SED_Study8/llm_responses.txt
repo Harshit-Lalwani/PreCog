@@ -1,0 +1,28 @@
+
+Timestamp: 2025-02-10 12:01:54
+Experiment: 0000
+Run: 0
+Prompt:
+Training:
+[{'Puzzle': {'problem_id': '000', 'initial_string': 'abac', 'transitions': [{'src': 'c', 'tgt': 'ed'}, {'src': 'abaed', 'tgt': ''}]}, 'Solution': {'problem_id': '000', 'solution': [0, 1]}}]
+```
+Test:
+[{'Puzzle': {'problem_id': '000', 'initial_string': 'abac', 'transitions': [{'src': 'c', 'tgt': 'ed'}, {'src': 'abaed', 'tgt': ''}]}}]
+```
+Response:
+{"solutions":[{"problem_id":"000","solution":[0,1],"explanation":"The initial string is 'abac'. Apply transition 0: replace the first 'c' with 'ed', resulting in 'abaed'. Apply transition 1: replace 'abaed' with '', resulting in an empty string."}]}
+----------------------------------------
+
+Timestamp: 2025-02-10 12:01:56
+Experiment: 0100
+Run: 0
+Prompt:
+Training:
+[{'Puzzle': {'problem_id': '000', 'initial_string': 'abac', 'transitions': [{'src': 'c', 'tgt': 'ed'}, {'src': 'abaed', 'tgt': ''}]}, 'Solution': {'problem_id': '000', 'solution': [0, 1]}}]
+```
+Test:
+[{'Puzzle': {'problem_id': '000', 'initial_string': 'abac', 'transitions': [{'src': 'c', 'tgt': 'ed'}, {'src': 'abaed', 'tgt': ''}]}}]
+```
+Response:
+{"solutions":[{"problem_id":"000","solution":[0,1],"explanation":"Start with 'abac'. Apply transition 0 replacing 'c' with 'ed' resulting in 'abaed'. Then apply transition 1 replacing 'abaed' with '' (empty string)."}]}
+----------------------------------------

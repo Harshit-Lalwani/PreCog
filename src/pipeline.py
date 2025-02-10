@@ -589,7 +589,7 @@ if __name__ == "__main__":
             'transition_array_sampler_types': [0]  
         },
         for_test={
-            'prompt_titles': ['baseline', 'problem_defined', 'go_step_by_step'],
+            'prompt_titles': ['go_step_by_step'],
             'give_explanation_flags': [0],
             'ask_explanation_flags': [1],
             'models': ['gpt-4o']

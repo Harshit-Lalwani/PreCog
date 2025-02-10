@@ -80,19 +80,19 @@ class Solution(pydantic.BaseModel):
     solution: List[int]
     explanation: Optional[str] = None  # Only required if ask_explanation_flag is 1
 
-    # Check if the solution list is non-empty
-    @pydantic.model_validator(mode="after")
-    def check_solution(self):
-        if len(self.solution) == 0:
-            raise ValueError("Solution list is empty")
-        return self
+    # # Check if the solution list is non-empty
+    # @pydantic.model_validator(mode="after")
+    # def check_solution(self):
+    #     if len(self.solution) == 0:
+    #         raise ValueError("Solution list is empty")
+    #     return self
     
 class Solutions(pydantic.BaseModel):
     solutions: List[Solution]
 
-    # Check if the solutions list is non-empty
-    @pydantic.model_validator(mode="after")
-    def check_solutions(self):
-        if len(self.solutions) == 0:
-            raise ValueError("Solutions list is empty")
-        return self
+    # # Check if the solutions list is non-empty
+    # @pydantic.model_validator(mode="after")
+    # def check_solutions(self):
+    #     if len(self.solutions) == 0:
+    #         raise ValueError("Solutions list is empty")
+    #     return self

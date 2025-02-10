@@ -1,0 +1,16 @@
+{
+    "problem_id": "597",
+    "initial_string": "ab",
+    "transitions": [
+        {
+            "src": "b",
+            "tgt": "db"
+        },
+        {
+            "src": "adb",
+            "tgt": ""
+        }
+    ],
+    "markov_entropy": 0.0,
+    "pattern_score": 1.0
+}

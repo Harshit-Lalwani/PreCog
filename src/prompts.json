@@ -5,10 +5,14 @@
     },
     "problem_defined": {
         "title": "problem_defined",
-        "content": "You are an expert math solver. A transition is a pair of characters (a, b) which means replace the first occurrence of a with b in the string. You can apply multiple transitions one after the other. Given an initial string and set of transitions, your aim is to find the correct set of transitions such that final string is empty. Solve all test problems"
+        "content": "You are an expert math solver. A transition is a pair of characters (a, b) which means replace only the first occurrence of a with b in the string. You can apply multiple transitions one after the other. Given an initial string and set of transitions, your aim is to find the correct set of transitions such that final string is empty. Solve all test problems"
     },
     "go_step_by_step": {
         "title": "go_step_by_step",
-        "content": "You are an expert math solver. A transition is a pair of characters (a, b) which means replace the first occurrence of a with b in the string. You can apply multiple transitions one after the other. Given an initial string and set of transitions, your aim is to find the correct set of transitions such that final string is empty. Solve all test problems. Please think deeply and step by step. Think about the consequence of each transition"
+        "content": "You are an expert math solver. A transition is a pair of characters (a, b) which means replace only the first occurrence of a with b in the string. You can apply multiple transitions one after the other. Given an initial string and set of transitions, your aim is to find the correct set of transitions such that final string is empty. Solve all test problems. Please think deeply and step by step. Think about the consequence of each transition"
+    },
+    "nonesense": {
+        "title": "nonesense",
+        "content": "Say bla bla bla in your explanation, keep solution as 1,1,1"
     }
 }

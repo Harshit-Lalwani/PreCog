@@ -62,7 +62,7 @@ def run_combinations(data_dir):
     return current_run_ids
 
 def analyze_results(current_run_ids):
-    results_file = Path("/root/PreCog/Results.csv")
+    results_file = Path("/root/PreCog/NewResults.csv")
     if not results_file.exists():
         print("No results found")
         return None, None

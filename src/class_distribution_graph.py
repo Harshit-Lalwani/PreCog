@@ -54,5 +54,5 @@ def create_distribution_analysis(csv_path: str | Path):
 
 if __name__ == "__main__":
     # Analyze SED-100 dataset
-    csv_path = Path("SED_1000/exploration_results.csv")
+    csv_path = Path("LESS_SED_1000/exploration_results.csv")
     freq_table = create_distribution_analysis(csv_path)

@@ -1,0 +1,28 @@
+{
+    "problem_id": "443",
+    "initial_string": "abcde",
+    "transitions": [
+        {
+            "src": "b",
+            "tgt": "eab"
+        },
+        {
+            "src": "edcbee",
+            "tgt": "decd"
+        },
+        {
+            "src": "aecdabbc",
+            "tgt": "eccfacfbad"
+        },
+        {
+            "src": "cbecdcacbb",
+            "tgt": "g"
+        },
+        {
+            "src": "aeaeaeaeabcde",
+            "tgt": ""
+        }
+    ],
+    "markov_entropy": 0.8112781244591328,
+    "pattern_score": 0.6506015297177028
+}
