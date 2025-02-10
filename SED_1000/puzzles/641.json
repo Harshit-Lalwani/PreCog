@@ -1,24 +1,20 @@
 {
     "problem_id": "641",
-    "initial_string": "abb",
+    "initial_string": "abaccad",
     "transitions": [
         {
-            "src": "aaaaa",
-            "tgt": "aaa"
+            "src": "SIk/lf/p",
+            "tgt": "/tfSl"
         },
         {
-            "src": "aaaa",
-            "tgt": "aaaaa"
+            "src": "I",
+            "tgt": "d"
         },
         {
-            "src": "a",
-            "tgt": "aaa"
-        },
-        {
-            "src": "aaaaaaaaaaaa",
+            "src": "abaccad",
             "tgt": ""
         }
     ],
-    "markov_entropy": 2.1280852788913944,
-    "pattern_score": 0.29063824036953523
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

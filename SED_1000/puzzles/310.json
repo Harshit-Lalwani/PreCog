@@ -1,16 +1,24 @@
 {
     "problem_id": "310",
-    "initial_string": "aaaa",
+    "initial_string": "abacada",
     "transitions": [
         {
-            "src": "a",
-            "tgt": "cbabcbac"
+            "src": "Ib",
+            "tgt": "d_.t"
         },
         {
-            "src": "cbabcbacbcb",
+            "src": "_",
+            "tgt": "k.bSSpI"
+        },
+        {
+            "src": "IdffIf_t",
+            "tgt": "fS"
+        },
+        {
+            "src": "abacada",
             "tgt": ""
         }
     ],
     "markov_entropy": 0.0,
-    "pattern_score": 1.0
+    "pattern_score": 1
 }

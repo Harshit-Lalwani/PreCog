@@ -1,16 +1,20 @@
 {
     "problem_id": "802",
-    "initial_string": "abcadaeeb",
+    "initial_string": "abcddeb",
     "transitions": [
         {
-            "src": "a",
-            "tgt": "dbbdabdccc"
+            "src": ".lptSNa_kI",
+            "tgt": "kNtakItkb"
         },
         {
-            "src": "dbbddbbdabdcccbdcccabbacacd",
+            "src": "lldl_/dN",
+            "tgt": "ltkp"
+        },
+        {
+            "src": "abcddeb",
             "tgt": ""
         }
     ],
-    "markov_entropy": 1.0,
-    "pattern_score": 0.36907024642854247
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

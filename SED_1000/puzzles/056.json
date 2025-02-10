@@ -1,16 +1,24 @@
 {
     "problem_id": "056",
-    "initial_string": "aabcb",
+    "initial_string": "aabbab",
     "transitions": [
         {
-            "src": "c",
-            "tgt": "bcbaa"
+            "src": "lbtNIf.tbN",
+            "tgt": "NkIf_akdSa"
         },
         {
-            "src": "abbcbaaac",
+            "src": "klfl",
+            "tgt": "dll"
+        },
+        {
+            "src": "dIabpdka_d",
+            "tgt": "SaSpNk"
+        },
+        {
+            "src": "aabbab",
             "tgt": ""
         }
     ],
     "markov_entropy": 0.0,
-    "pattern_score": 1.0
+    "pattern_score": 1
 }

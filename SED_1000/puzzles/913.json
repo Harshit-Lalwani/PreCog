@@ -1,16 +1,24 @@
 {
     "problem_id": "913",
-    "initial_string": "aaabaa",
+    "initial_string": "aabaab",
     "transitions": [
         {
             "src": "d",
-            "tgt": "dbcc"
+            "tgt": "fN"
         },
         {
-            "src": "abcbcdbccbccbcc",
+            "src": "dNaIaS.",
+            "tgt": ""
+        },
+        {
+            "src": "IS",
+            "tgt": "dp"
+        },
+        {
+            "src": "aabaab",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.9182958340544896,
-    "pattern_score": 0.5408520829727552
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

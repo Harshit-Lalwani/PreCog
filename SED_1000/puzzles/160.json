@@ -1,28 +1,32 @@
 {
     "problem_id": "160",
-    "initial_string": "abacaba",
+    "initial_string": "aa",
     "transitions": [
         {
-            "src": "b",
-            "tgt": "bdccc"
+            "src": "NtN",
+            "tgt": "S"
         },
         {
-            "src": "dddd",
-            "tgt": "c"
+            "src": "l",
+            "tgt": "_"
         },
         {
-            "src": "bdccaa",
-            "tgt": "c"
-        },
-        {
-            "src": "dbc",
+            "src": "aS/k",
             "tgt": ""
         },
         {
-            "src": "abdcccdcccdcccdcccdcccdcccdcccdcccacdaa",
+            "src": "b._",
+            "tgt": "l"
+        },
+        {
+            "src": "/",
+            "tgt": ""
+        },
+        {
+            "src": "aa",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.5435644431995964,
-    "pattern_score": 0.8285245099009361
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

@@ -3,22 +3,18 @@
     "initial_string": "abca",
     "transitions": [
         {
-            "src": "b",
-            "tgt": "aababa"
-        },
-        {
-            "src": "baab",
+            "src": "a",
             "tgt": ""
         },
         {
-            "src": "b",
-            "tgt": "baaa"
+            "src": "/tkf",
+            "tgt": "SIb_"
         },
         {
-            "src": "aaaaaaababaaaaaaaaaaaaaaaaaaba",
+            "src": "bc",
             "tgt": ""
         }
     ],
-    "markov_entropy": 2.725480556997868,
-    "pattern_score": 0.17954859974466675
+    "markov_entropy": 1.0,
+    "pattern_score": 0.36907024642854247
 }

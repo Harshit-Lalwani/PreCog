@@ -1,13 +1,37 @@
 {
     "problem_id": "976",
-    "initial_string": "abbbaa",
+    "initial_string": "abba",
     "transitions": [
         {
-            "src": "b",
+            "src": "k",
             "tgt": ""
         },
         {
-            "src": "aacc",
+            "src": "fp",
+            "tgt": "N"
+        },
+        {
+            "src": "t",
+            "tgt": ""
+        },
+        {
+            "src": "b",
+            "tgt": "/"
+        },
+        {
+            "src": "flp..IN/",
+            "tgt": "_a"
+        },
+        {
+            "src": "k.Sp.af",
+            "tgt": "k"
+        },
+        {
+            "src": "fb_.lta",
+            "tgt": "bkbbS._t"
+        },
+        {
+            "src": "a//a",
             "tgt": ""
         }
     ],

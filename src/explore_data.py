@@ -115,7 +115,19 @@ def plot_results(df: pd.DataFrame, output_dir: Path):
     plt.savefig(output_dir / "average_pattern_score_vs_ntd.png")
     plt.close()
 
+    # Plot average pattern_score vs d/t
+    plt.figure(figsize=(6, 6))
+    df.groupby('dt_ratio')['pattern_score'].mean().plot(kind='line')
+    plt.xlabel('d/t ratio')
+    plt.ylabel('Pattern Score')
+    plt.title('Average Pattern Score vs d/t ratio')
+    plt.tight_layout()
+    plt.savefig(output_dir / "average_pattern_score_vs_dt_ratio.png")
+    plt.close()
+
     # Plot per-n visualizations
+    per_n_dir = output_dir / "per-n"
+    per_n_dir.mkdir(parents=True, exist_ok=True)
     for n in df['n'].unique():
         subset = df[df['n'] == n]
         if subset.empty:
@@ -135,7 +147,7 @@ def plot_results(df: pd.DataFrame, output_dir: Path):
         plt.title(f'Average Pattern Score vs d for n={n}')
 
         plt.tight_layout()
-        plt.savefig(output_dir / f"average_pattern_score_vs_td_n{n}.png")
+        plt.savefig(per_n_dir / f"average_pattern_score_vs_td_n{n}.png")
         plt.close()
 
 def main():

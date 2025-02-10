@@ -1,16 +1,24 @@
 {
     "problem_id": "957",
-    "initial_string": "aabcdd",
+    "initial_string": "abcadcca",
     "transitions": [
         {
-            "src": "a",
-            "tgt": "cbcb"
+            "src": "ba/_IfS/dS",
+            "tgt": "pN"
         },
         {
-            "src": "cbcbbbcbc",
+            "src": "dtNtbaNfSl",
+            "tgt": "Spa_lNkkpk"
+        },
+        {
+            "src": "I",
+            "tgt": "IdI"
+        },
+        {
+            "src": "abcadcca",
             "tgt": ""
         }
     ],
     "markov_entropy": 0.0,
-    "pattern_score": 1.0
+    "pattern_score": 1
 }

@@ -3,30 +3,14 @@
     "initial_string": "abba",
     "transitions": [
         {
-            "src": "dd",
-            "tgt": "c"
-        },
-        {
-            "src": "bbaacaaa",
-            "tgt": "da"
-        },
-        {
-            "src": "d",
-            "tgt": "a"
-        },
-        {
-            "src": "c",
+            "src": "f",
             "tgt": ""
         },
         {
-            "src": "b",
-            "tgt": "baaca"
-        },
-        {
-            "src": "abaacaaaaaaaaaaaaaaaaa",
+            "src": "abba",
             "tgt": ""
         }
     ],
-    "markov_entropy": 2.6612262562697895,
-    "pattern_score": 0.30103016116196857
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

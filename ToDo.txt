@@ -1,4 +1,9 @@
-IMP: add explanation field to puzzles in SED datasets
+
+IMP: 
+- add explanation field in SED datasets
+- add  pattern_weighed_accuracy to studies
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 

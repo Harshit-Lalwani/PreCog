@@ -3,30 +3,14 @@
     "initial_string": "aab",
     "transitions": [
         {
-            "src": "a",
-            "tgt": "aa"
+            "src": "N/NSl.",
+            "tgt": "d"
         },
         {
-            "src": "a",
-            "tgt": "aaaaaa"
-        },
-        {
-            "src": "aaaa",
-            "tgt": "aa"
-        },
-        {
-            "src": "a",
-            "tgt": ""
-        },
-        {
-            "src": "aaaaa",
-            "tgt": "aaaaaa"
-        },
-        {
-            "src": "aa",
+            "src": "aab",
             "tgt": ""
         }
     ],
-    "markov_entropy": 3.334679141051595,
-    "pattern_score": 0.12414807410457063
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

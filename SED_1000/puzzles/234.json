@@ -1,16 +1,24 @@
 {
     "problem_id": "234",
-    "initial_string": "abcbccbc",
+    "initial_string": "abcdbee",
     "transitions": [
         {
-            "src": "b",
-            "tgt": "a"
+            "src": "d..I",
+            "tgt": "f/ka.bpSNb"
         },
         {
-            "src": "aaacdbcd",
+            "src": "/Ip_Nb/S",
+            "tgt": "IN"
+        },
+        {
+            "src": "/bk__/",
+            "tgt": "tSN"
+        },
+        {
+            "src": "abcdbee",
             "tgt": ""
         }
     ],
     "markov_entropy": 0.0,
-    "pattern_score": 1.0
+    "pattern_score": 1
 }

@@ -1,16 +1,20 @@
 {
     "problem_id": "161",
-    "initial_string": "abcdbe",
+    "initial_string": "abcadada",
     "transitions": [
         {
-            "src": "c",
-            "tgt": "aa"
+            "src": "fpd.p/",
+            "tgt": "dfb."
         },
         {
-            "src": "aaabaaaa",
+            "src": "lbaS_f",
+            "tgt": ""
+        },
+        {
+            "src": "abcadada",
             "tgt": ""
         }
     ],
-    "markov_entropy": 1.0,
-    "pattern_score": 0.36907024642854247
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

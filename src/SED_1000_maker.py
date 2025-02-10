@@ -38,7 +38,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from pathlib import Path
-from pipeline_utils import calculate_markov_entropy, get_string_sampler, get_transition_array_sampler, generate_single_path_for_pipeline
+from pipeline_utils import calculate_markov_entropy
+from puzzle_generator import generate_single_path
 
 def generate_datasets():
     datasets = []
@@ -57,18 +58,12 @@ def generate_datasets():
         d = int(round(np.random.normal(mean_d, 2)))
         d = max(t, min(4*t, d))  # bound between t and 4*t
         
-        string_sampler = get_string_sampler(n, 0)
-        transition_array_sampler = get_transition_array_sampler(n, 0)
-        initial_string = string_sampler()
-        transitions = transition_array_sampler(t, initial_string)
-        G, root, transitions, transition_history = generate_single_path_for_pipeline(
+        G, root, transitions, transition_history = generate_single_path(
             n=n,
             t=t,
             d=d,
-            string_sampler=string_sampler,
-            transition_array_sampler=transition_array_sampler
         )
-        datasets.append((n, t, d, initial_string, transitions, transition_history))
+        datasets.append((n, t, d, root, transitions, transition_history))
     
     return datasets
 
@@ -113,7 +108,7 @@ def save_results_to_csv(results, filepath):
     df.to_csv(filepath, index=False)
 
 if __name__ == "__main__":
-    base_dir = Path("SED_1000")
+    base_dir = Path("TEST")
     datasets = generate_datasets()
     results = save_puzzles_and_solutions(datasets, base_dir)
     save_results_to_csv(results, base_dir / "exploration_results.csv")

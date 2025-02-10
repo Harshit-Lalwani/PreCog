@@ -1,16 +1,20 @@
 {
     "problem_id": "876",
-    "initial_string": "aabccba",
+    "initial_string": "aa",
     "transitions": [
         {
-            "src": "d",
-            "tgt": "bbdbdb"
+            "src": "Ib",
+            "tgt": "aNS_"
         },
         {
-            "src": "abbbcbbbbbbbbbdbdbbdbbdbbdb",
+            "src": "f",
+            "tgt": ".Nlk"
+        },
+        {
+            "src": "aa",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.8112781244591328,
-    "pattern_score": 0.6506015297177028
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

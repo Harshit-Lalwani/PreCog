@@ -1,24 +1,16 @@
 {
     "problem_id": "180",
-    "initial_string": "abcc",
+    "initial_string": "abcdebb",
     "transitions": [
         {
-            "src": "ab",
-            "tgt": "ba"
+            "src": "/Sd",
+            "tgt": "pNplt._alt"
         },
         {
-            "src": "b",
-            "tgt": "a"
-        },
-        {
-            "src": "a",
-            "tgt": "b"
-        },
-        {
-            "src": "abaa",
+            "src": "abcdebb",
             "tgt": ""
         }
     ],
-    "markov_entropy": 2.0,
-    "pattern_score": 0.1386468838532139
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

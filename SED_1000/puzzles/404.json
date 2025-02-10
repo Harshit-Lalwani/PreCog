@@ -1,24 +1,28 @@
 {
     "problem_id": "404",
-    "initial_string": "abbaa",
+    "initial_string": "aab",
     "transitions": [
         {
-            "src": "baa",
-            "tgt": "a"
+            "src": "I_",
+            "tgt": "."
         },
         {
-            "src": "aaababbb",
+            "src": "_SS",
             "tgt": ""
         },
         {
-            "src": "a",
-            "tgt": "ab"
+            "src": "_",
+            "tgt": "d/N.N"
         },
         {
-            "src": "abbbbbbbab",
+            "src": "p",
+            "tgt": "_"
+        },
+        {
+            "src": "aab",
             "tgt": ""
         }
     ],
-    "markov_entropy": 1.5487949406953985,
-    "pattern_score": 0.5114095948671661
+    "markov_entropy": 0.0,
+    "pattern_score": 1
 }

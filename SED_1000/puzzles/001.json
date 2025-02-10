@@ -1,16 +1,24 @@
 {
     "problem_id": "001",
-    "initial_string": "abb",
+    "initial_string": "aababccbaa",
     "transitions": [
         {
-            "src": "a",
-            "tgt": "aaa"
+            "src": "f_plbSSIak",
+            "tgt": "ftbpb/"
         },
         {
-            "src": "aaaba",
+            "src": "p",
+            "tgt": ""
+        },
+        {
+            "src": "dp_fat",
+            "tgt": "tklNk"
+        },
+        {
+            "src": "aababccbaa",
             "tgt": ""
         }
     ],
     "markov_entropy": 0.0,
-    "pattern_score": 1.0
+    "pattern_score": 1
 }

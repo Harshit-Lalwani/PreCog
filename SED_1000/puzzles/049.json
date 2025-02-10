@@ -1,17 +1,33 @@
 {
     "problem_id": "049",
-    "initial_string": "aa",
+    "initial_string": "abbbc",
     "transitions": [
         {
-            "src": "a",
-            "tgt": "aa"
+            "src": ".",
+            "tgt": "bltplI._ba"
+        },
+        {
+            "src": "tltkSldbdS",
+            "tgt": "kdb_N"
+        },
+        {
+            "src": "S",
+            "tgt": "Np"
+        },
+        {
+            "src": "kStbINpfII",
+            "tgt": "k"
+        },
+        {
+            "src": "/",
+            "tgt": "IaabNI"
         },
         {
             "src": "a",
-            "tgt": "aaa"
+            "tgt": "f.k.a_fbk"
         },
         {
-            "src": "aaaaaaaa",
+            "src": "fbltplI._bf.k.f.k.a_fbk_fbkk.a_fbkbbbc",
             "tgt": ""
         }
     ],
