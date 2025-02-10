@@ -4,13 +4,29 @@
     "transitions": [
         {
             "src": "a",
-            "tgt": ""
+            "tgt": "b"
+        },
+        {
+            "src": "a",
+            "tgt": "bab"
+        },
+        {
+            "src": "a",
+            "tgt": "d"
+        },
+        {
+            "src": "ba",
+            "tgt": "a"
         },
         {
             "src": "b",
+            "tgt": "c"
+        },
+        {
+            "src": "cdcccbb",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1.0
+    "markov_entropy": 2.6258145836939115,
+    "pattern_score": 0.29040471303421644
 }

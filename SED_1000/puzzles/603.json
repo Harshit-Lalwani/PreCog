@@ -1,24 +1,20 @@
 {
     "problem_id": "603",
-    "initial_string": "abacca",
+    "initial_string": "aab",
     "transitions": [
         {
-            "src": "t",
-            "tgt": "b"
+            "src": "a",
+            "tgt": "abc"
         },
         {
-            "src": "SSS/kSk_kS",
-            "tgt": "SStb.dl"
+            "src": "a",
+            "tgt": "addbc"
         },
         {
-            "src": ".",
-            "tgt": "fba./pSbN"
-        },
-        {
-            "src": "abacca",
+            "src": "addbcddbcbcddbcbcab",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1
+    "markov_entropy": 1.9219280948873623,
+    "pattern_score": 0.2564967211898894
 }

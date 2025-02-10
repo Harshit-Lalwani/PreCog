@@ -3,26 +3,38 @@
     "initial_string": "abcc",
     "transitions": [
         {
-            "src": "f_Skal.",
-            "tgt": "._bI"
+            "src": "b",
+            "tgt": "caaec"
         },
         {
-            "src": "b./dtS",
-            "tgt": "/aStkkpl"
+            "src": "cb",
+            "tgt": "aadc"
+        },
+        {
+            "src": "cb",
+            "tgt": "bbbdbee"
         },
         {
             "src": "a",
-            "tgt": "k"
+            "tgt": "caecaaac"
+        },
+        {
+            "src": "acac",
+            "tgt": "eced"
+        },
+        {
+            "src": "bcccacc",
+            "tgt": "b"
         },
         {
             "src": "b",
-            "tgt": "I"
+            "tgt": "aca"
         },
         {
-            "src": "kIcc",
+            "src": "ccccccccccccccccccaecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaacecaaaaadccc",
             "tgt": ""
         }
     ],
-    "markov_entropy": 1.0,
-    "pattern_score": 0.36907024642854247
+    "markov_entropy": 0.8795064608120066,
+    "pattern_score": 0.7965013666348542
 }

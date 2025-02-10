@@ -1,16 +1,16 @@
 {
     "problem_id": "583",
-    "initial_string": "aabcda",
+    "initial_string": "aabcd",
     "transitions": [
         {
-            "src": "lfSflatbpk",
-            "tgt": "__Idk."
+            "src": "c",
+            "tgt": "dbfa"
         },
         {
-            "src": "aabcda",
+            "src": "aabdbfad",
             "tgt": ""
         }
     ],
     "markov_entropy": 0.0,
-    "pattern_score": 1
+    "pattern_score": 1.0
 }

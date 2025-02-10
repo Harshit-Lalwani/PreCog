@@ -3,30 +3,14 @@
     "initial_string": "abaaac",
     "transitions": [
         {
-            "src": "tN/l__l.t_",
-            "tgt": ""
+            "src": "b",
+            "tgt": "ceaeeeabee"
         },
         {
-            "src": "SIt.tk",
-            "tgt": "b"
-        },
-        {
-            "src": "/",
-            "tgt": "IpSkt"
-        },
-        {
-            "src": "aa/ltdN",
-            "tgt": "f"
-        },
-        {
-            "src": "aNta",
-            "tgt": "p"
-        },
-        {
-            "src": "abaaac",
+            "src": "aceaeeeabeeaaac",
             "tgt": ""
         }
     ],
     "markov_entropy": 0.0,
-    "pattern_score": 1
+    "pattern_score": 1.0
 }

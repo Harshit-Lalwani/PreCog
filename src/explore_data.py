@@ -152,8 +152,8 @@ def plot_results(df: pd.DataFrame, output_dir: Path):
 
 def main():
     # Set input and output paths
-    input_path = "SED_100/analysis/representative_sample.csv"
-    output_dir = "SED_100/analysis/plots/representative_sample"
+    input_path = "SED_1000/exploration_results.csv"
+    output_dir = "SED_1000/analysis/plots"
 
     # Load and process data
     df = pd.read_csv(input_path)

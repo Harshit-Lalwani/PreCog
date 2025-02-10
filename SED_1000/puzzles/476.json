@@ -1,33 +1,13 @@
 {
     "problem_id": "476",
-    "initial_string": "aab",
+    "initial_string": "abca",
     "transitions": [
         {
             "src": "b",
-            "tgt": "S_lNkk"
+            "tgt": "eeeadadd"
         },
         {
-            "src": "N",
-            "tgt": "dp.fk"
-        },
-        {
-            "src": "t",
-            "tgt": "ld."
-        },
-        {
-            "src": "f",
-            "tgt": "N"
-        },
-        {
-            "src": "_d",
-            "tgt": "N"
-        },
-        {
-            "src": "bat",
-            "tgt": "ktpl"
-        },
-        {
-            "src": "aaS_lNkk",
+            "src": "aeeeadaddca",
             "tgt": ""
         }
     ],

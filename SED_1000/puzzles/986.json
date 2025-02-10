@@ -3,30 +3,38 @@
     "initial_string": "abcbc",
     "transitions": [
         {
-            "src": "lttt",
-            "tgt": ""
+            "src": "bcbbacaa",
+            "tgt": "cdadaedbc"
         },
         {
-            "src": "ldabb//",
-            "tgt": "t/I"
+            "src": "aaab",
+            "tgt": "eaacaaac"
         },
         {
-            "src": "p",
-            "tgt": "N"
+            "src": "a",
+            "tgt": "cbaaecedad"
         },
         {
-            "src": "f_",
-            "tgt": "paald//dI_"
+            "src": "aacbcaa",
+            "tgt": "bdbc"
         },
         {
-            "src": "bld./_/k_S",
-            "tgt": "NkflNpkpdk"
+            "src": "bbb",
+            "tgt": "bcbeab"
         },
         {
-            "src": "abcbc",
+            "src": "bbc",
+            "tgt": "ebadcbbd"
+        },
+        {
+            "src": "ba",
+            "tgt": "b"
+        },
+        {
+            "src": "cbecedcbcbcbecedcbcbcbcbcbcbcbcbaaecedadecedadaecedadaecedadaecedadaecedadaecedadecedaddaecedadecedaddbcbc",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1
+    "markov_entropy": 2.1042929895909244,
+    "pattern_score": 0.5131124481038443
 }

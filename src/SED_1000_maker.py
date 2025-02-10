@@ -41,10 +41,10 @@ from pathlib import Path
 from pipeline_utils import calculate_markov_entropy
 from puzzle_generator import generate_single_path
 
-def generate_datasets():
+def generate_dataset(size = 1000):
     datasets = []
-    # Generate 1000 samples
-    for i in range(1000):
+    # Generate samples
+    for i in range(size):
         # Sample n from Gaussian, bounded between 1 and 10
         n = int(round(np.random.normal(5.5, 2)))
         n = max(1, min(10, n))
@@ -108,7 +108,7 @@ def save_results_to_csv(results, filepath):
     df.to_csv(filepath, index=False)
 
 if __name__ == "__main__":
-    base_dir = Path("TEST")
-    datasets = generate_datasets()
+    base_dir = Path("New_SED_1000")
+    datasets = generate_dataset(1000)
     results = save_puzzles_and_solutions(datasets, base_dir)
     save_results_to_csv(results, base_dir / "exploration_results.csv")

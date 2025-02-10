@@ -1,24 +1,28 @@
 {
     "problem_id": "310",
-    "initial_string": "abacada",
+    "initial_string": "ab",
     "transitions": [
         {
-            "src": "Ib",
-            "tgt": "d_.t"
+            "src": "bb",
+            "tgt": "a"
         },
         {
-            "src": "_",
-            "tgt": "k.bSSpI"
+            "src": "aa",
+            "tgt": "a"
         },
         {
-            "src": "IdffIf_t",
-            "tgt": "fS"
+            "src": "a",
+            "tgt": "ad"
         },
         {
-            "src": "abacada",
+            "src": "aaaa",
+            "tgt": "c"
+        },
+        {
+            "src": "addddddddddb",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1
+    "markov_entropy": 0.4689955935892812,
+    "pattern_score": 0.8644298701952597
 }

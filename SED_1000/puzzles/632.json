@@ -1,25 +1,13 @@
 {
     "problem_id": "632",
-    "initial_string": "abccdb",
+    "initial_string": "abbba",
     "transitions": [
         {
-            "src": "NfIpf/.",
-            "tgt": "/k/Ifp"
+            "src": "ba",
+            "tgt": "bccdcbadad"
         },
         {
-            "src": ".f/lt",
-            "tgt": ""
-        },
-        {
-            "src": "d",
-            "tgt": "SNNd"
-        },
-        {
-            "src": "Ia._lt",
-            "tgt": "dNkltlllSd"
-        },
-        {
-            "src": "abccSNNSNNdb",
+            "src": "abbbccdcbccdcbadaddad",
             "tgt": ""
         }
     ],

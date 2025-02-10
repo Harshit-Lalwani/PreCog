@@ -1,20 +1,28 @@
 {
     "problem_id": "755",
-    "initial_string": "abccd",
+    "initial_string": "ab",
     "transitions": [
         {
-            "src": "kSdldS_",
-            "tgt": "dS_ad.fpp"
+            "src": "a",
+            "tgt": "aab"
         },
         {
-            "src": "INI",
-            "tgt": "a//"
+            "src": "b",
+            "tgt": "addb"
         },
         {
-            "src": "abccd",
+            "src": "bba",
+            "tgt": "b"
+        },
+        {
+            "src": "a",
+            "tgt": "b"
+        },
+        {
+            "src": "bbabbabddaddbb",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1
+    "markov_entropy": 2.75,
+    "pattern_score": 0.13247158883924592
 }

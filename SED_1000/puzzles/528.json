@@ -1,36 +1,16 @@
 {
     "problem_id": "528",
-    "initial_string": "abcddb",
+    "initial_string": "abcab",
     "transitions": [
         {
-            "src": "SNp/lp/I/",
-            "tgt": "S"
+            "src": "b",
+            "tgt": "e"
         },
         {
-            "src": "/SSlal/af",
-            "tgt": "lkf/l/I"
-        },
-        {
-            "src": "fdaNbpSS/l",
-            "tgt": ""
-        },
-        {
-            "src": "aNt",
-            "tgt": "bSS"
-        },
-        {
-            "src": ".",
-            "tgt": "k/kb..SI_I"
-        },
-        {
-            "src": "Sat_SSS",
-            "tgt": ""
-        },
-        {
-            "src": "abcddb",
+            "src": "aecae",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1
+    "markov_entropy": 1.0,
+    "pattern_score": 0.36907024642854247
 }

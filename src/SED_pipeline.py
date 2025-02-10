@@ -9,6 +9,7 @@ from prompt_manager import PromptManager
 from pipeline_utils import *
 from utils import *
 
+
 def get_next_SED_study_number(base_dir: Path) -> int:
     """Find smallest unused SED_Study<i> number"""
     i = 1
@@ -109,10 +110,11 @@ Response:
         # Save study results
         self.save_study_results(experiments_results)
 
-    def run_experiment(self, experiment_id: str, run_id: int, 
-                      train_ids: List[int], test_ids: List[int], 
-                      params: Dict[str, Any]) -> Dict[str, Any]:
-        """Run single experiment with given parameters"""
+    def run_run(self, experiment_id: str, run_id: int, 
+                train_ids: List[int], test_ids: List[int], 
+                params: Dict[str, Any]) -> Tuple[List[Dict], Path]:
+        """Run a single run with given train/test split and save results"""
+        # Create run directory
         run_dir = self.study_dir / "Experiments" / f"Experiment{experiment_id}" / f"Run{run_id}"
         run_dir.mkdir(parents=True, exist_ok=True)
         
@@ -120,20 +122,28 @@ Response:
         train_data = [self.get_puzzle_solution(pid) for pid in train_ids]
         test_puzzles = [self.get_puzzle_solution(pid)[0] for pid in test_ids]
         
+        # Get system prompt from prompt manager
+        system_prompt = self.prompt_manager.get_prompt(params['prompt_title'])
+        
         # Process each test puzzle
         predictions = []
         for puzzle in test_puzzles:
             # Generate prompt using prompt manager
-            prompt = self.prompt_manager.generate_user_prompt(
-                puzzle, 
-                train_data
+            prompt = SED_user_prompt_generator(
+                data_dir=self.dataset_path,
+                train_test_split=(train_ids, test_ids),
+                give_explanation_flag=params['give_explanation']
             )
             
-            # Get LLM response
-            response = self.client.chat.completions.create(
-                model=params['model'],
-                messages=[{"role": "user", "content": prompt}]
-            )
+            # Get LLM response with proper system prompt
+            response = self.client.beta.chat.completions.parse(
+                        model=params['model'],
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": prompt}
+                        ],
+                        response_format=Solutions
+                    )
             
             # Log interaction
             self.log_llm_response(experiment_id, run_id, prompt, response.choices[0].message.content)
@@ -142,11 +152,23 @@ Response:
             prediction = self.process_llm_response(response.choices[0].message.content, puzzle)
             predictions.append(prediction)
         
-        # Save run results
-        results_df = pd.DataFrame(predictions)
-        results_df.to_csv(run_dir / "predictions.csv", index=False)
+        # Save run results CSV
+        run_results_df = pd.DataFrame([{
+            'puzzle_id': p['puzzle_id'],
+            'is_valid': p['is_valid']
+        } for p in predictions])
+        run_results_df.to_csv(run_dir / "results.csv", index=False)
         
-        # Calculate run metrics
+        return predictions, run_dir
+
+    def run_experiment(self, experiment_id: str, run_id: int, 
+                      train_ids: List[int], test_ids: List[int], 
+                      params: Dict[str, Any]) -> Dict[str, Any]:
+        """Run single experiment and calculate metrics"""
+        # Run the core LLM interaction and get predictions
+        predictions, _ = self.run_run(experiment_id, run_id, train_ids, test_ids, params)
+        
+        # Calculate run metrics for experiment tracking
         valid_count = sum(p['is_valid'] for p in predictions)
         pattern_weighted_sum = sum(p['is_valid'] * p['pattern_score'] for p in predictions)
         total_pattern_score = sum(p['pattern_score'] for p in predictions)
@@ -156,7 +178,7 @@ Response:
             'run_accuracy': valid_count / len(predictions),
             'pattern_weighted_accuracy': pattern_weighted_sum / total_pattern_score if total_pattern_score > 0 else 0
         }
-
+    
     def save_experiment_results(self, exp_dir: Path, run_results: List[Dict], params: Dict):
         """Save experiment results to CSV"""
         results_df = pd.DataFrame(run_results)
@@ -201,23 +223,23 @@ Response:
                 'pattern_score': puzzle['pattern_score']
             }
         
-
         
 # Example usage
 if __name__ == "__main__":
-    pipeline = SEDPipeline("SED_100/data")
+    data_dir = "SED_100/data"
+    pipeline = SEDPipeline(data_dir)
     
     splits = [
-        ([6, 16, 17], [35, 44, 50]),
+        ([6, 16], [35]),
         ([35, 44, 50], [6, 16, 17])
     ]
     
     # Example test parameters
     test_params = {
-        'prompt_titles': ['baseline', 'go_step_by_step'],
+        'prompt_titles': ['problem_defined', 'go_step_by_step'],
         'give_explanation_flags': [0, 1],
-        'ask_explanation_flags': [0],
-        'models': ['gpt-4']
+        'ask_explanation_flags': [1],
+        'models': ['gpt-4o']
     }
     
     pipeline.run_study(splits, test_params)

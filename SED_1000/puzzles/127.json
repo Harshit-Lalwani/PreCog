@@ -1,24 +1,28 @@
 {
     "problem_id": "127",
-    "initial_string": "abacab",
+    "initial_string": "abcddadba",
     "transitions": [
         {
-            "src": "Sba_pdaSN/",
-            "tgt": "/"
+            "src": "a",
+            "tgt": "ecdedadbff"
         },
         {
-            "src": "lSbIf.f",
-            "tgt": "tSf"
+            "src": "ababdc",
+            "tgt": "dcbbcdddc"
         },
         {
-            "src": "SafSpf",
-            "tgt": "Sk"
+            "src": "dca",
+            "tgt": "cfcedfcedc"
         },
         {
-            "src": "abacab",
+            "src": "aabc",
+            "tgt": "abfa"
+        },
+        {
+            "src": "ecdedecdedecdedecdedecdedecdedecdedecdedecdedadbffdbffdbffdbffdbffdbffdbffdbffdbffbcddadba",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1
+    "markov_entropy": 0.5032583347756457,
+    "pattern_score": 0.848504145664625
 }

@@ -43,5 +43,5 @@ def validate_solutions(data_dir: Path):
 
 # Example usage
 if __name__ == "__main__":
-    data_dir = Path("/root/PreCog/SED_100")
+    data_dir = Path("/root/PreCog/New_SED_1000")
     print(validate_solutions(data_dir))

@@ -1,21 +1,13 @@
 {
     "problem_id": "715",
-    "initial_string": "abcddb",
+    "initial_string": "a",
     "transitions": [
         {
-            "src": ".pI./ff",
-            "tgt": "."
+            "src": "a",
+            "tgt": "ab"
         },
         {
-            "src": "pI_",
-            "tgt": "NN"
-        },
-        {
-            "src": "b",
-            "tgt": "_Np"
-        },
-        {
-            "src": "a_Npcdd_Np",
+            "src": "abb",
             "tgt": ""
         }
     ],

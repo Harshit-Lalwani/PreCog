@@ -1,13 +1,13 @@
 {
     "problem_id": "012",
-    "initial_string": "abcdd",
+    "initial_string": "aabcab",
     "transitions": [
         {
-            "src": "a",
-            "tgt": "bbkbf"
+            "src": "b",
+            "tgt": "deba"
         },
         {
-            "src": "bbkbfbcdd",
+            "src": "aadebacab",
             "tgt": ""
         }
     ],

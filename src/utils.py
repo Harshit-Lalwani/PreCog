@@ -12,6 +12,7 @@ import os
 import csv
 import pandas as pd
 from datetime import datetime
+from typing import List, Dict, Any, Callable, Tuple
 
 M = 10
 
@@ -44,27 +45,43 @@ def sample_random_string(n = sample_gaussian_n, file_path='data/NIS/NISdb_flat.p
 
 # Function to create transitions
 def create_transition(n: int, initial_string: str, file_path='data/NIS/NISdb_flat.pkl'):
-    """Create a transition using characters from initial string"""
+    """Create a transition using characters from initial string's ASCII range
+    
+    Args:
+        n: Integer representing size parameter
+        initial_string: String to base transitions on
+        file_path: Path to dataset (unused)
+        
+    Returns:
+        Dict with 'src' and 'tgt' strings within ASCII range
+    """
     Max_size = min(2*n, M)
-    unique_chars = list(set(initial_string))  # Get unique characters from initial string
+    
+    # Get ASCII range from initial string
+    ascii_vals = [ord(c) for c in initial_string]
+    min_ascii = min(ascii_vals)
+    max_ascii = max(ascii_vals)
+    
+    # Create extended range for target string (up to +2)
+    extended_range = list(range(min_ascii, max_ascii + 3))
     
     while True:
+        # Generate random lengths using exponential distribution
         p = int(np.clip(np.random.exponential(scale=n), 1, Max_size))
         q = int(np.clip(np.random.exponential(scale=n), 1, Max_size))
         
-        # Generate s1 using characters from initial string
-        s1 = ''.join(random.choice(unique_chars) for _ in range(p))
+        # Generate source string using original ASCII range
+        s1_chars = [chr(random.randint(min_ascii, max_ascii)) for _ in range(p)]
+        s1 = ''.join(s1_chars)
         
-        # Generate s2 using characters from initial string
-        # Also include empty string as a possible target with some probability
-        if random.random() < 0.2:  # 20% chance of empty target
-            s2 = ''
-        else:
-            s2 = ''.join(random.choice(unique_chars) for _ in range(q))
+        # Generate target string using extended ASCII range
+        s2_chars = [chr(random.choice(extended_range)) for _ in range(q)]
+        s2 = ''.join(s2_chars)
         
-        if s1 != s2:
+        # Validate transition
+        if s1 != s2: 
             break
-    
+            
     return {"src": s1, "tgt": s2}
 
 # Function to create an array of transitions of size t for a given n
@@ -371,3 +388,80 @@ def save_results_to_csv(df: pd.DataFrame, filename: str = None, base_dir: str = 
     df.to_csv(filepath, index=False)
     print(f"Results saved to {filepath}")
     return str(filepath)
+
+def SED_user_prompt_generator(data_dir: str | Path, 
+                            train_test_split: Tuple[List[int], List[int]], 
+                            give_explanation_flag: int = 0) -> str:
+    """Generate prompts using train/test problem IDs and data directory
+    
+    Args:
+        data_dir: Path to dataset containing puzzles/ and solutions/
+        train_test_split: Tuple of (train_ids, test_ids) lists 
+        give_explanation_flag: Whether to include explanations
+    """
+    data_dir = Path(data_dir)
+    puzzles_dir = data_dir / "puzzles"
+    solutions_dir = data_dir / "solutions"
+    train_ids, test_ids = train_test_split
+    
+    training_data = []
+    test_data = []
+    
+    # Process training examples
+    for pid in train_ids:
+        puzzle_file = puzzles_dir / f"{pid:03d}.json"
+        solution_file = solutions_dir / f"{pid:03d}.json"
+        
+        with open(puzzle_file) as pf, open(solution_file) as sf:
+            puzzle = json.load(pf)
+            solution = json.load(sf)
+            
+            # Remove metrics from puzzle
+            filtered_puzzle = {
+                'problem_id': puzzle['problem_id'],
+                'initial_string': puzzle['initial_string'],
+                'transitions': puzzle['transitions']
+            }
+            
+            if give_explanation_flag and 'explanation' in solution:
+                training_example = {
+                    "Puzzle": filtered_puzzle,
+                    "Solution": {
+                        'problem_id': solution['problem_id'],
+                        'solution': solution['solution'],
+                        'explanation': solution['explanation']
+                    }
+                }
+            else:
+                training_example = {
+                    "Puzzle": filtered_puzzle,
+                    "Solution": {
+                        'problem_id': solution['problem_id'],
+                        'solution': solution['solution']
+                    }
+                }
+            training_data.append(training_example)
+
+    # Process test puzzles
+    for pid in test_ids:
+        puzzle_file = puzzles_dir / f"{pid:03d}.json"
+        with open(puzzle_file) as pf:
+            puzzle = json.load(pf)
+            filtered_puzzle = {
+                'problem_id': puzzle['problem_id'],
+                'initial_string': puzzle['initial_string'],
+                'transitions': puzzle['transitions']
+            }
+            test_data.append({"Puzzle": filtered_puzzle})
+
+    # Format the prompt
+    user_prompt = (
+        "Training:\n"
+        f"{training_data}\n"
+        "```\n"
+        "Test:\n"
+        f"{test_data}\n"
+        "```"
+    )
+    
+    return user_prompt

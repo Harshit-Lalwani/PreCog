@@ -1,36 +1,36 @@
 {
     "problem_id": "352",
-    "initial_string": "abcdeba",
+    "initial_string": "abacbbdc",
     "transitions": [
         {
-            "src": "/bbI/kSkb/",
-            "tgt": "all/"
-        },
-        {
-            "src": "k",
-            "tgt": "f"
-        },
-        {
-            "src": "ftIS.tbktt",
-            "tgt": "td"
-        },
-        {
-            "src": "lSf",
-            "tgt": ""
+            "src": "c",
+            "tgt": "d"
         },
         {
             "src": "a",
-            "tgt": "."
+            "tgt": "eebbafafaf"
         },
         {
-            "src": "d.ld/_Sfpb",
-            "tgt": "p___S."
+            "src": "ccddcaad",
+            "tgt": "cdce"
         },
         {
-            "src": ".bcdeba",
+            "src": "bac",
+            "tgt": "da"
+        },
+        {
+            "src": "acccaacabc",
+            "tgt": "ad"
+        },
+        {
+            "src": "aacadbbdbb",
+            "tgt": "acf"
+        },
+        {
+            "src": "eebbeebbeebbeebbeebbeebbeebbeebbeebbeebbeebbeebbeebbeebbafafaffafaffafaffafaffafaffafaffafaffafaffafaffafaffafaffafaffafaffafafbadbbdd",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1.0
+    "markov_entropy": 1.311278124459133,
+    "pattern_score": 0.6791950959833024
 }

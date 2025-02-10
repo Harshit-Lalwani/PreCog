@@ -3,18 +3,30 @@
     "initial_string": "abbb",
     "transitions": [
         {
-            "src": "/ISSS/p/",
-            "tgt": "al"
+            "src": "bbbbb",
+            "tgt": "c"
         },
         {
-            "src": "lfklNa",
-            "tgt": ""
+            "src": "b",
+            "tgt": "cb"
         },
         {
-            "src": "abbb",
+            "src": "aababbaa",
+            "tgt": "dbdcddbb"
+        },
+        {
+            "src": "bbabb",
+            "tgt": "dda"
+        },
+        {
+            "src": "a",
+            "tgt": "dcdccd"
+        },
+        {
+            "src": "dcdccdcccccccccccbbb",
             "tgt": ""
         }
     ],
-    "markov_entropy": 0.0,
-    "pattern_score": 1
+    "markov_entropy": 1.207518749639422,
+    "pattern_score": 0.6736823616610579
 }

@@ -1,14 +1,10 @@
 {
     "problem_id": "832",
-    "initial_string": "aba",
+    "initial_string": "abbcba",
     "transitions": [
         {
-            "src": "l",
-            "tgt": "d"
-        },
-        {
-            "src": "p_",
-            "tgt": "f"
+            "src": "bbcb",
+            "tgt": "b"
         },
         {
             "src": "aba",
@@ -16,5 +12,5 @@
         }
     ],
     "markov_entropy": 0.0,
-    "pattern_score": 1
+    "pattern_score": 1.0
 }

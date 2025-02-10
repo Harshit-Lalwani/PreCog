@@ -1,0 +1,3 @@
+run_id,run_accuracy,pattern_weighted_accuracy,prompt_title,give_explanation,ask_explanation,model
+0,0.0,0.0,problem_defined,0,1,gpt-4o
+1,0.6666666666666666,0.6666666666666666,problem_defined,0,1,gpt-4o

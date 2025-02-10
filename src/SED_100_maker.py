@@ -5,7 +5,7 @@ from pathlib import Path
 import shutil
 
 # Load dataset
-df = pd.read_csv("SED_1000/analysis/exploration_results.csv")
+df = pd.read_csv("SED_1000/exploration_results.csv")
 
 # Create directory structure
 base_dir = Path("SED_100")
@@ -36,13 +36,13 @@ rare_sample = pd.DataFrame()
 remaining_data = df.drop(stratified_sample.index) # remove already sampled points
 points_needed = 20
 
-# Consider the 17 rarest classes first
-rare_classes = class_freq.index[:17]
+# Consider the 7 rarest classes first
+rare_classes = class_freq.index[:7]
 
 for class_name in rare_classes:
     class_data = remaining_data[remaining_data["class"] == class_name]
     if len(class_data) > 0:
-        # Sample up to 2 points from each class
+        # Sample up to 3 points from each class
         n_sample = min(2, len(class_data))
         sampled = class_data.sample(n=n_sample, random_state=42)
         rare_sample = pd.concat([rare_sample, sampled])
