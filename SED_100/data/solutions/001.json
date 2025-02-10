@@ -1,0 +1,19 @@
+{
+    "problem_id": "001",
+    "solution": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        2,
+        2,
+        0,
+        4
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"aaab\"\napplying transition 2 (\"a\"->\"abdaaccd\") gives \"abdaaccdaab\"\nSTEP2: \"a\" occurs in \"abdaaccdaab\"\napplying transition 2 (\"a\"->\"abdaaccd\") gives \"abdaaccdbdaaccdaab\"\nSTEP3: \"a\" occurs in \"abdaaccdbdaaccdaab\"\napplying transition 2 (\"a\"->\"abdaaccd\") gives \"abdaaccdbdaaccdbdaaccdaab\"\nSTEP4: \"aa\" occurs in \"abdaaccdbdaaccdbdaaccdaab\"\napplying transition 0 (\"aa\"->\"d\") gives \"abddccdbdaaccdbdaaccdaab\"\nSTEP5: \"aa\" occurs in \"abddccdbdaaccdbdaaccdaab\"\napplying transition 0 (\"aa\"->\"d\") gives \"abddccdbddccdbdaaccdaab\"\nSTEP6: \"aa\" occurs in \"abddccdbddccdbdaaccdaab\"\napplying transition 0 (\"aa\"->\"d\") gives \"abddccdbddccdbddccdaab\"\nSTEP7: \"a\" occurs in \"abddccdbddccdbddccdaab\"\napplying transition 2 (\"a\"->\"abdaaccd\") gives \"abdaaccdbddccdbddccdbddccdaab\"\nSTEP8: \"aa\" occurs in \"abdaaccdbddccdbddccdbddccdaab\"\napplying transition 0 (\"aa\"->\"d\") gives \"abddccdbddccdbddccdbddccdaab\"\nSTEP9: \"aa\" occurs in \"abddccdbddccdbddccdbddccdaab\"\napplying transition 0 (\"aa\"->\"d\") gives \"abddccdbddccdbddccdbddccddb\"\nSTEP10: \"a\" occurs in \"abddccdbddccdbddccdbddccddb\"\napplying transition 2 (\"a\"->\"abdaaccd\") gives \"abdaaccdbddccdbddccdbddccdbddccddb\"\nSTEP11: \"a\" occurs in \"abdaaccdbddccdbddccdbddccdbddccddb\"\napplying transition 2 (\"a\"->\"abdaaccd\") gives \"abdaaccdbdaaccdbddccdbddccdbddccdbddccddb\"\nSTEP12: \"aa\" occurs in \"abdaaccdbdaaccdbddccdbddccdbddccdbddccddb\"\napplying transition 0 (\"aa\"->\"d\") gives \"abddccdbdaaccdbddccdbddccdbddccdbddccddb\"\nSTEP13: \"abddccdbdaaccdbddccdbddccdbddccdbddccddb\" occurs in \"abddccdbdaaccdbddccdbddccdbddccdbddccddb\"\napplying transition 4 (\"abddccdbdaaccdbddccdbddccdbddccdbddccddb\"->\"\") gives \"\""
+}

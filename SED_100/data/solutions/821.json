@@ -1,0 +1,16 @@
+{
+    "problem_id": "821",
+    "solution": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        0,
+        3
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abacaad\"\napplying transition 0 (\"b\"->\"cfcdccdbaf\") gives \"acfcdccdbafacaad\"\nSTEP2: \"b\" occurs in \"acfcdccdbafacaad\"\napplying transition 0 (\"b\"->\"cfcdccdbaf\") gives \"acfcdccdcfcdccdbafafacaad\"\nSTEP3: \"b\" occurs in \"acfcdccdcfcdccdbafafacaad\"\napplying transition 0 (\"b\"->\"cfcdccdbaf\") gives \"acfcdccdcfcdccdcfcdccdbafafafacaad\"\nSTEP4: \"b\" occurs in \"acfcdccdcfcdccdcfcdccdbafafafacaad\"\napplying transition 0 (\"b\"->\"cfcdccdbaf\") gives \"acfcdccdcfcdccdcfcdccdcfcdccdbafafafafacaad\"\nSTEP5: \"cdc\" occurs in \"acfcdccdcfcdccdcfcdccdcfcdccdbafafafafacaad\"\napplying transition 2 (\"cdc\"->\"ef\") gives \"acfefcdcfcdccdcfcdccdcfcdccdbafafafafacaad\"\nSTEP6: \"cdc\" occurs in \"acfefcdcfcdccdcfcdccdcfcdccdbafafafafacaad\"\napplying transition 2 (\"cdc\"->\"ef\") gives \"acfefeffcdccdcfcdccdcfcdccdbafafafafacaad\"\nSTEP7: \"b\" occurs in \"acfefeffcdccdcfcdccdcfcdccdbafafafafacaad\"\napplying transition 0 (\"b\"->\"cfcdccdbaf\") gives \"acfefeffcdccdcfcdccdcfcdccdcfcdccdbafafafafafacaad\"\nSTEP8: \"b\" occurs in \"acfefeffcdccdcfcdccdcfcdccdcfcdccdbafafafafafacaad\"\napplying transition 0 (\"b\"->\"cfcdccdbaf\") gives \"acfefeffcdccdcfcdccdcfcdccdcfcdccdcfcdccdbafafafafafafacaad\"\nSTEP9: \"b\" occurs in \"acfefeffcdccdcfcdccdcfcdccdcfcdccdcfcdccdbafafafafafafacaad\"\napplying transition 0 (\"b\"->\"cfcdccdbaf\") gives \"acfefeffcdccdcfcdccdcfcdccdcfcdccdcfcdccdcfcdccdbafafafafafafafacaad\"\nSTEP10: \"acfefeffcdccdcfcdccdcfcdccdcfcdccdcfcdccdcfcdccdbafafafafafafafacaad\" occurs in \"acfefeffcdccdcfcdccdcfcdccdcfcdccdcfcdccdcfcdccdbafafafafafafafacaad\"\napplying transition 3 (\"acfefeffcdccdcfcdccdcfcdccdcfcdccdcfcdccdcfcdccdbafafafafafafafacaad\"->\"\") gives \"\""
+}

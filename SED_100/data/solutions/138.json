@@ -1,0 +1,20 @@
+{
+    "problem_id": "138",
+    "solution": [
+        2,
+        1,
+        0,
+        0,
+        1,
+        2,
+        1,
+        3,
+        0,
+        2,
+        1,
+        1,
+        0,
+        6
+    ],
+    "explanation": "STEP1: \"c\" occurs in \"abcbc\"\napplying transition 2 (\"c\"->\"cceab\") gives \"abcceabbc\"\nSTEP2: \"c\" occurs in \"abcceabbc\"\napplying transition 1 (\"c\"->\"de\") gives \"abdeceabbc\"\nSTEP3: \"b\" occurs in \"abdeceabbc\"\napplying transition 0 (\"b\"->\"accdb\") gives \"aaccdbdeceabbc\"\nSTEP4: \"b\" occurs in \"aaccdbdeceabbc\"\napplying transition 0 (\"b\"->\"accdb\") gives \"aaccdaccdbdeceabbc\"\nSTEP5: \"c\" occurs in \"aaccdaccdbdeceabbc\"\napplying transition 1 (\"c\"->\"de\") gives \"aadecdaccdbdeceabbc\"\nSTEP6: \"c\" occurs in \"aadecdaccdbdeceabbc\"\napplying transition 2 (\"c\"->\"cceab\") gives \"aadecceabdaccdbdeceabbc\"\nSTEP7: \"c\" occurs in \"aadecceabdaccdbdeceabbc\"\napplying transition 1 (\"c\"->\"de\") gives \"aadedeceabdaccdbdeceabbc\"\nSTEP8: \"aa\" occurs in \"aadedeceabdaccdbdeceabbc\"\napplying transition 3 (\"aa\"->\"b\") gives \"bdedeceabdaccdbdeceabbc\"\nSTEP9: \"b\" occurs in \"bdedeceabdaccdbdeceabbc\"\napplying transition 0 (\"b\"->\"accdb\") gives \"accdbdedeceabdaccdbdeceabbc\"\nSTEP10: \"c\" occurs in \"accdbdedeceabdaccdbdeceabbc\"\napplying transition 2 (\"c\"->\"cceab\") gives \"acceabcdbdedeceabdaccdbdeceabbc\"\nSTEP11: \"c\" occurs in \"acceabcdbdedeceabdaccdbdeceabbc\"\napplying transition 1 (\"c\"->\"de\") gives \"adeceabcdbdedeceabdaccdbdeceabbc\"\nSTEP12: \"c\" occurs in \"adeceabcdbdedeceabdaccdbdeceabbc\"\napplying transition 1 (\"c\"->\"de\") gives \"adedeeabcdbdedeceabdaccdbdeceabbc\"\nSTEP13: \"b\" occurs in \"adedeeabcdbdedeceabdaccdbdeceabbc\"\napplying transition 0 (\"b\"->\"accdb\") gives \"adedeeaaccdbcdbdedeceabdaccdbdeceabbc\"\nSTEP14: \"adedeeaaccdbcdbdedeceabdaccdbdeceabbc\" occurs in \"adedeeaaccdbcdbdedeceabdaccdbdeceabbc\"\napplying transition 6 (\"adedeeaaccdbcdbdedeceabdaccdbdeceabbc\"->\"\") gives \"\""
+}

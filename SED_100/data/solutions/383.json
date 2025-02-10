@@ -1,0 +1,19 @@
+{
+    "problem_id": "383",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+    ],
+    "explanation": "STEP1: \"d\" occurs in \"abccdef\"\napplying transition 1 (\"d\"->\"ehd\") gives \"abccehdef\"\nSTEP2: \"d\" occurs in \"abccehdef\"\napplying transition 1 (\"d\"->\"ehd\") gives \"abccehehdef\"\nSTEP3: \"d\" occurs in \"abccehehdef\"\napplying transition 1 (\"d\"->\"ehd\") gives \"abccehehehdef\"\nSTEP4: \"d\" occurs in \"abccehehehdef\"\napplying transition 1 (\"d\"->\"ehd\") gives \"abccehehehehdef\"\nSTEP5: \"d\" occurs in \"abccehehehehdef\"\napplying transition 0 (\"d\"->\"fd\") gives \"abccehehehehfdef\"\nSTEP6: \"d\" occurs in \"abccehehehehfdef\"\napplying transition 1 (\"d\"->\"ehd\") gives \"abccehehehehfehdef\"\nSTEP7: \"d\" occurs in \"abccehehehehfehdef\"\napplying transition 0 (\"d\"->\"fd\") gives \"abccehehehehfehfdef\"\nSTEP8: \"d\" occurs in \"abccehehehehfehfdef\"\napplying transition 0 (\"d\"->\"fd\") gives \"abccehehehehfehffdef\"\nSTEP9: \"d\" occurs in \"abccehehehehfehffdef\"\napplying transition 0 (\"d\"->\"fd\") gives \"abccehehehehfehfffdef\"\nSTEP10: \"d\" occurs in \"abccehehehehfehfffdef\"\napplying transition 0 (\"d\"->\"fd\") gives \"abccehehehehfehffffdef\"\nSTEP11: \"d\" occurs in \"abccehehehehfehffffdef\"\napplying transition 0 (\"d\"->\"fd\") gives \"abccehehehehfehfffffdef\"\nSTEP12: \"d\" occurs in \"abccehehehehfehfffffdef\"\napplying transition 0 (\"d\"->\"fd\") gives \"abccehehehehfehffffffdef\"\nSTEP13: \"abccehehehehfehffffffdef\" occurs in \"abccehehehehfehffffffdef\"\napplying transition 4 (\"abccehehehehfehffffffdef\"->\"\") gives \"\""
+}

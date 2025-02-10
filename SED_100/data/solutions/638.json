@@ -1,0 +1,13 @@
+{
+    "problem_id": "638",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abbcab\"\napplying transition 1 (\"b\"->\"babccd\") gives \"ababccdbcab\"\nSTEP2: \"b\" occurs in \"ababccdbcab\"\napplying transition 1 (\"b\"->\"babccd\") gives \"ababccdabccdbcab\"\nSTEP3: \"b\" occurs in \"ababccdabccdbcab\"\napplying transition 1 (\"b\"->\"babccd\") gives \"ababccdabccdabccdbcab\"\nSTEP4: \"b\" occurs in \"ababccdabccdabccdbcab\"\napplying transition 1 (\"b\"->\"babccd\") gives \"ababccdabccdabccdabccdbcab\"\nSTEP5: \"b\" occurs in \"ababccdabccdabccdabccdbcab\"\napplying transition 1 (\"b\"->\"babccd\") gives \"ababccdabccdabccdabccdabccdbcab\"\nSTEP6: \"b\" occurs in \"ababccdabccdabccdabccdabccdbcab\"\napplying transition 1 (\"b\"->\"babccd\") gives \"ababccdabccdabccdabccdabccdabccdbcab\"\nSTEP7: \"ababccdabccdabccdabccdabccdabccdbcab\" occurs in \"ababccdabccdabccdabccdabccdabccdbcab\"\napplying transition 2 (\"ababccdabccdabccdabccdabccdabccdbcab\"->\"\") gives \"\""
+}

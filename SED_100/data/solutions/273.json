@@ -1,0 +1,9 @@
+{
+    "problem_id": "273",
+    "solution": [
+        0,
+        0,
+        1
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"abcaccc\"\napplying transition 0 (\"a\"->\"bcaacdcdac\") gives \"bcaacdcdacbcaccc\"\nSTEP2: \"a\" occurs in \"bcaacdcdacbcaccc\"\napplying transition 0 (\"a\"->\"bcaacdcdac\") gives \"bcbcaacdcdacacdcdacbcaccc\"\nSTEP3: \"bcbcaacdcdacacdcdacbcaccc\" occurs in \"bcbcaacdcdacacdcdacbcaccc\"\napplying transition 1 (\"bcbcaacdcdacacdcdacbcaccc\"->\"\") gives \"\""
+}

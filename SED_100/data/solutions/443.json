@@ -1,0 +1,14 @@
+{
+    "problem_id": "443",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"aabccad\"\napplying transition 1 (\"b\"->\"fceaabfbea\") gives \"aafceaabfbeaccad\"\nSTEP2: \"b\" occurs in \"aafceaabfbeaccad\"\napplying transition 1 (\"b\"->\"fceaabfbea\") gives \"aafceaafceaabfbeafbeaccad\"\nSTEP3: \"b\" occurs in \"aafceaafceaabfbeafbeaccad\"\napplying transition 1 (\"b\"->\"fceaabfbea\") gives \"aafceaafceaafceaabfbeafbeafbeaccad\"\nSTEP4: \"b\" occurs in \"aafceaafceaafceaabfbeafbeafbeaccad\"\napplying transition 1 (\"b\"->\"fceaabfbea\") gives \"aafceaafceaafceaafceaabfbeafbeafbeafbeaccad\"\nSTEP5: \"b\" occurs in \"aafceaafceaafceaafceaabfbeafbeafbeafbeaccad\"\napplying transition 1 (\"b\"->\"fceaabfbea\") gives \"aafceaafceaafceaafceaafceaabfbeafbeafbeafbeafbeaccad\"\nSTEP6: \"b\" occurs in \"aafceaafceaafceaafceaafceaabfbeafbeafbeafbeafbeaccad\"\napplying transition 1 (\"b\"->\"fceaabfbea\") gives \"aafceaafceaafceaafceaafceaafceaabfbeafbeafbeafbeafbeafbeaccad\"\nSTEP7: \"b\" occurs in \"aafceaafceaafceaafceaafceaafceaabfbeafbeafbeafbeafbeafbeaccad\"\napplying transition 1 (\"b\"->\"fceaabfbea\") gives \"aafceaafceaafceaafceaafceaafceaafceaabfbeafbeafbeafbeafbeafbeafbeaccad\"\nSTEP8: \"aafceaafceaafceaafceaafceaafceaafceaabfbeafbeafbeafbeafbeafbeafbeaccad\" occurs in \"aafceaafceaafceaafceaafceaafceaafceaabfbeafbeafbeafbeafbeafbeafbeaccad\"\napplying transition 3 (\"aafceaafceaafceaafceaafceaafceaafceaabfbeafbeafbeafbeafbeafbeafbeaccad\"->\"\") gives \"\""
+}

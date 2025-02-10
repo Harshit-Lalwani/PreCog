@@ -1,0 +1,20 @@
+{
+    "problem_id": "186",
+    "solution": [
+        3,
+        2,
+        0,
+        0,
+        3,
+        0,
+        3,
+        2,
+        3,
+        2,
+        0,
+        3,
+        3,
+        5
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"abccde\"\napplying transition 3 (\"a\"->\"fdgggcb\") gives \"fdgggcbbccde\"\nSTEP2: \"e\" occurs in \"fdgggcbbccde\"\napplying transition 2 (\"e\"->\"ccacecfcdd\") gives \"fdgggcbbccdccacecfcdd\"\nSTEP3: \"c\" occurs in \"fdgggcbbccdccacecfcdd\"\napplying transition 0 (\"c\"->\"dbaeg\") gives \"fdgggdbaegbbccdccacecfcdd\"\nSTEP4: \"c\" occurs in \"fdgggdbaegbbccdccacecfcdd\"\napplying transition 0 (\"c\"->\"dbaeg\") gives \"fdgggdbaegbbdbaegcdccacecfcdd\"\nSTEP5: \"a\" occurs in \"fdgggdbaegbbdbaegcdccacecfcdd\"\napplying transition 3 (\"a\"->\"fdgggcb\") gives \"fdgggdbfdgggcbegbbdbaegcdccacecfcdd\"\nSTEP6: \"c\" occurs in \"fdgggdbfdgggcbegbbdbaegcdccacecfcdd\"\napplying transition 0 (\"c\"->\"dbaeg\") gives \"fdgggdbfdgggdbaegbegbbdbaegcdccacecfcdd\"\nSTEP7: \"a\" occurs in \"fdgggdbfdgggdbaegbegbbdbaegcdccacecfcdd\"\napplying transition 3 (\"a\"->\"fdgggcb\") gives \"fdgggdbfdgggdbfdgggcbegbegbbdbaegcdccacecfcdd\"\nSTEP8: \"e\" occurs in \"fdgggdbfdgggdbfdgggcbegbegbbdbaegcdccacecfcdd\"\napplying transition 2 (\"e\"->\"ccacecfcdd\") gives \"fdgggdbfdgggdbfdgggcbccacecfcddgbegbbdbaegcdccacecfcdd\"\nSTEP9: \"a\" occurs in \"fdgggdbfdgggdbfdgggcbccacecfcddgbegbbdbaegcdccacecfcdd\"\napplying transition 3 (\"a\"->\"fdgggcb\") gives \"fdgggdbfdgggdbfdgggcbccfdgggcbcecfcddgbegbbdbaegcdccacecfcdd\"\nSTEP10: \"e\" occurs in \"fdgggdbfdgggdbfdgggcbccfdgggcbcecfcddgbegbbdbaegcdccacecfcdd\"\napplying transition 2 (\"e\"->\"ccacecfcdd\") gives \"fdgggdbfdgggdbfdgggcbccfdgggcbcccacecfcddcfcddgbegbbdbaegcdccacecfcdd\"\nSTEP11: \"c\" occurs in \"fdgggdbfdgggdbfdgggcbccfdgggcbcccacecfcddcfcddgbegbbdbaegcdccacecfcdd\"\napplying transition 0 (\"c\"->\"dbaeg\") gives \"fdgggdbfdgggdbfdgggdbaegbccfdgggcbcccacecfcddcfcddgbegbbdbaegcdccacecfcdd\"\nSTEP12: \"a\" occurs in \"fdgggdbfdgggdbfdgggdbaegbccfdgggcbcccacecfcddcfcddgbegbbdbaegcdccacecfcdd\"\napplying transition 3 (\"a\"->\"fdgggcb\") gives \"fdgggdbfdgggdbfdgggdbfdgggcbegbccfdgggcbcccacecfcddcfcddgbegbbdbaegcdccacecfcdd\"\nSTEP13: \"a\" occurs in \"fdgggdbfdgggdbfdgggdbfdgggcbegbccfdgggcbcccacecfcddcfcddgbegbbdbaegcdccacecfcdd\"\napplying transition 3 (\"a\"->\"fdgggcb\") gives \"fdgggdbfdgggdbfdgggdbfdgggcbegbccfdgggcbcccfdgggcbcecfcddcfcddgbegbbdbaegcdccacecfcdd\"\nSTEP14: \"fdgggdbfdgggdbfdgggdbfdgggcbegbccfdgggcbcccfdgggcbcecfcddcfcddgbegbbdbaegcdccacecfcdd\" occurs in \"fdgggdbfdgggdbfdgggdbfdgggcbegbccfdgggcbcccfdgggcbcecfcddcfcddgbegbbdbaegcdccacecfcdd\"\napplying transition 5 (\"fdgggdbfdgggdbfdgggdbfdgggcbegbccfdgggcbcccfdgggcbcecfcddcfcddgbegbbdbaegcdccacecfcdd\"->\"\") gives \"\""
+}

@@ -1,0 +1,11 @@
+{
+    "problem_id": "898",
+    "solution": [
+        0,
+        0,
+        0,
+        0,
+        1
+    ],
+    "explanation": "STEP1: \"d\" occurs in \"abcde\"\napplying transition 0 (\"d\"->\"afaabddcc\") gives \"abcafaabddcce\"\nSTEP2: \"d\" occurs in \"abcafaabddcce\"\napplying transition 0 (\"d\"->\"afaabddcc\") gives \"abcafaabafaabddccdcce\"\nSTEP3: \"d\" occurs in \"abcafaabafaabddccdcce\"\napplying transition 0 (\"d\"->\"afaabddcc\") gives \"abcafaabafaabafaabddccdccdcce\"\nSTEP4: \"d\" occurs in \"abcafaabafaabafaabddccdccdcce\"\napplying transition 0 (\"d\"->\"afaabddcc\") gives \"abcafaabafaabafaabafaabddccdccdccdcce\"\nSTEP5: \"abcafaabafaabafaabafaabddccdccdccdcce\" occurs in \"abcafaabafaabafaabafaabddccdccdccdcce\"\napplying transition 1 (\"abcafaabafaabafaabafaabddccdccdccdcce\"->\"\") gives \"\""
+}

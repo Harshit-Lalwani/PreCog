@@ -1,0 +1,25 @@
+{
+    "problem_id": "945",
+    "solution": [
+        4,
+        4,
+        4,
+        0,
+        0,
+        4,
+        0,
+        5,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        0,
+        4,
+        4,
+        7
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"aabacca\"\napplying transition 4 (\"a\"->\"c\") gives \"cabacca\"\nSTEP2: \"a\" occurs in \"cabacca\"\napplying transition 4 (\"a\"->\"c\") gives \"ccbacca\"\nSTEP3: \"a\" occurs in \"ccbacca\"\napplying transition 4 (\"a\"->\"c\") gives \"ccbccca\"\nSTEP4: \"cb\" occurs in \"ccbccca\"\napplying transition 0 (\"cb\"->\"babaddbbae\") gives \"cbabaddbbaeccca\"\nSTEP5: \"cb\" occurs in \"cbabaddbbaeccca\"\napplying transition 0 (\"cb\"->\"babaddbbae\") gives \"babaddbbaeabaddbbaeccca\"\nSTEP6: \"a\" occurs in \"babaddbbaeabaddbbaeccca\"\napplying transition 4 (\"a\"->\"c\") gives \"bcbaddbbaeabaddbbaeccca\"\nSTEP7: \"cb\" occurs in \"bcbaddbbaeabaddbbaeccca\"\napplying transition 0 (\"cb\"->\"babaddbbae\") gives \"bbabaddbbaeaddbbaeabaddbbaeccca\"\nSTEP8: \"bbaba\" occurs in \"bbabaddbbaeaddbbaeabaddbbaeccca\"\napplying transition 5 (\"bbaba\"->\"bdbebbecee\") gives \"bdbebbeceeddbbaeaddbbaeabaddbbaeccca\"\nSTEP9: \"a\" occurs in \"bdbebbeceeddbbaeaddbbaeabaddbbaeccca\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbceaddbbaeabaddbbaeccca\"\nSTEP10: \"a\" occurs in \"bdbebbeceeddbbceaddbbaeabaddbbaeccca\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbcecddbbaeabaddbbaeccca\"\nSTEP11: \"a\" occurs in \"bdbebbeceeddbbcecddbbaeabaddbbaeccca\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbcecddbbceabaddbbaeccca\"\nSTEP12: \"a\" occurs in \"bdbebbeceeddbbcecddbbceabaddbbaeccca\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbcecddbbcecbaddbbaeccca\"\nSTEP13: \"a\" occurs in \"bdbebbeceeddbbcecddbbcecbaddbbaeccca\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbcecddbbcecbcddbbaeccca\"\nSTEP14: \"a\" occurs in \"bdbebbeceeddbbcecddbbcecbcddbbaeccca\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbcecddbbcecbcddbbceccca\"\nSTEP15: \"a\" occurs in \"bdbebbeceeddbbcecddbbcecbcddbbceccca\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbcecddbbcecbcddbbcecccc\"\nSTEP16: \"cb\" occurs in \"bdbebbeceeddbbcecddbbcecbcddbbcecccc\"\napplying transition 0 (\"cb\"->\"babaddbbae\") gives \"bdbebbeceeddbbcecddbbcebabaddbbaecddbbcecccc\"\nSTEP17: \"a\" occurs in \"bdbebbeceeddbbcecddbbcebabaddbbaecddbbcecccc\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbcecddbbcebcbaddbbaecddbbcecccc\"\nSTEP18: \"a\" occurs in \"bdbebbeceeddbbcecddbbcebcbaddbbaecddbbcecccc\"\napplying transition 4 (\"a\"->\"c\") gives \"bdbebbeceeddbbcecddbbcebcbcddbbaecddbbcecccc\"\nSTEP19: \"bdbebbeceeddbbcecddbbcebcbcddbbaecddbbcecccc\" occurs in \"bdbebbeceeddbbcecddbbcebcbcddbbaecddbbcecccc\"\napplying transition 7 (\"bdbebbeceeddbbcecddbbcebcbcddbbaecddbbcecccc\"->\"\") gives \"\""
+}

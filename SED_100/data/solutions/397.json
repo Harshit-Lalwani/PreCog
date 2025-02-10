@@ -1,0 +1,26 @@
+{
+    "problem_id": "397",
+    "solution": [
+        3,
+        0,
+        4,
+        4,
+        0,
+        2,
+        2,
+        1,
+        2,
+        0,
+        1,
+        4,
+        0,
+        2,
+        2,
+        4,
+        1,
+        2,
+        1,
+        7
+    ],
+    "explanation": "STEP1: \"ba\" occurs in \"abac\"\napplying transition 3 (\"ba\"->\"aecca\") gives \"aaeccac\"\nSTEP2: \"c\" occurs in \"aaeccac\"\napplying transition 0 (\"c\"->\"cccd\") gives \"aaecccdcac\"\nSTEP3: \"c\" occurs in \"aaecccdcac\"\napplying transition 4 (\"c\"->\"e\") gives \"aaeeccdcac\"\nSTEP4: \"c\" occurs in \"aaeeccdcac\"\napplying transition 4 (\"c\"->\"e\") gives \"aaeeecdcac\"\nSTEP5: \"c\" occurs in \"aaeeecdcac\"\napplying transition 0 (\"c\"->\"cccd\") gives \"aaeeecccddcac\"\nSTEP6: \"c\" occurs in \"aaeeecccddcac\"\napplying transition 2 (\"c\"->\"bdbcbe\") gives \"aaeeebdbcbeccddcac\"\nSTEP7: \"c\" occurs in \"aaeeebdbcbeccddcac\"\napplying transition 2 (\"c\"->\"bdbcbe\") gives \"aaeeebdbbdbcbebeccddcac\"\nSTEP8: \"cc\" occurs in \"aaeeebdbbdbcbebeccddcac\"\napplying transition 1 (\"cc\"->\"ddccec\") gives \"aaeeebdbbdbcbebeddccecddcac\"\nSTEP9: \"c\" occurs in \"aaeeebdbbdbcbebeddccecddcac\"\napplying transition 2 (\"c\"->\"bdbcbe\") gives \"aaeeebdbbdbbdbcbebebeddccecddcac\"\nSTEP10: \"c\" occurs in \"aaeeebdbbdbbdbcbebebeddccecddcac\"\napplying transition 0 (\"c\"->\"cccd\") gives \"aaeeebdbbdbbdbcccdbebebeddccecddcac\"\nSTEP11: \"cc\" occurs in \"aaeeebdbbdbbdbcccdbebebeddccecddcac\"\napplying transition 1 (\"cc\"->\"ddccec\") gives \"aaeeebdbbdbbdbddcceccdbebebeddccecddcac\"\nSTEP12: \"c\" occurs in \"aaeeebdbbdbbdbddcceccdbebebeddccecddcac\"\napplying transition 4 (\"c\"->\"e\") gives \"aaeeebdbbdbbdbddececcdbebebeddccecddcac\"\nSTEP13: \"c\" occurs in \"aaeeebdbbdbbdbddececcdbebebeddccecddcac\"\napplying transition 0 (\"c\"->\"cccd\") gives \"aaeeebdbbdbbdbddecccdeccdbebebeddccecddcac\"\nSTEP14: \"c\" occurs in \"aaeeebdbbdbbdbddecccdeccdbebebeddccecddcac\"\napplying transition 2 (\"c\"->\"bdbcbe\") gives \"aaeeebdbbdbbdbddebdbcbeccdeccdbebebeddccecddcac\"\nSTEP15: \"c\" occurs in \"aaeeebdbbdbbdbddebdbcbeccdeccdbebebeddccecddcac\"\napplying transition 2 (\"c\"->\"bdbcbe\") gives \"aaeeebdbbdbbdbddebdbbdbcbebeccdeccdbebebeddccecddcac\"\nSTEP16: \"c\" occurs in \"aaeeebdbbdbbdbddebdbbdbcbebeccdeccdbebebeddccecddcac\"\napplying transition 4 (\"c\"->\"e\") gives \"aaeeebdbbdbbdbddebdbbdbebebeccdeccdbebebeddccecddcac\"\nSTEP17: \"cc\" occurs in \"aaeeebdbbdbbdbddebdbbdbebebeccdeccdbebebeddccecddcac\"\napplying transition 1 (\"cc\"->\"ddccec\") gives \"aaeeebdbbdbbdbddebdbbdbebebeddccecdeccdbebebeddccecddcac\"\nSTEP18: \"c\" occurs in \"aaeeebdbbdbbdbddebdbbdbebebeddccecdeccdbebebeddccecddcac\"\napplying transition 2 (\"c\"->\"bdbcbe\") gives \"aaeeebdbbdbbdbddebdbbdbebebeddbdbcbececdeccdbebebeddccecddcac\"\nSTEP19: \"cc\" occurs in \"aaeeebdbbdbbdbddebdbbdbebebeddbdbcbececdeccdbebebeddccecddcac\"\napplying transition 1 (\"cc\"->\"ddccec\") gives \"aaeeebdbbdbbdbddebdbbdbebebeddbdbcbececdeddccecdbebebeddccecddcac\"\nSTEP20: \"aaeeebdbbdbbdbddebdbbdbebebeddbdbcbececdeddccecdbebebeddccecddcac\" occurs in \"aaeeebdbbdbbdbddebdbbdbebebeddbdbcbececdeddccecdbebebeddccecddcac\"\napplying transition 7 (\"aaeeebdbbdbbdbddebdbbdbebebeddbdbcbececdeddccecdbebebeddccecddcac\"->\"\") gives \"\""
+}

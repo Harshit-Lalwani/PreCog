@@ -1,0 +1,14 @@
+{
+    "problem_id": "364",
+    "solution": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abcd\"\napplying transition 1 (\"b\"->\"acfaaaaa\") gives \"aacfaaaaacd\"\nSTEP2: \"a\" occurs in \"aacfaaaaacd\"\napplying transition 0 (\"a\"->\"d\") gives \"dacfaaaaacd\"\nSTEP3: \"a\" occurs in \"dacfaaaaacd\"\napplying transition 0 (\"a\"->\"d\") gives \"ddcfaaaaacd\"\nSTEP4: \"a\" occurs in \"ddcfaaaaacd\"\napplying transition 0 (\"a\"->\"d\") gives \"ddcfdaaaacd\"\nSTEP5: \"a\" occurs in \"ddcfdaaaacd\"\napplying transition 0 (\"a\"->\"d\") gives \"ddcfddaaacd\"\nSTEP6: \"a\" occurs in \"ddcfddaaacd\"\napplying transition 0 (\"a\"->\"d\") gives \"ddcfdddaacd\"\nSTEP7: \"a\" occurs in \"ddcfdddaacd\"\napplying transition 0 (\"a\"->\"d\") gives \"ddcfddddacd\"\nSTEP8: \"ddcfddddacd\" occurs in \"ddcfddddacd\"\napplying transition 3 (\"ddcfddddacd\"->\"\") gives \"\""
+}

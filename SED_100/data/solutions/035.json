@@ -1,0 +1,12 @@
+{
+    "problem_id": "035",
+    "solution": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"abacbb\"\napplying transition 2 (\"a\"->\"dea\") gives \"deabacbb\"\nSTEP2: \"a\" occurs in \"deabacbb\"\napplying transition 2 (\"a\"->\"dea\") gives \"dedeabacbb\"\nSTEP3: \"a\" occurs in \"dedeabacbb\"\napplying transition 2 (\"a\"->\"dea\") gives \"dededeabacbb\"\nSTEP4: \"a\" occurs in \"dededeabacbb\"\napplying transition 2 (\"a\"->\"dea\") gives \"dedededeabacbb\"\nSTEP5: \"a\" occurs in \"dedededeabacbb\"\napplying transition 2 (\"a\"->\"dea\") gives \"dededededeabacbb\"\nSTEP6: \"dededededeabacbb\" occurs in \"dededededeabacbb\"\napplying transition 3 (\"dededededeabacbb\"->\"\") gives \"\""
+}

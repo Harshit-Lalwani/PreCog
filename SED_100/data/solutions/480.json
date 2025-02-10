@@ -1,0 +1,23 @@
+{
+    "problem_id": "480",
+    "solution": [
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"aabaca\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aadbadaca\"\nSTEP2: \"b\" occurs in \"aadbadaca\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aaddbadadaca\"\nSTEP3: \"c\" occurs in \"aaddbadadaca\"\napplying transition 0 (\"c\"->\"d\") gives \"aaddbadadada\"\nSTEP4: \"b\" occurs in \"aaddbadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aadddbadadadada\"\nSTEP5: \"b\" occurs in \"aadddbadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aaddddbadadadadada\"\nSTEP6: \"b\" occurs in \"aaddddbadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aadddddbadadadadadada\"\nSTEP7: \"b\" occurs in \"aadddddbadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aaddddddbadadadadadadada\"\nSTEP8: \"b\" occurs in \"aaddddddbadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aadddddddbadadadadadadadada\"\nSTEP9: \"b\" occurs in \"aadddddddbadadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aaddddddddbadadadadadadadadada\"\nSTEP10: \"b\" occurs in \"aaddddddddbadadadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aadddddddddbadadadadadadadadadada\"\nSTEP11: \"b\" occurs in \"aadddddddddbadadadadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aaddddddddddbadadadadadadadadadadada\"\nSTEP12: \"b\" occurs in \"aaddddddddddbadadadadadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aadddddddddddbadadadadadadadadadadadada\"\nSTEP13: \"b\" occurs in \"aadddddddddddbadadadadadadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aaddddddddddddbadadadadadadadadadadadadada\"\nSTEP14: \"b\" occurs in \"aaddddddddddddbadadadadadadadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aadddddddddddddbadadadadadadadadadadadadadada\"\nSTEP15: \"b\" occurs in \"aadddddddddddddbadadadadadadadadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aaddddddddddddddbadadadadadadadadadadadadadadada\"\nSTEP16: \"b\" occurs in \"aaddddddddddddddbadadadadadadadadadadadadadadada\"\napplying transition 1 (\"b\"->\"dbad\") gives \"aadddddddddddddddbadadadadadadadadadadadadadadadada\"\nSTEP17: \"aadddddddddddddddbadadadadadadadadadadadadadadadada\" occurs in \"aadddddddddddddddbadadadadadadadadadadadadadadadada\"\napplying transition 5 (\"aadddddddddddddddbadadadadadadadadadadadadadadadada\"->\"\") gives \"\""
+}

@@ -1,0 +1,26 @@
+{
+  "engine": "gpt-4o",
+  "system_prompt": "\nProvide solutions for test puzzles. Problem IDs do not affect the solution.\n",
+  "train_set": "/root/PreCog/data/OneShot/E2/OneShot_3_3_5",
+  "test_set": "/root/PreCog/data/OneShot/E2/OneShot_3_3_7",
+  "solutions": {
+    "output_id": 163,
+    "system_prompt": "\nProvide solutions for test puzzles. Problem IDs do not affect the solution.\n",
+    "model": "gpt-4o",
+    "train_set": "/root/PreCog/data/OneShot/E2/OneShot_3_3_5",
+    "test_set": "/root/PreCog/data/OneShot/E2/OneShot_3_3_7",
+    "score": 0,
+    "accuracy": 0.0,
+    "solutions": [
+      {
+        "problem_id": "000",
+        "solution": [
+          0,
+          2,
+          3
+        ],
+        "is_valid": 0
+      }
+    ]
+  }
+}

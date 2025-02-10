@@ -1,0 +1,16 @@
+{
+    "problem_id": "620",
+    "solution": [
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        3
+    ],
+    "explanation": "STEP1: \"c\" occurs in \"abacc\"\napplying transition 1 (\"c\"->\"cc\") gives \"abaccc\"\nSTEP2: \"c\" occurs in \"abaccc\"\napplying transition 0 (\"c\"->\"aead\") gives \"abaaeadcc\"\nSTEP3: \"c\" occurs in \"abaaeadcc\"\napplying transition 1 (\"c\"->\"cc\") gives \"abaaeadccc\"\nSTEP4: \"c\" occurs in \"abaaeadccc\"\napplying transition 1 (\"c\"->\"cc\") gives \"abaaeadcccc\"\nSTEP5: \"c\" occurs in \"abaaeadcccc\"\napplying transition 1 (\"c\"->\"cc\") gives \"abaaeadccccc\"\nSTEP6: \"c\" occurs in \"abaaeadccccc\"\napplying transition 0 (\"c\"->\"aead\") gives \"abaaeadaeadcccc\"\nSTEP7: \"c\" occurs in \"abaaeadaeadcccc\"\napplying transition 0 (\"c\"->\"aead\") gives \"abaaeadaeadaeadccc\"\nSTEP8: \"c\" occurs in \"abaaeadaeadaeadccc\"\napplying transition 1 (\"c\"->\"cc\") gives \"abaaeadaeadaeadcccc\"\nSTEP9: \"c\" occurs in \"abaaeadaeadaeadcccc\"\napplying transition 0 (\"c\"->\"aead\") gives \"abaaeadaeadaeadaeadccc\"\nSTEP10: \"abaaeadaeadaeadaeadccc\" occurs in \"abaaeadaeadaeadaeadccc\"\napplying transition 3 (\"abaaeadaeadaeadaeadccc\"->\"\") gives \"\""
+}

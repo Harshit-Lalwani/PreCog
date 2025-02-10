@@ -1,0 +1,22 @@
+{
+    "problem_id": "462",
+    "solution": [
+        1,
+        3,
+        4,
+        3,
+        4,
+        4,
+        4,
+        3,
+        3,
+        4,
+        4,
+        4,
+        3,
+        3,
+        4,
+        6
+    ],
+    "explanation": "STEP1: \"ab\" occurs in \"abbcbd\"\napplying transition 1 (\"ab\"->\"efeb\") gives \"efebbcbd\"\nSTEP2: \"d\" occurs in \"efebbcbd\"\napplying transition 3 (\"d\"->\"bdd\") gives \"efebbcbbdd\"\nSTEP3: \"c\" occurs in \"efebbcbbdd\"\napplying transition 4 (\"c\"->\"dce\") gives \"efebbdcebbdd\"\nSTEP4: \"d\" occurs in \"efebbdcebbdd\"\napplying transition 3 (\"d\"->\"bdd\") gives \"efebbbddcebbdd\"\nSTEP5: \"c\" occurs in \"efebbbddcebbdd\"\napplying transition 4 (\"c\"->\"dce\") gives \"efebbbdddceebbdd\"\nSTEP6: \"c\" occurs in \"efebbbdddceebbdd\"\napplying transition 4 (\"c\"->\"dce\") gives \"efebbbddddceeebbdd\"\nSTEP7: \"c\" occurs in \"efebbbddddceeebbdd\"\napplying transition 4 (\"c\"->\"dce\") gives \"efebbbdddddceeeebbdd\"\nSTEP8: \"d\" occurs in \"efebbbdddddceeeebbdd\"\napplying transition 3 (\"d\"->\"bdd\") gives \"efebbbbddddddceeeebbdd\"\nSTEP9: \"d\" occurs in \"efebbbbddddddceeeebbdd\"\napplying transition 3 (\"d\"->\"bdd\") gives \"efebbbbbdddddddceeeebbdd\"\nSTEP10: \"c\" occurs in \"efebbbbbdddddddceeeebbdd\"\napplying transition 4 (\"c\"->\"dce\") gives \"efebbbbbddddddddceeeeebbdd\"\nSTEP11: \"c\" occurs in \"efebbbbbddddddddceeeeebbdd\"\napplying transition 4 (\"c\"->\"dce\") gives \"efebbbbbdddddddddceeeeeebbdd\"\nSTEP12: \"c\" occurs in \"efebbbbbdddddddddceeeeeebbdd\"\napplying transition 4 (\"c\"->\"dce\") gives \"efebbbbbddddddddddceeeeeeebbdd\"\nSTEP13: \"d\" occurs in \"efebbbbbddddddddddceeeeeeebbdd\"\napplying transition 3 (\"d\"->\"bdd\") gives \"efebbbbbbdddddddddddceeeeeeebbdd\"\nSTEP14: \"d\" occurs in \"efebbbbbbdddddddddddceeeeeeebbdd\"\napplying transition 3 (\"d\"->\"bdd\") gives \"efebbbbbbbddddddddddddceeeeeeebbdd\"\nSTEP15: \"c\" occurs in \"efebbbbbbbddddddddddddceeeeeeebbdd\"\napplying transition 4 (\"c\"->\"dce\") gives \"efebbbbbbbdddddddddddddceeeeeeeebbdd\"\nSTEP16: \"efebbbbbbbdddddddddddddceeeeeeeebbdd\" occurs in \"efebbbbbbbdddddddddddddceeeeeeeebbdd\"\napplying transition 6 (\"efebbbbbbbdddddddddddddceeeeeeeebbdd\"->\"\") gives \"\""
+}

@@ -1,0 +1,27 @@
+{
+    "problem_id": "465",
+    "solution": [
+        3,
+        4,
+        4,
+        2,
+        2,
+        2,
+        2,
+        5,
+        2,
+        3,
+        2,
+        4,
+        4,
+        4,
+        3,
+        3,
+        2,
+        3,
+        4,
+        3,
+        7
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"aabcaba\"\napplying transition 3 (\"a\"->\"ecccbbebde\") gives \"ecccbbebdeabcaba\"\nSTEP2: \"c\" occurs in \"ecccbbebdeabcaba\"\napplying transition 4 (\"c\"->\"d\") gives \"edccbbebdeabcaba\"\nSTEP3: \"c\" occurs in \"edccbbebdeabcaba\"\napplying transition 4 (\"c\"->\"d\") gives \"eddcbbebdeabcaba\"\nSTEP4: \"b\" occurs in \"eddcbbebdeabcaba\"\napplying transition 2 (\"b\"->\"dbac\") gives \"eddcdbacbebdeabcaba\"\nSTEP5: \"b\" occurs in \"eddcdbacbebdeabcaba\"\napplying transition 2 (\"b\"->\"dbac\") gives \"eddcddbacacbebdeabcaba\"\nSTEP6: \"b\" occurs in \"eddcddbacacbebdeabcaba\"\napplying transition 2 (\"b\"->\"dbac\") gives \"eddcdddbacacacbebdeabcaba\"\nSTEP7: \"b\" occurs in \"eddcdddbacacacbebdeabcaba\"\napplying transition 2 (\"b\"->\"dbac\") gives \"eddcddddbacacacacbebdeabcaba\"\nSTEP8: \"bcab\" occurs in \"eddcddddbacacacacbebdeabcaba\"\napplying transition 5 (\"bcab\"->\"d\") gives \"eddcddddbacacacacbebdeada\"\nSTEP9: \"b\" occurs in \"eddcddddbacacacacbebdeada\"\napplying transition 2 (\"b\"->\"dbac\") gives \"eddcdddddbacacacacacbebdeada\"\nSTEP10: \"a\" occurs in \"eddcdddddbacacacacacbebdeada\"\napplying transition 3 (\"a\"->\"ecccbbebde\") gives \"eddcdddddbecccbbebdecacacacacbebdeada\"\nSTEP11: \"b\" occurs in \"eddcdddddbecccbbebdecacacacacbebdeada\"\napplying transition 2 (\"b\"->\"dbac\") gives \"eddcddddddbacecccbbebdecacacacacbebdeada\"\nSTEP12: \"c\" occurs in \"eddcddddddbacecccbbebdecacacacacbebdeada\"\napplying transition 4 (\"c\"->\"d\") gives \"edddddddddbacecccbbebdecacacacacbebdeada\"\nSTEP13: \"c\" occurs in \"edddddddddbacecccbbebdecacacacacbebdeada\"\napplying transition 4 (\"c\"->\"d\") gives \"edddddddddbadecccbbebdecacacacacbebdeada\"\nSTEP14: \"c\" occurs in \"edddddddddbadecccbbebdecacacacacbebdeada\"\napplying transition 4 (\"c\"->\"d\") gives \"edddddddddbadedccbbebdecacacacacbebdeada\"\nSTEP15: \"a\" occurs in \"edddddddddbadedccbbebdecacacacacbebdeada\"\napplying transition 3 (\"a\"->\"ecccbbebde\") gives \"edddddddddbecccbbebdededccbbebdecacacacacbebdeada\"\nSTEP16: \"a\" occurs in \"edddddddddbecccbbebdededccbbebdecacacacacbebdeada\"\napplying transition 3 (\"a\"->\"ecccbbebde\") gives \"edddddddddbecccbbebdededccbbebdececccbbebdecacacacbebdeada\"\nSTEP17: \"b\" occurs in \"edddddddddbecccbbebdededccbbebdececccbbebdecacacacbebdeada\"\napplying transition 2 (\"b\"->\"dbac\") gives \"eddddddddddbacecccbbebdededccbbebdececccbbebdecacacacbebdeada\"\nSTEP18: \"a\" occurs in \"eddddddddddbacecccbbebdededccbbebdececccbbebdecacacacbebdeada\"\napplying transition 3 (\"a\"->\"ecccbbebde\") gives \"eddddddddddbecccbbebdececccbbebdededccbbebdececccbbebdecacacacbebdeada\"\nSTEP19: \"c\" occurs in \"eddddddddddbecccbbebdececccbbebdededccbbebdececccbbebdecacacacbebdeada\"\napplying transition 4 (\"c\"->\"d\") gives \"eddddddddddbedccbbebdececccbbebdededccbbebdececccbbebdecacacacbebdeada\"\nSTEP20: \"a\" occurs in \"eddddddddddbedccbbebdececccbbebdededccbbebdececccbbebdecacacacbebdeada\"\napplying transition 3 (\"a\"->\"ecccbbebde\") gives \"eddddddddddbedccbbebdececccbbebdededccbbebdececccbbebdececccbbebdecacacbebdeada\"\nSTEP21: \"eddddddddddbedccbbebdececccbbebdededccbbebdececccbbebdececccbbebdecacacbebdeada\" occurs in \"eddddddddddbedccbbebdececccbbebdededccbbebdececccbbebdececccbbebdecacacbebdeada\"\napplying transition 7 (\"eddddddddddbedccbbebdececccbbebdededccbbebdececccbbebdececccbbebdecacacbebdeada\"->\"\") gives \"\""
+}

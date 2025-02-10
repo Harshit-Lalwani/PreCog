@@ -1,0 +1,16 @@
+{
+    "problem_id": "037",
+    "solution": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"abcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcdbcbc\"\nSTEP2: \"a\" occurs in \"adabcdddcdbcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcddabcdddcdbcbc\"\nSTEP3: \"a\" occurs in \"adabcdddcddabcdddcdbcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcddabcdddcddabcdddcdbcbc\"\nSTEP4: \"a\" occurs in \"adabcdddcddabcdddcddabcdddcdbcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\nSTEP5: \"a\" occurs in \"adabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\nSTEP6: \"a\" occurs in \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\nSTEP7: \"a\" occurs in \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\nSTEP8: \"a\" occurs in \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\nSTEP9: \"a\" occurs in \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\napplying transition 0 (\"a\"->\"adabcdddcd\") gives \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\nSTEP10: \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\" occurs in \"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"\napplying transition 4 (\"adabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcddabcdddcdbcbc\"->\"\") gives \"\""
+}

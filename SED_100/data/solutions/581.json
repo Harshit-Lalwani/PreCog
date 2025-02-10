@@ -1,0 +1,14 @@
+{
+    "problem_id": "581",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"abb\"\napplying transition 1 (\"a\"->\"aa\") gives \"aabb\"\nSTEP2: \"a\" occurs in \"aabb\"\napplying transition 1 (\"a\"->\"aa\") gives \"aaabb\"\nSTEP3: \"a\" occurs in \"aaabb\"\napplying transition 1 (\"a\"->\"aa\") gives \"aaaabb\"\nSTEP4: \"a\" occurs in \"aaaabb\"\napplying transition 1 (\"a\"->\"aa\") gives \"aaaaabb\"\nSTEP5: \"a\" occurs in \"aaaaabb\"\napplying transition 1 (\"a\"->\"aa\") gives \"aaaaaabb\"\nSTEP6: \"a\" occurs in \"aaaaaabb\"\napplying transition 1 (\"a\"->\"aa\") gives \"aaaaaaabb\"\nSTEP7: \"a\" occurs in \"aaaaaaabb\"\napplying transition 1 (\"a\"->\"aa\") gives \"aaaaaaaabb\"\nSTEP8: \"aaaaaaaabb\" occurs in \"aaaaaaaabb\"\napplying transition 4 (\"aaaaaaaabb\"->\"\") gives \"\""
+}

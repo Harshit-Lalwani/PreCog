@@ -1,0 +1,11 @@
+{
+    "problem_id": "890",
+    "solution": [
+        0,
+        0,
+        0,
+        0,
+        1
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"a\"\napplying transition 0 (\"a\"->\"ac\") gives \"ac\"\nSTEP2: \"a\" occurs in \"ac\"\napplying transition 0 (\"a\"->\"ac\") gives \"acc\"\nSTEP3: \"a\" occurs in \"acc\"\napplying transition 0 (\"a\"->\"ac\") gives \"accc\"\nSTEP4: \"a\" occurs in \"accc\"\napplying transition 0 (\"a\"->\"ac\") gives \"acccc\"\nSTEP5: \"acccc\" occurs in \"acccc\"\napplying transition 1 (\"acccc\"->\"\") gives \"\""
+}

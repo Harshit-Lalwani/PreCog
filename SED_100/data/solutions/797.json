@@ -1,0 +1,19 @@
+{
+    "problem_id": "797",
+    "solution": [
+        4,
+        4,
+        2,
+        2,
+        2,
+        3,
+        2,
+        3,
+        4,
+        3,
+        3,
+        2,
+        5
+    ],
+    "explanation": "STEP1: \"d\" occurs in \"abcdbe\"\napplying transition 4 (\"d\"->\"bdc\") gives \"abcbdcbe\"\nSTEP2: \"d\" occurs in \"abcbdcbe\"\napplying transition 4 (\"d\"->\"bdc\") gives \"abcbbdccbe\"\nSTEP3: \"c\" occurs in \"abcbbdccbe\"\napplying transition 2 (\"c\"->\"ge\") gives \"abgebbdccbe\"\nSTEP4: \"c\" occurs in \"abgebbdccbe\"\napplying transition 2 (\"c\"->\"ge\") gives \"abgebbdgecbe\"\nSTEP5: \"c\" occurs in \"abgebbdgecbe\"\napplying transition 2 (\"c\"->\"ge\") gives \"abgebbdgegebe\"\nSTEP6: \"b\" occurs in \"abgebbdgegebe\"\napplying transition 3 (\"b\"->\"gefcedfaf\") gives \"agefcedfafgebbdgegebe\"\nSTEP7: \"c\" occurs in \"agefcedfafgebbdgegebe\"\napplying transition 2 (\"c\"->\"ge\") gives \"agefgeedfafgebbdgegebe\"\nSTEP8: \"b\" occurs in \"agefgeedfafgebbdgegebe\"\napplying transition 3 (\"b\"->\"gefcedfaf\") gives \"agefgeedfafgegefcedfafbdgegebe\"\nSTEP9: \"d\" occurs in \"agefgeedfafgegefcedfafbdgegebe\"\napplying transition 4 (\"d\"->\"bdc\") gives \"agefgeebdcfafgegefcedfafbdgegebe\"\nSTEP10: \"b\" occurs in \"agefgeebdcfafgegefcedfafbdgegebe\"\napplying transition 3 (\"b\"->\"gefcedfaf\") gives \"agefgeegefcedfafdcfafgegefcedfafbdgegebe\"\nSTEP11: \"b\" occurs in \"agefgeegefcedfafdcfafgegefcedfafbdgegebe\"\napplying transition 3 (\"b\"->\"gefcedfaf\") gives \"agefgeegefcedfafdcfafgegefcedfafgefcedfafdgegebe\"\nSTEP12: \"c\" occurs in \"agefgeegefcedfafdcfafgegefcedfafgefcedfafdgegebe\"\napplying transition 2 (\"c\"->\"ge\") gives \"agefgeegefgeedfafdcfafgegefcedfafgefcedfafdgegebe\"\nSTEP13: \"agefgeegefgeedfafdcfafgegefcedfafgefcedfafdgegebe\" occurs in \"agefgeegefgeedfafdcfafgegefcedfafgefcedfafdgegebe\"\napplying transition 5 (\"agefgeegefgeedfafdcfafgegefcedfafgefcedfafdgegebe\"->\"\") gives \"\""
+}

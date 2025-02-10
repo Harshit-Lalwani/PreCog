@@ -1,0 +1,13 @@
+{
+    "problem_id": "174",
+    "solution": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3
+    ],
+    "explanation": "STEP1: \"d\" occurs in \"abcdee\"\napplying transition 0 (\"d\"->\"gc\") gives \"abcgcee\"\nSTEP2: \"e\" occurs in \"abcgcee\"\napplying transition 2 (\"e\"->\"eegcca\") gives \"abcgceegccae\"\nSTEP3: \"e\" occurs in \"abcgceegccae\"\napplying transition 2 (\"e\"->\"eegcca\") gives \"abcgceegccaegccae\"\nSTEP4: \"e\" occurs in \"abcgceegccaegccae\"\napplying transition 2 (\"e\"->\"eegcca\") gives \"abcgceegccaegccaegccae\"\nSTEP5: \"e\" occurs in \"abcgceegccaegccaegccae\"\napplying transition 2 (\"e\"->\"eegcca\") gives \"abcgceegccaegccaegccaegccae\"\nSTEP6: \"e\" occurs in \"abcgceegccaegccaegccaegccae\"\napplying transition 2 (\"e\"->\"eegcca\") gives \"abcgceegccaegccaegccaegccaegccae\"\nSTEP7: \"abcgceegccaegccaegccaegccaegccae\" occurs in \"abcgceegccaegccaegccaegccaegccae\"\napplying transition 3 (\"abcgceegccaegccaegccaegccaegccae\"->\"\") gives \"\""
+}

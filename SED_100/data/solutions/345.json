@@ -1,0 +1,24 @@
+{
+    "problem_id": "345",
+    "solution": [
+        4,
+        4,
+        3,
+        4,
+        3,
+        3,
+        3,
+        3,
+        4,
+        3,
+        3,
+        0,
+        3,
+        4,
+        3,
+        4,
+        4,
+        6
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"ababcdddc\"\napplying transition 4 (\"b\"->\"aedeea\") gives \"aaedeeaabcdddc\"\nSTEP2: \"b\" occurs in \"aaedeeaabcdddc\"\napplying transition 4 (\"b\"->\"aedeea\") gives \"aaedeeaaaedeeacdddc\"\nSTEP3: \"a\" occurs in \"aaedeeaaaedeeacdddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfecbfffafaedeeaaaedeeacdddc\"\nSTEP4: \"b\" occurs in \"cfecbfffafaedeeaaaedeeacdddc\"\napplying transition 4 (\"b\"->\"aedeea\") gives \"cfecaedeeafffafaedeeaaaedeeacdddc\"\nSTEP5: \"a\" occurs in \"cfecaedeeafffafaedeeaaaedeeacdddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfeccfecbfffafedeeafffafaedeeaaaedeeacdddc\"\nSTEP6: \"a\" occurs in \"cfeccfecbfffafedeeafffafaedeeaaaedeeacdddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfeccfecbfffcfecbfffaffedeeafffafaedeeaaaedeeacdddc\"\nSTEP7: \"a\" occurs in \"cfeccfecbfffcfecbfffaffedeeafffafaedeeaaaedeeacdddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfeccfecbfffcfecbfffcfecbfffafffedeeafffafaedeeaaaedeeacdddc\"\nSTEP8: \"a\" occurs in \"cfeccfecbfffcfecbfffcfecbfffafffedeeafffafaedeeaaaedeeacdddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfeccfecbfffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeacdddc\"\nSTEP9: \"b\" occurs in \"cfeccfecbfffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeacdddc\"\napplying transition 4 (\"b\"->\"aedeea\") gives \"cfeccfecaedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeacdddc\"\nSTEP10: \"a\" occurs in \"cfeccfecaedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeacdddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfeccfeccfecbfffafedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeacdddc\"\nSTEP11: \"a\" occurs in \"cfeccfeccfecbfffafedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeacdddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfeccfeccfecbfffcfecbfffaffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeacdddc\"\nSTEP12: \"cd\" occurs in \"cfeccfeccfecbfffcfecbfffaffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeacdddc\"\napplying transition 0 (\"cd\"->\"fdaeeaeebb\") gives \"cfeccfeccfecbfffcfecbfffaffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\nSTEP13: \"a\" occurs in \"cfeccfeccfecbfffcfecbfffaffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfeccfeccfecbfffcfecbfffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\nSTEP14: \"b\" occurs in \"cfeccfeccfecbfffcfecbfffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\napplying transition 4 (\"b\"->\"aedeea\") gives \"cfeccfeccfecaedeeafffcfecbfffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\nSTEP15: \"a\" occurs in \"cfeccfeccfecaedeeafffcfecbfffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\napplying transition 3 (\"a\"->\"cfecbfffaf\") gives \"cfeccfeccfeccfecbfffafedeeafffcfecbfffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\nSTEP16: \"b\" occurs in \"cfeccfeccfeccfecbfffafedeeafffcfecbfffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\napplying transition 4 (\"b\"->\"aedeea\") gives \"cfeccfeccfeccfecaedeeafffafedeeafffcfecbfffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\nSTEP17: \"b\" occurs in \"cfeccfeccfeccfecaedeeafffafedeeafffcfecbfffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\napplying transition 4 (\"b\"->\"aedeea\") gives \"cfeccfeccfeccfecaedeeafffafedeeafffcfecaedeeafffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\nSTEP18: \"cfeccfeccfeccfecaedeeafffafedeeafffcfecaedeeafffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\" occurs in \"cfeccfeccfeccfecaedeeafffafedeeafffcfecaedeeafffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"\napplying transition 6 (\"cfeccfeccfeccfecaedeeafffafedeeafffcfecaedeeafffcfecbfffafffedeeafffcfecbfffcfecbfffcfecbfffaffffedeeafffafaedeeaaaedeeafdaeeaeebbddc\"->\"\") gives \"\""
+}

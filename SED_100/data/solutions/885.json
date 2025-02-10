@@ -1,0 +1,24 @@
+{
+    "problem_id": "885",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"aaabcbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaabedcaccbccc\"\nSTEP2: \"b\" occurs in \"aaaabedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaabedcacedcaccbccc\"\nSTEP3: \"b\" occurs in \"aaaaabedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaabedcacedcacedcaccbccc\"\nSTEP4: \"b\" occurs in \"aaaaaabedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaabedcacedcacedcacedcaccbccc\"\nSTEP5: \"b\" occurs in \"aaaaaaabedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaabedcacedcacedcacedcacedcaccbccc\"\nSTEP6: \"b\" occurs in \"aaaaaaaabedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaabedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP7: \"b\" occurs in \"aaaaaaaaabedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaabedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP8: \"b\" occurs in \"aaaaaaaaaabedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP9: \"b\" occurs in \"aaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP10: \"b\" occurs in \"aaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP11: \"b\" occurs in \"aaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP12: \"b\" occurs in \"aaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP13: \"b\" occurs in \"aaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP14: \"b\" occurs in \"aaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP15: \"b\" occurs in \"aaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP16: \"b\" occurs in \"aaaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP17: \"b\" occurs in \"aaaaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 1 (\"b\"->\"abedcac\") gives \"aaaaaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\nSTEP18: \"aaaaaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\" occurs in \"aaaaaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"\napplying transition 5 (\"aaaaaaaaaaaaaaaaaaaabedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcacedcaccbccc\"->\"\") gives \"\""
+}

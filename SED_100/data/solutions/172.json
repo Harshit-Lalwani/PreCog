@@ -1,0 +1,15 @@
+{
+    "problem_id": "172",
+    "solution": [
+        2,
+        0,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        4
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"abccc\"\napplying transition 2 (\"a\"->\"c\") gives \"cbccc\"\nSTEP2: \"c\" occurs in \"cbccc\"\napplying transition 0 (\"c\"->\"e\") gives \"ebccc\"\nSTEP3: \"c\" occurs in \"ebccc\"\napplying transition 0 (\"c\"->\"e\") gives \"ebecc\"\nSTEP4: \"b\" occurs in \"ebecc\"\napplying transition 1 (\"b\"->\"ba\") gives \"ebaecc\"\nSTEP5: \"a\" occurs in \"ebaecc\"\napplying transition 2 (\"a\"->\"c\") gives \"ebcecc\"\nSTEP6: \"b\" occurs in \"ebcecc\"\napplying transition 1 (\"b\"->\"ba\") gives \"ebacecc\"\nSTEP7: \"c\" occurs in \"ebacecc\"\napplying transition 0 (\"c\"->\"e\") gives \"ebaeecc\"\nSTEP8: \"b\" occurs in \"ebaeecc\"\napplying transition 1 (\"b\"->\"ba\") gives \"ebaaeecc\"\nSTEP9: \"ebaaeecc\" occurs in \"ebaaeecc\"\napplying transition 4 (\"ebaaeecc\"->\"\") gives \"\""
+}

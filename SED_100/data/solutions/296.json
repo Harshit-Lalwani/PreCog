@@ -1,0 +1,27 @@
+{
+    "problem_id": "296",
+    "solution": [
+        2,
+        1,
+        6,
+        6,
+        1,
+        6,
+        1,
+        1,
+        1,
+        1,
+        6,
+        1,
+        6,
+        1,
+        6,
+        6,
+        1,
+        1,
+        1,
+        6,
+        7
+    ],
+    "explanation": "STEP1: \"d\" occurs in \"abbcde\"\napplying transition 2 (\"d\"->\"a\") gives \"abbcae\"\nSTEP2: \"e\" occurs in \"abbcae\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbcagec\"\nSTEP3: \"c\" occurs in \"abbcagec\"\napplying transition 6 (\"c\"->\"b\") gives \"abbbagec\"\nSTEP4: \"c\" occurs in \"abbbagec\"\napplying transition 6 (\"c\"->\"b\") gives \"abbbageb\"\nSTEP5: \"e\" occurs in \"abbbageb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbaggecb\"\nSTEP6: \"c\" occurs in \"abbbaggecb\"\napplying transition 6 (\"c\"->\"b\") gives \"abbbaggebb\"\nSTEP7: \"e\" occurs in \"abbbaggebb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbagggecbb\"\nSTEP8: \"e\" occurs in \"abbbagggecbb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbaggggeccbb\"\nSTEP9: \"e\" occurs in \"abbbaggggeccbb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbagggggecccbb\"\nSTEP10: \"e\" occurs in \"abbbagggggecccbb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbaggggggeccccbb\"\nSTEP11: \"c\" occurs in \"abbbaggggggeccccbb\"\napplying transition 6 (\"c\"->\"b\") gives \"abbbaggggggebcccbb\"\nSTEP12: \"e\" occurs in \"abbbaggggggebcccbb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbagggggggecbcccbb\"\nSTEP13: \"c\" occurs in \"abbbagggggggecbcccbb\"\napplying transition 6 (\"c\"->\"b\") gives \"abbbagggggggebbcccbb\"\nSTEP14: \"e\" occurs in \"abbbagggggggebbcccbb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbaggggggggecbbcccbb\"\nSTEP15: \"c\" occurs in \"abbbaggggggggecbbcccbb\"\napplying transition 6 (\"c\"->\"b\") gives \"abbbaggggggggebbbcccbb\"\nSTEP16: \"c\" occurs in \"abbbaggggggggebbbcccbb\"\napplying transition 6 (\"c\"->\"b\") gives \"abbbaggggggggebbbbccbb\"\nSTEP17: \"e\" occurs in \"abbbaggggggggebbbbccbb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbagggggggggecbbbbccbb\"\nSTEP18: \"e\" occurs in \"abbbagggggggggecbbbbccbb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbaggggggggggeccbbbbccbb\"\nSTEP19: \"e\" occurs in \"abbbaggggggggggeccbbbbccbb\"\napplying transition 1 (\"e\"->\"gec\") gives \"abbbagggggggggggecccbbbbccbb\"\nSTEP20: \"c\" occurs in \"abbbagggggggggggecccbbbbccbb\"\napplying transition 6 (\"c\"->\"b\") gives \"abbbagggggggggggebccbbbbccbb\"\nSTEP21: \"abbbagggggggggggebccbbbbccbb\" occurs in \"abbbagggggggggggebccbbbbccbb\"\napplying transition 7 (\"abbbagggggggggggebccbbbbccbb\"->\"\") gives \"\""
+}

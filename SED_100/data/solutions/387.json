@@ -1,0 +1,13 @@
+{
+    "problem_id": "387",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"abaaacb\"\napplying transition 1 (\"a\"->\"dedccbbba\") gives \"dedccbbbabaaacb\"\nSTEP2: \"a\" occurs in \"dedccbbbabaaacb\"\napplying transition 1 (\"a\"->\"dedccbbba\") gives \"dedccbbbdedccbbbabaaacb\"\nSTEP3: \"a\" occurs in \"dedccbbbdedccbbbabaaacb\"\napplying transition 1 (\"a\"->\"dedccbbba\") gives \"dedccbbbdedccbbbdedccbbbabaaacb\"\nSTEP4: \"a\" occurs in \"dedccbbbdedccbbbdedccbbbabaaacb\"\napplying transition 1 (\"a\"->\"dedccbbba\") gives \"dedccbbbdedccbbbdedccbbbdedccbbbabaaacb\"\nSTEP5: \"a\" occurs in \"dedccbbbdedccbbbdedccbbbdedccbbbabaaacb\"\napplying transition 1 (\"a\"->\"dedccbbba\") gives \"dedccbbbdedccbbbdedccbbbdedccbbbdedccbbbabaaacb\"\nSTEP6: \"a\" occurs in \"dedccbbbdedccbbbdedccbbbdedccbbbdedccbbbabaaacb\"\napplying transition 1 (\"a\"->\"dedccbbba\") gives \"dedccbbbdedccbbbdedccbbbdedccbbbdedccbbbdedccbbbabaaacb\"\nSTEP7: \"dedccbbbdedccbbbdedccbbbdedccbbbdedccbbbdedccbbbabaaacb\" occurs in \"dedccbbbdedccbbbdedccbbbdedccbbbdedccbbbdedccbbbabaaacb\"\napplying transition 2 (\"dedccbbbdedccbbbdedccbbbdedccbbbdedccbbbdedccbbbabaaacb\"->\"\") gives \"\""
+}

@@ -1,0 +1,19 @@
+{
+    "problem_id": "064",
+    "solution": [
+        3,
+        0,
+        2,
+        0,
+        3,
+        3,
+        2,
+        2,
+        0,
+        3,
+        2,
+        0,
+        4
+    ],
+    "explanation": "STEP1: \"d\" occurs in \"aabcd\"\napplying transition 3 (\"d\"->\"edeafbeba\") gives \"aabcedeafbeba\"\nSTEP2: \"b\" occurs in \"aabcedeafbeba\"\napplying transition 0 (\"b\"->\"bdebdae\") gives \"aabdebdaecedeafbeba\"\nSTEP3: \"bd\" occurs in \"aabdebdaecedeafbeba\"\napplying transition 2 (\"bd\"->\"abcddc\") gives \"aaabcddcebdaecedeafbeba\"\nSTEP4: \"b\" occurs in \"aaabcddcebdaecedeafbeba\"\napplying transition 0 (\"b\"->\"bdebdae\") gives \"aaabdebdaecddcebdaecedeafbeba\"\nSTEP5: \"d\" occurs in \"aaabdebdaecddcebdaecedeafbeba\"\napplying transition 3 (\"d\"->\"edeafbeba\") gives \"aaabedeafbebaebdaecddcebdaecedeafbeba\"\nSTEP6: \"d\" occurs in \"aaabedeafbebaebdaecddcebdaecedeafbeba\"\napplying transition 3 (\"d\"->\"edeafbeba\") gives \"aaabeedeafbebaeafbebaebdaecddcebdaecedeafbeba\"\nSTEP7: \"bd\" occurs in \"aaabeedeafbebaeafbebaebdaecddcebdaecedeafbeba\"\napplying transition 2 (\"bd\"->\"abcddc\") gives \"aaabeedeafbebaeafbebaeabcddcaecddcebdaecedeafbeba\"\nSTEP8: \"bd\" occurs in \"aaabeedeafbebaeafbebaeabcddcaecddcebdaecedeafbeba\"\napplying transition 2 (\"bd\"->\"abcddc\") gives \"aaabeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\nSTEP9: \"b\" occurs in \"aaabeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\napplying transition 0 (\"b\"->\"bdebdae\") gives \"aaabdebdaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\nSTEP10: \"d\" occurs in \"aaabdebdaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\napplying transition 3 (\"d\"->\"edeafbeba\") gives \"aaabedeafbebaebdaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\nSTEP11: \"bd\" occurs in \"aaabedeafbebaebdaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\napplying transition 2 (\"bd\"->\"abcddc\") gives \"aaabedeafbebaeabcddcaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\nSTEP12: \"b\" occurs in \"aaabedeafbebaeabcddcaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\napplying transition 0 (\"b\"->\"bdebdae\") gives \"aaabdebdaeedeafbebaeabcddcaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\nSTEP13: \"aaabdebdaeedeafbebaeabcddcaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\" occurs in \"aaabdebdaeedeafbebaeabcddcaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"\napplying transition 4 (\"aaabdebdaeedeafbebaeabcddcaeeedeafbebaeafbebaeabcddcaecddceabcddcaecedeafbeba\"->\"\") gives \"\""
+}

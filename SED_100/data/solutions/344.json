@@ -1,0 +1,9 @@
+{
+    "problem_id": "344",
+    "solution": [
+        0,
+        0,
+        1
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abac\"\napplying transition 0 (\"b\"->\"bea\") gives \"abeaac\"\nSTEP2: \"b\" occurs in \"abeaac\"\napplying transition 0 (\"b\"->\"bea\") gives \"abeaeaac\"\nSTEP3: \"abeaeaac\" occurs in \"abeaeaac\"\napplying transition 1 (\"abeaeaac\"->\"\") gives \"\""
+}

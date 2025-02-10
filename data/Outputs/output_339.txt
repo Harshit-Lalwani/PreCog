@@ -1,0 +1,27 @@
+{
+  "engine": "gpt-4o",
+  "system_prompt": "\nProvide solutions for test puzzles.\n",
+  "train_set": "/root/PreCog/data/OneShot/E2/OneShot_3_3_18",
+  "test_set": "/root/PreCog/data/OneShot/E2/OneShot_3_3_10",
+  "solutions": {
+    "output_id": 339,
+    "system_prompt": "\nProvide solutions for test puzzles.\n",
+    "model": "gpt-4o",
+    "train_set": "/root/PreCog/data/OneShot/E2/OneShot_3_3_18",
+    "test_set": "/root/PreCog/data/OneShot/E2/OneShot_3_3_10",
+    "score": 0,
+    "accuracy": 0.0,
+    "solutions": [
+      {
+        "problem_id": "000",
+        "solution": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "is_valid": 0
+      }
+    ]
+  }
+}

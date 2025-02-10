@@ -1,0 +1,16 @@
+{
+    "problem_id": "300",
+    "solution": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffebefbbbbcdccbbd\"\nSTEP2: \"b\" occurs in \"acffebefbbbbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffecffebefbbbefbbbbcdccbbd\"\nSTEP3: \"b\" occurs in \"acffecffebefbbbefbbbbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffecffecffebefbbbefbbbefbbbbcdccbbd\"\nSTEP4: \"b\" occurs in \"acffecffecffebefbbbefbbbefbbbbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffecffecffecffebefbbbefbbbefbbbefbbbbcdccbbd\"\nSTEP5: \"b\" occurs in \"acffecffecffecffebefbbbefbbbefbbbefbbbbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\nSTEP6: \"b\" occurs in \"acffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\nSTEP7: \"b\" occurs in \"acffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffecffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\nSTEP8: \"b\" occurs in \"acffecffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffecffecffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\nSTEP9: \"b\" occurs in \"acffecffecffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\napplying transition 4 (\"b\"->\"cffebefbbb\") gives \"acffecffecffecffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\nSTEP10: \"acffecffecffecffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\" occurs in \"acffecffecffecffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"\napplying transition 5 (\"acffecffecffecffecffecffecffecffecffebefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbefbbbbcdccbbd\"->\"\") gives \"\""
+}

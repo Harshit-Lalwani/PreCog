@@ -1,0 +1,18 @@
+{
+    "problem_id": "402",
+    "solution": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abcdc\"\napplying transition 0 (\"b\"->\"a\") gives \"aacdc\"\nSTEP2: \"d\" occurs in \"aacdc\"\napplying transition 1 (\"d\"->\"dbb\") gives \"aacdbbc\"\nSTEP3: \"d\" occurs in \"aacdbbc\"\napplying transition 1 (\"d\"->\"dbb\") gives \"aacdbbbbc\"\nSTEP4: \"b\" occurs in \"aacdbbbbc\"\napplying transition 0 (\"b\"->\"a\") gives \"aacdabbbc\"\nSTEP5: \"d\" occurs in \"aacdabbbc\"\napplying transition 1 (\"d\"->\"dbb\") gives \"aacdbbabbbc\"\nSTEP6: \"b\" occurs in \"aacdbbabbbc\"\napplying transition 0 (\"b\"->\"a\") gives \"aacdababbbc\"\nSTEP7: \"d\" occurs in \"aacdababbbc\"\napplying transition 1 (\"d\"->\"dbb\") gives \"aacdbbababbbc\"\nSTEP8: \"d\" occurs in \"aacdbbababbbc\"\napplying transition 1 (\"d\"->\"dbb\") gives \"aacdbbbbababbbc\"\nSTEP9: \"d\" occurs in \"aacdbbbbababbbc\"\napplying transition 1 (\"d\"->\"dbb\") gives \"aacdbbbbbbababbbc\"\nSTEP10: \"d\" occurs in \"aacdbbbbbbababbbc\"\napplying transition 1 (\"d\"->\"dbb\") gives \"aacdbbbbbbbbababbbc\"\nSTEP11: \"d\" occurs in \"aacdbbbbbbbbababbbc\"\napplying transition 1 (\"d\"->\"dbb\") gives \"aacdbbbbbbbbbbababbbc\"\nSTEP12: \"aacdbbbbbbbbbbababbbc\" occurs in \"aacdbbbbbbbbbbababbbc\"\napplying transition 4 (\"aacdbbbbbbbbbbababbbc\"->\"\") gives \"\""
+}

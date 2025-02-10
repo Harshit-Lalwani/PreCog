@@ -1,0 +1,22 @@
+{
+    "problem_id": "093",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        6
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"abcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"cabebdbcadbcbacca\"\nSTEP2: \"a\" occurs in \"cabebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"ccabebdbcadbebdbcadbcbacca\"\nSTEP3: \"a\" occurs in \"ccabebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"cccabebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP4: \"a\" occurs in \"cccabebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"ccccabebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP5: \"a\" occurs in \"ccccabebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"cccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP6: \"a\" occurs in \"cccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"ccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP7: \"a\" occurs in \"ccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"cccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP8: \"a\" occurs in \"cccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"ccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP9: \"a\" occurs in \"ccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"cccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP10: \"a\" occurs in \"cccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"ccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP11: \"a\" occurs in \"ccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"cccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP12: \"a\" occurs in \"cccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"ccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP13: \"a\" occurs in \"ccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"cccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP14: \"a\" occurs in \"cccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"ccccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP15: \"a\" occurs in \"ccccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 1 (\"a\"->\"cabebdbcad\") gives \"cccccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\nSTEP16: \"cccccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\" occurs in \"cccccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"\napplying transition 6 (\"cccccccccccccccabebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbebdbcadbcbacca\"->\"\") gives \"\""
+}

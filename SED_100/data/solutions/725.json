@@ -1,0 +1,16 @@
+{
+    "problem_id": "725",
+    "solution": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        4
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abbcbc\"\napplying transition 1 (\"b\"->\"cceacceccd\") gives \"acceacceccdbcbc\"\nSTEP2: \"b\" occurs in \"acceacceccdbcbc\"\napplying transition 1 (\"b\"->\"cceacceccd\") gives \"acceacceccdcceacceccdcbc\"\nSTEP3: \"b\" occurs in \"acceacceccdcceacceccdcbc\"\napplying transition 1 (\"b\"->\"cceacceccd\") gives \"acceacceccdcceacceccdccceacceccdc\"\nSTEP4: \"a\" occurs in \"acceacceccdcceacceccdccceacceccdc\"\napplying transition 0 (\"a\"->\"dcaaadcbed\") gives \"dcaaadcbedcceacceccdcceacceccdccceacceccdc\"\nSTEP5: \"a\" occurs in \"dcaaadcbedcceacceccdcceacceccdccceacceccdc\"\napplying transition 0 (\"a\"->\"dcaaadcbed\") gives \"dcdcaaadcbedaadcbedcceacceccdcceacceccdccceacceccdc\"\nSTEP6: \"b\" occurs in \"dcdcaaadcbedaadcbedcceacceccdcceacceccdccceacceccdc\"\napplying transition 1 (\"b\"->\"cceacceccd\") gives \"dcdcaaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"\nSTEP7: \"a\" occurs in \"dcdcaaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"\napplying transition 0 (\"a\"->\"dcaaadcbed\") gives \"dcdcdcaaadcbedaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"\nSTEP8: \"a\" occurs in \"dcdcdcaaadcbedaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"\napplying transition 0 (\"a\"->\"dcaaadcbed\") gives \"dcdcdcdcaaadcbedaadcbedaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"\nSTEP9: \"a\" occurs in \"dcdcdcdcaaadcbedaadcbedaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"\napplying transition 0 (\"a\"->\"dcaaadcbed\") gives \"dcdcdcdcdcaaadcbedaadcbedaadcbedaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"\nSTEP10: \"dcdcdcdcdcaaadcbedaadcbedaadcbedaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\" occurs in \"dcdcdcdcdcaaadcbedaadcbedaadcbedaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"\napplying transition 4 (\"dcdcdcdcdcaaadcbedaadcbedaadcbedaadccceacceccdedaadcbedcceacceccdcceacceccdccceacceccdc\"->\"\") gives \"\""
+}

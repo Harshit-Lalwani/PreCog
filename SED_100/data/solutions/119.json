@@ -1,0 +1,20 @@
+{
+    "problem_id": "119",
+    "solution": [
+        4,
+        4,
+        2,
+        2,
+        4,
+        4,
+        4,
+        2,
+        2,
+        4,
+        2,
+        4,
+        4,
+        6
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"aaab\"\napplying transition 4 (\"b\"->\"adccdcab\") gives \"aaaadccdcab\"\nSTEP2: \"b\" occurs in \"aaaadccdcab\"\napplying transition 4 (\"b\"->\"adccdcab\") gives \"aaaadccdcaadccdcab\"\nSTEP3: \"a\" occurs in \"aaaadccdcaadccdcab\"\napplying transition 2 (\"a\"->\"ad\") gives \"adaaadccdcaadccdcab\"\nSTEP4: \"a\" occurs in \"adaaadccdcaadccdcab\"\napplying transition 2 (\"a\"->\"ad\") gives \"addaaadccdcaadccdcab\"\nSTEP5: \"b\" occurs in \"addaaadccdcaadccdcab\"\napplying transition 4 (\"b\"->\"adccdcab\") gives \"addaaadccdcaadccdcaadccdcab\"\nSTEP6: \"b\" occurs in \"addaaadccdcaadccdcaadccdcab\"\napplying transition 4 (\"b\"->\"adccdcab\") gives \"addaaadccdcaadccdcaadccdcaadccdcab\"\nSTEP7: \"b\" occurs in \"addaaadccdcaadccdcaadccdcaadccdcab\"\napplying transition 4 (\"b\"->\"adccdcab\") gives \"addaaadccdcaadccdcaadccdcaadccdcaadccdcab\"\nSTEP8: \"a\" occurs in \"addaaadccdcaadccdcaadccdcaadccdcaadccdcab\"\napplying transition 2 (\"a\"->\"ad\") gives \"adddaaadccdcaadccdcaadccdcaadccdcaadccdcab\"\nSTEP9: \"a\" occurs in \"adddaaadccdcaadccdcaadccdcaadccdcaadccdcab\"\napplying transition 2 (\"a\"->\"ad\") gives \"addddaaadccdcaadccdcaadccdcaadccdcaadccdcab\"\nSTEP10: \"b\" occurs in \"addddaaadccdcaadccdcaadccdcaadccdcaadccdcab\"\napplying transition 4 (\"b\"->\"adccdcab\") gives \"addddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"\nSTEP11: \"a\" occurs in \"addddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"\napplying transition 2 (\"a\"->\"ad\") gives \"adddddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"\nSTEP12: \"b\" occurs in \"adddddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"\napplying transition 4 (\"b\"->\"adccdcab\") gives \"adddddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"\nSTEP13: \"b\" occurs in \"adddddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"\napplying transition 4 (\"b\"->\"adccdcab\") gives \"adddddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"\nSTEP14: \"adddddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\" occurs in \"adddddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"\napplying transition 6 (\"adddddaaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcaadccdcab\"->\"\") gives \"\""
+}

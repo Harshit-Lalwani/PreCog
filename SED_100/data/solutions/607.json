@@ -1,0 +1,20 @@
+{
+    "problem_id": "607",
+    "solution": [
+        2,
+        3,
+        2,
+        3,
+        2,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        2,
+        5
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abc\"\napplying transition 2 (\"b\"->\"cabdec\") gives \"acabdecc\"\nSTEP2: \"a\" occurs in \"acabdecc\"\napplying transition 3 (\"a\"->\"aaaae\") gives \"aaaaecabdecc\"\nSTEP3: \"b\" occurs in \"aaaaecabdecc\"\napplying transition 2 (\"b\"->\"cabdec\") gives \"aaaaecacabdecdecc\"\nSTEP4: \"a\" occurs in \"aaaaecacabdecdecc\"\napplying transition 3 (\"a\"->\"aaaae\") gives \"aaaaeaaaecacabdecdecc\"\nSTEP5: \"b\" occurs in \"aaaaeaaaecacabdecdecc\"\napplying transition 2 (\"b\"->\"cabdec\") gives \"aaaaeaaaecacacabdecdecdecc\"\nSTEP6: \"b\" occurs in \"aaaaeaaaecacacabdecdecdecc\"\napplying transition 2 (\"b\"->\"cabdec\") gives \"aaaaeaaaecacacacabdecdecdecdecc\"\nSTEP7: \"b\" occurs in \"aaaaeaaaecacacacabdecdecdecdecc\"\napplying transition 2 (\"b\"->\"cabdec\") gives \"aaaaeaaaecacacacacabdecdecdecdecdecc\"\nSTEP8: \"a\" occurs in \"aaaaeaaaecacacacacabdecdecdecdecdecc\"\napplying transition 3 (\"a\"->\"aaaae\") gives \"aaaaeaaaeaaaecacacacacabdecdecdecdecdecc\"\nSTEP9: \"a\" occurs in \"aaaaeaaaeaaaecacacacacabdecdecdecdecdecc\"\napplying transition 3 (\"a\"->\"aaaae\") gives \"aaaaeaaaeaaaeaaaecacacacacabdecdecdecdecdecc\"\nSTEP10: \"b\" occurs in \"aaaaeaaaeaaaeaaaecacacacacabdecdecdecdecdecc\"\napplying transition 2 (\"b\"->\"cabdec\") gives \"aaaaeaaaeaaaeaaaecacacacacacabdecdecdecdecdecdecc\"\nSTEP11: \"a\" occurs in \"aaaaeaaaeaaaeaaaecacacacacacabdecdecdecdecdecdecc\"\napplying transition 3 (\"a\"->\"aaaae\") gives \"aaaaeaaaeaaaeaaaeaaaecacacacacacabdecdecdecdecdecdecc\"\nSTEP12: \"a\" occurs in \"aaaaeaaaeaaaeaaaeaaaecacacacacacabdecdecdecdecdecdecc\"\napplying transition 3 (\"a\"->\"aaaae\") gives \"aaaaeaaaeaaaeaaaeaaaeaaaecacacacacacabdecdecdecdecdecdecc\"\nSTEP13: \"b\" occurs in \"aaaaeaaaeaaaeaaaeaaaeaaaecacacacacacabdecdecdecdecdecdecc\"\napplying transition 2 (\"b\"->\"cabdec\") gives \"aaaaeaaaeaaaeaaaeaaaeaaaecacacacacacacabdecdecdecdecdecdecdecc\"\nSTEP14: \"aaaaeaaaeaaaeaaaeaaaeaaaecacacacacacacabdecdecdecdecdecdecdecc\" occurs in \"aaaaeaaaeaaaeaaaeaaaeaaaecacacacacacacabdecdecdecdecdecdecdecc\"\napplying transition 5 (\"aaaaeaaaeaaaeaaaeaaaeaaaecacacacacacacabdecdecdecdecdecdecdecc\"->\"\") gives \"\""
+}

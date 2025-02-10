@@ -1,0 +1,16 @@
+{
+    "problem_id": "835",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        3
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"a\"\napplying transition 1 (\"a\"->\"ab\") gives \"ab\"\nSTEP2: \"a\" occurs in \"ab\"\napplying transition 1 (\"a\"->\"ab\") gives \"abb\"\nSTEP3: \"a\" occurs in \"abb\"\napplying transition 1 (\"a\"->\"ab\") gives \"abbb\"\nSTEP4: \"a\" occurs in \"abbb\"\napplying transition 1 (\"a\"->\"ab\") gives \"abbbb\"\nSTEP5: \"a\" occurs in \"abbbb\"\napplying transition 1 (\"a\"->\"ab\") gives \"abbbbb\"\nSTEP6: \"a\" occurs in \"abbbbb\"\napplying transition 1 (\"a\"->\"ab\") gives \"abbbbbb\"\nSTEP7: \"a\" occurs in \"abbbbbb\"\napplying transition 1 (\"a\"->\"ab\") gives \"abbbbbbb\"\nSTEP8: \"a\" occurs in \"abbbbbbb\"\napplying transition 1 (\"a\"->\"ab\") gives \"abbbbbbbb\"\nSTEP9: \"a\" occurs in \"abbbbbbbb\"\napplying transition 1 (\"a\"->\"ab\") gives \"abbbbbbbbb\"\nSTEP10: \"abbbbbbbbb\" occurs in \"abbbbbbbbb\"\napplying transition 3 (\"abbbbbbbbb\"->\"\") gives \"\""
+}

@@ -1,0 +1,30 @@
+{
+    "problem_id": "096",
+    "initial_string": "abbcaada",
+    "transitions": [
+        {
+            "src": "aba",
+            "tgt": "aabcbcdded"
+        },
+        {
+            "src": "abcbadd",
+            "tgt": "aba"
+        },
+        {
+            "src": "abcdeebaee",
+            "tgt": "abb"
+        },
+        {
+            "src": "abbabaccbb",
+            "tgt": "a"
+        },
+        {
+            "src": "abccdacbee",
+            "tgt": "abbaaaaba"
+        },
+        {
+            "src": "abbcaada",
+            "tgt": ""
+        }
+    ]
+}

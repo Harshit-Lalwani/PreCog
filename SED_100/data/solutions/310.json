@@ -1,0 +1,17 @@
+{
+    "problem_id": "310",
+    "solution": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        4
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"ab\"\napplying transition 2 (\"a\"->\"ad\") gives \"adb\"\nSTEP2: \"a\" occurs in \"adb\"\napplying transition 2 (\"a\"->\"ad\") gives \"addb\"\nSTEP3: \"a\" occurs in \"addb\"\napplying transition 2 (\"a\"->\"ad\") gives \"adddb\"\nSTEP4: \"a\" occurs in \"adddb\"\napplying transition 2 (\"a\"->\"ad\") gives \"addddb\"\nSTEP5: \"a\" occurs in \"addddb\"\napplying transition 2 (\"a\"->\"ad\") gives \"adddddb\"\nSTEP6: \"a\" occurs in \"adddddb\"\napplying transition 2 (\"a\"->\"ad\") gives \"addddddb\"\nSTEP7: \"a\" occurs in \"addddddb\"\napplying transition 2 (\"a\"->\"ad\") gives \"adddddddb\"\nSTEP8: \"a\" occurs in \"adddddddb\"\napplying transition 2 (\"a\"->\"ad\") gives \"addddddddb\"\nSTEP9: \"a\" occurs in \"addddddddb\"\napplying transition 2 (\"a\"->\"ad\") gives \"adddddddddb\"\nSTEP10: \"a\" occurs in \"adddddddddb\"\napplying transition 2 (\"a\"->\"ad\") gives \"addddddddddb\"\nSTEP11: \"addddddddddb\" occurs in \"addddddddddb\"\napplying transition 4 (\"addddddddddb\"->\"\") gives \"\""
+}

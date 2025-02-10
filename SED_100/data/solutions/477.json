@@ -1,0 +1,15 @@
+{
+    "problem_id": "477",
+    "solution": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4
+    ],
+    "explanation": "STEP1: \"a\" occurs in \"aaa\"\napplying transition 3 (\"a\"->\"cccaac\") gives \"cccaacaa\"\nSTEP2: \"a\" occurs in \"cccaacaa\"\napplying transition 3 (\"a\"->\"cccaac\") gives \"ccccccaacacaa\"\nSTEP3: \"a\" occurs in \"ccccccaacacaa\"\napplying transition 3 (\"a\"->\"cccaac\") gives \"cccccccccaacacacaa\"\nSTEP4: \"a\" occurs in \"cccccccccaacacacaa\"\napplying transition 3 (\"a\"->\"cccaac\") gives \"ccccccccccccaacacacacaa\"\nSTEP5: \"a\" occurs in \"ccccccccccccaacacacacaa\"\napplying transition 3 (\"a\"->\"cccaac\") gives \"cccccccccccccccaacacacacacaa\"\nSTEP6: \"a\" occurs in \"cccccccccccccccaacacacacacaa\"\napplying transition 3 (\"a\"->\"cccaac\") gives \"ccccccccccccccccccaacacacacacacaa\"\nSTEP7: \"a\" occurs in \"ccccccccccccccccccaacacacacacacaa\"\napplying transition 3 (\"a\"->\"cccaac\") gives \"cccccccccccccccccccccaacacacacacacacaa\"\nSTEP8: \"a\" occurs in \"cccccccccccccccccccccaacacacacacacacaa\"\napplying transition 3 (\"a\"->\"cccaac\") gives \"ccccccccccccccccccccccccaacacacacacacacacaa\"\nSTEP9: \"ccccccccccccccccccccccccaacacacacacacacacaa\" occurs in \"ccccccccccccccccccccccccaacacacacacacacacaa\"\napplying transition 4 (\"ccccccccccccccccccccccccaacacacacacacacacaa\"->\"\") gives \"\""
+}

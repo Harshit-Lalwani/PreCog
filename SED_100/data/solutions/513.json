@@ -1,0 +1,17 @@
+{
+    "problem_id": "513",
+    "solution": [
+        4,
+        4,
+        1,
+        1,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5
+    ],
+    "explanation": "STEP1: \"c\" occurs in \"abacbc\"\napplying transition 4 (\"c\"->\"dceda\") gives \"abadcedabc\"\nSTEP2: \"c\" occurs in \"abadcedabc\"\napplying transition 4 (\"c\"->\"dceda\") gives \"abaddcedaedabc\"\nSTEP3: \"b\" occurs in \"abaddcedaedabc\"\napplying transition 1 (\"b\"->\"aadd\") gives \"aaaddaddcedaedabc\"\nSTEP4: \"b\" occurs in \"aaaddaddcedaedabc\"\napplying transition 1 (\"b\"->\"aadd\") gives \"aaaddaddcedaedaaaddc\"\nSTEP5: \"c\" occurs in \"aaaddaddcedaedaaaddc\"\napplying transition 4 (\"c\"->\"dceda\") gives \"aaaddadddcedaedaedaaaddc\"\nSTEP6: \"c\" occurs in \"aaaddadddcedaedaedaaaddc\"\napplying transition 4 (\"c\"->\"dceda\") gives \"aaaddaddddcedaedaedaedaaaddc\"\nSTEP7: \"c\" occurs in \"aaaddaddddcedaedaedaedaaaddc\"\napplying transition 4 (\"c\"->\"dceda\") gives \"aaaddadddddcedaedaedaedaedaaaddc\"\nSTEP8: \"c\" occurs in \"aaaddadddddcedaedaedaedaedaaaddc\"\napplying transition 4 (\"c\"->\"dceda\") gives \"aaaddaddddddcedaedaedaedaedaedaaaddc\"\nSTEP9: \"c\" occurs in \"aaaddaddddddcedaedaedaedaedaedaaaddc\"\napplying transition 4 (\"c\"->\"dceda\") gives \"aaaddadddddddcedaedaedaedaedaedaedaaaddc\"\nSTEP10: \"c\" occurs in \"aaaddadddddddcedaedaedaedaedaedaedaaaddc\"\napplying transition 4 (\"c\"->\"dceda\") gives \"aaaddaddddddddcedaedaedaedaedaedaedaedaaaddc\"\nSTEP11: \"aaaddaddddddddcedaedaedaedaedaedaedaedaaaddc\" occurs in \"aaaddaddddddddcedaedaedaedaedaedaedaedaaaddc\"\napplying transition 5 (\"aaaddaddddddddcedaedaedaedaedaedaedaedaaaddc\"->\"\") gives \"\""
+}

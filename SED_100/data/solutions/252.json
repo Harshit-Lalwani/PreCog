@@ -1,0 +1,22 @@
+{
+    "problem_id": "252",
+    "solution": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        7
+    ],
+    "explanation": "STEP1: \"c\" occurs in \"aabbbc\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeec\"\nSTEP2: \"c\" occurs in \"aabbbceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeec\"\nSTEP3: \"c\" occurs in \"aabbbceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeec\"\nSTEP4: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP5: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP6: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP7: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP8: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP9: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP10: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP11: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP12: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP13: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP14: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP15: \"c\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 1 (\"c\"->\"ceeabedeec\") gives \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\nSTEP16: \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\" occurs in \"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"\napplying transition 7 (\"aabbbceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeeceeabedeec\"->\"\") gives \"\""
+}

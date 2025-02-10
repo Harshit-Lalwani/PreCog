@@ -1,0 +1,8 @@
+{
+    "problem_id": "841",
+    "solution": [
+        0,
+        1
+    ],
+    "explanation": "STEP1: \"b\" occurs in \"abcdbed\"\napplying transition 0 (\"b\"->\"c\") gives \"accdbed\"\nSTEP2: \"accdbed\" occurs in \"accdbed\"\napplying transition 1 (\"accdbed\"->\"\") gives \"\""
+}
