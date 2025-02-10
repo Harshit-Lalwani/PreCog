@@ -223,16 +223,28 @@ Response:
                 'pattern_score': puzzle['pattern_score']
             }
         
+def generate_zero_shot_splits() -> List[Tuple[List[int], List[int]]]:
+        """Generate zero-shot splits where each test set has one puzzle and training is empty"""
+        # Read puzzle IDs from SED-100 dataset
+        df = pd.read_csv(Path("SED_100/analysis/representative_sample.csv"))
+        puzzle_ids = df["puzzle_id"].tolist()
         
+        # Create splits: empty train set, single puzzle test set
+        zero_shot_splits = []
+        for puzzle_id in puzzle_ids:
+            train_ids = []  # Empty training set
+            test_ids = [puzzle_id]  # Single puzzle test set
+            zero_shot_splits.append((train_ids, test_ids))
+        
+        return zero_shot_splits
+
+
 # Example usage
 if __name__ == "__main__":
     data_dir = "SED_100/data"
     pipeline = SEDPipeline(data_dir)
-    
-    splits = [
-        ([6, 16], [35]),
-        ([35, 44, 50], [6, 16, 17])
-    ]
+
+    splits = generate_zero_shot_splits()
     
     # Example test parameters
     test_params = {

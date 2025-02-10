@@ -1,23 +1,13 @@
 {
     "problem_id": "345",
     "solution": [
-        4,
-        4,
-        3,
-        4,
-        3,
-        3,
-        3,
-        3,
-        4,
-        3,
-        3,
         0,
-        3,
-        4,
-        3,
-        4,
-        4,
-        6
-    ]
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+    ],
+    "explanation":     "STEP1: \"b\" occurs in \"aabccaabcc\"\napplying transition 0(\"b\"->\"a\") gives \"aaaccaabcc\"\nSTEP2: \"b\" occurs in \"aaaccaabcc\"\napplying transition 1 (\"b\"->\"c\") gives \"aaaccaaccc\"\nSTEP3: \"ac\" occurs in\"aaaccaaccc\"\napplying transition 2 (\"ac\"->\"\") gives \"aaacaccc\"\nSTEP4: \"ac\" occurs in \"aaacaccc\"\napplying transition 2 (\"ac\"->\"\") gives \"aaaccc\"\nSTEP5: \"ac\" occurs in \"aaaccc\"\napplying transition 2 (\"ac\"->\"\") gives \"aacc\"STEP6: \"ac\" occurs in \"aacc\"\napplying transition 2 (\"ac\"->\"\") gives \"ac\"STEP7: \"ac\" occurs in \"ac\"\napplying transition 2 (\"ac\"->\"\") gives \"\""
 }
