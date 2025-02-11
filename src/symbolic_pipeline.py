@@ -201,7 +201,7 @@ Example Split:
                         break
                         
                     # If invalid and not last attempt, prepare correction prompt
-                    if attempt < max_attempts - 1:
+                    if attempt < self.max_attempts - 1:
                         # Parse the invalid solution for correction
                         parsed_response = parse_solution_with_fallback(response_content)
                         correction_prompt = self.generate_correction_prompt(
@@ -341,6 +341,8 @@ Example Split:
             transition = transitions[trans_idx]
             try:
                 next_string = apply_transition(current_string, transition)
+                if(next_string == "-1"):
+                    return (f"Error at step {step_num}: Transition is not applicable as \"{transition['src']}\" does not occur in \"{current_string}\"\n")
                 explanation_steps.append(f"STEP{step_num}: \"{transition['src']}\" occurs in \"{current_string}\"\n"
                                       f"applying transition {trans_idx} (\"{transition['src']}\"->\"{transition['tgt']}\") "
                                       f"gives \"{next_string}\"")
@@ -412,7 +414,7 @@ def generate_few_shot_splits(group_size: int = 5, count: int = None) -> List[Tup
 
 # Example usage
 if __name__ == "__main__":
-    data_dir = "MIX_3_2_3_SED_20"
+    data_dir = "MIX_2_3_5_SED_20"
     pipeline = SEDPipeline(data_dir, max_attempts=10)  # Set max_attempts in constructor
 
     splits = generate_few_shot_splits(group_size=1, count=10)

@@ -1,0 +1,22 @@
+Study Description
+----------------
+Dataset Path: MIX_2_3_5_SED_20
+Study Directory: /root/PreCog/SED_studies/SED_Study58
+Timestamp: 2025-02-12 00:29:25
+
+Method = Symbolic
+max_attempts = 10  # Use class variable instead of hardcoded value
+
+Parameters
+----------
+Prompt Titles: go_step_by_step
+Give Explanation Flags: 1
+Ask Explanation Flags: 1
+Models: gpt-4o
+
+Splits Information
+-----------------
+Total Splits: 10
+Example Split:
+  Train IDs: [59]
+  Test IDs: [52]

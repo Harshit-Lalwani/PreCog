@@ -9,7 +9,7 @@ df = pd.read_csv("SED_1000/exploration_results.csv")
 df = df[df["puzzle_id"] >= 100]  # Filter out first 100 problems
 
 # Create directory structure
-base_dir = Path("SED_50")
+base_dir = Path("SED_10")  # Changed to reflect total of 10 samples
 analysis_dir = base_dir / "analysis"
 data_dir = base_dir / "data"
 puzzles_dir = data_dir / "puzzles"
@@ -18,20 +18,20 @@ solutions_dir = data_dir / "solutions"
 for dir in [analysis_dir, puzzles_dir, solutions_dir]:
     dir.mkdir(parents=True, exist_ok=True)
 
-# 1. Common Points Sampling (20 points)
+# 1. Common Points Sampling (5 points)
 bins = np.linspace(df["pattern_score"].min(), df["pattern_score"].max(), 20)
 labels = range(len(bins)-1)
 df["score_bin"] = pd.cut(df["pattern_score"], bins=bins, labels=labels)
 stratified_sample = df.groupby("score_bin", group_keys=False).apply(lambda x: x.sample(frac=0.8, random_state=42))
-common_sample = stratified_sample.sample(n=20, random_state=42)  # Select 20 common points
+common_sample = stratified_sample.sample(n=5, random_state=42)  # Select 5 common points
 
-# 2. Rare Points Sampling (10 points) - One from each of the 10 rarest classes
+# 2. Rare Points Sampling (5 points) - One from each of the 5 rarest classes
 class_bins = np.arange(0, 1.05, 0.05)
 df["class"] = pd.cut(df["pattern_score"], bins=class_bins)
 
-# Calculate class frequencies and get 10 rarest classes
+# Calculate class frequencies and get 5 rarest classes
 class_freq = df["class"].value_counts().sort_values()
-rare_classes = class_freq.index[:10]  # Get 10 rarest classes
+rare_classes = class_freq.index[:5]  # Get 5 rarest classes
 
 # Sample one point from each rare class
 rare_sample = pd.DataFrame()
@@ -48,12 +48,12 @@ final_sample = pd.concat([common_sample, rare_sample])
 
 # Create CSV files for analysis
 # Overall dataset
-common_mask = df["class"].isin(class_freq.index[-10:])  # Top 10 most frequent classes
-rare_mask = df["class"].isin(class_freq.index[:10])     # Top 10 rarest classes
+common_mask = df["class"].isin(class_freq.index[-5:])  # Top 10 most frequent classes
+rare_mask = df["class"].isin(class_freq.index[:5])     # Top 10 rarest classes
 
 # Sampled dataset
-sampled_common_mask = final_sample["class"].isin(class_freq.index[-10:])
-sampled_rare_mask = final_sample["class"].isin(class_freq.index[:10])
+sampled_common_mask = final_sample["class"].isin(class_freq.index[-5:])
+sampled_rare_mask = final_sample["class"].isin(class_freq.index[:5])
 
 # Save analysis files
 class_freq.to_csv(analysis_dir / "class_frequencies.csv")

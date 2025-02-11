@@ -324,7 +324,7 @@ def generate_few_shot_splits(group_size: int = 5, count: int = None) -> List[Tup
 
 # Example usage
 if __name__ == "__main__":
-    data_dir = Path("MIX_3_2_3_SED_20")
+    data_dir = Path("MIX_2_3_5_SED_20")
     pipeline = SEDPipeline(data_dir)
 
     # Use only first 3 problems
