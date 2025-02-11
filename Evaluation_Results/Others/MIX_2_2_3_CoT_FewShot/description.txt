@@ -1,0 +1,19 @@
+Study Description
+----------------
+Dataset Path: MIX_2_2_3_SED_20
+Study Directory: /root/PreCog/SED_studies/SED_Study52
+Timestamp: 2025-02-11 21:59:08
+
+Parameters
+----------
+Prompt Titles: go_step_by_step
+Give Explanation Flags: 1
+Ask Explanation Flags: 1
+Models: gpt-4o
+
+Splits Information
+-----------------
+Total Splits: 2
+Example Split:
+  Train IDs: [72, 74]
+  Test IDs: [71, 73]

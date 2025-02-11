@@ -1,0 +1,4 @@
+Validation error for puzzle 754
+Error: 'NoneType' object has no attribute 'strip'
+Response text: None
+----------------------------------------
