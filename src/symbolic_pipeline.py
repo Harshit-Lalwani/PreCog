@@ -387,7 +387,7 @@ def generate_few_shot_splits(group_size: int = 5, count: int = None) -> List[Tup
         List of (train_ids, test_ids) tuples for each split
     """
     # Read puzzle IDs
-    df = pd.read_csv(Path(data_dir) /"exploration_results.csv")
+    df = pd.read_csv(data_dir / "analysis" / "exploration_results.csv")  # Note: usually in analysis folder
     puzzle_ids = df["puzzle_id"].tolist()
     
     # Use only first count problems if specified
@@ -414,8 +414,9 @@ def generate_few_shot_splits(group_size: int = 5, count: int = None) -> List[Tup
 
 # Example usage
 if __name__ == "__main__":
-    data_dir = "MIX_2_3_5_SED_20"
-    pipeline = SEDPipeline(data_dir, max_attempts=10)  # Set max_attempts in constructor
+    # Update path to where your exploration_results.csv actually exists
+    data_dir = Path("Deliverables/Task1/SED_10")  # Make sure this matches your file structure
+    pipeline = SEDPipeline(data_dir, max_attempts=5)
 
     splits = generate_few_shot_splits(group_size=1, count=10)
     

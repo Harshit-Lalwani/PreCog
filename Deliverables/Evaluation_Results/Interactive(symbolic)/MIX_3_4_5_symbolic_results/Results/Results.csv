@@ -1,0 +1,2 @@
+experiment_id,prompt_title,give_explanation,ask_explanation,model,accuracy,pattern_weighted_accuracy
+0,go_step_by_step,1,1,gpt-4o,0.3,0.3

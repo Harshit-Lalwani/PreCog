@@ -49,7 +49,7 @@ def update_study_results(study_path: Path, dataset_path: Path):
             
             # Store overall experiment result
             all_exp_results.append({
-                'experiment_id': exp_dir.name.replace('Experiment', ''),
+                'experiment_id': int(exp_dir.name.replace('Experiment', '')),  # Convert to int
                 'pattern_weighted_accuracy': np.mean(exp_results)
             })
     
@@ -60,8 +60,12 @@ def update_study_results(study_path: Path, dataset_path: Path):
         if study_results_path.exists():
             study_df = pd.read_csv(study_results_path)
             
-            # Add pattern weighted accuracies
+            # Ensure experiment_id is int in both DataFrames
+            study_df['experiment_id'] = study_df['experiment_id'].astype(int)
             exp_results_df = pd.DataFrame(all_exp_results)
+            exp_results_df['experiment_id'] = exp_results_df['experiment_id'].astype(int)
+            
+            # Add pattern weighted accuracies
             study_df = study_df.merge(
                 exp_results_df,
                 on='experiment_id',
@@ -73,8 +77,8 @@ def update_study_results(study_path: Path, dataset_path: Path):
 
 if __name__ == "__main__":
     # Example usage
-    study_path = Path("Deliverables/Task2/MIX_2_2_3_symbolic_results")
-    dataset_path = Path("MIX_2_2_3_SED_20")
+    study_path = Path("Deliverables/Task2/SED_10_symbolic_results")
+    dataset_path = Path("Deliverables/Task1/SED_10")
     
     update_study_results(study_path, dataset_path)
     print("Study results updated successfully!")
