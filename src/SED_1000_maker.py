@@ -138,8 +138,8 @@ def process_llm_response(self, response_text: str, puzzle: Dict) -> Dict:
         }
 
 if __name__ == "__main__":
-    base_dir = Path("MIX_3_3_5_SED_10")
-    start_puzzle_id = 41
-    datasets = generate_dataset(10)
+    base_dir = Path("MIX_2_2_3_SED_20")
+    start_puzzle_id = 71
+    datasets = generate_dataset(20)
     results = save_puzzles_and_solutions(datasets, base_dir, start_id=start_puzzle_id)
     save_results_to_csv(results, base_dir / "exploration_results.csv")

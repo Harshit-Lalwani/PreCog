@@ -4,11 +4,12 @@ from scipy.spatial.distance import cdist
 from pathlib import Path
 import shutil
 
-# Load dataset
+# Load dataset and filter out first 100 problems
 df = pd.read_csv("SED_1000/exploration_results.csv")
+df = df[df["puzzle_id"] >= 100]  # Filter out first 100 problems
 
 # Create directory structure
-base_dir = Path("SED_30")
+base_dir = Path("SED_50")
 analysis_dir = base_dir / "analysis"
 data_dir = base_dir / "data"
 puzzles_dir = data_dir / "puzzles"

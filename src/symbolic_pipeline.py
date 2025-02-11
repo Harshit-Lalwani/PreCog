@@ -18,11 +18,12 @@ def get_next_SED_study_number(base_dir: Path) -> int:
     return i
 
 class SEDPipeline:
-    def __init__(self, dataset_path: str, base_dir: Path = Path("/root/PreCog/SED_studies")):
+    def __init__(self, dataset_path: str, base_dir: Path = Path("/root/PreCog/SED_studies"), max_attempts: int = 5):
         self.dataset_path = Path(dataset_path)
         self.base_dir = base_dir
         self.client = OpenAI()
         self.prompt_manager = PromptManager()
+        self.max_attempts = max_attempts  # Store max_attempts as instance variable
         
         # Verify dataset structure
         self.puzzles_dir = self.dataset_path / "puzzles"
@@ -75,7 +76,7 @@ Study Directory: {self.study_dir}
 Timestamp: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
 Method = Symbolic
-max_attempts = 
+max_attempts = {self.max_attempts}  # Use class variable instead of hardcoded value
 
 Parameters
 ----------
@@ -163,12 +164,11 @@ Example Split:
             )
             
             attempt = 0
-            max_attempts = 5
             prediction = None
             conversation = []
             last_response = None
             
-            while attempt < max_attempts:
+            while attempt < self.max_attempts:  # Use instance variable instead of hardcoded value
                 try:
                     # Build conversation history for system prompt
                     system_prompt = base_system_prompt
@@ -351,33 +351,46 @@ Example Split:
         
         return "\n".join(explanation_steps)
         
-def generate_zero_shot_splits() -> List[Tuple[List[int], List[int]]]:
-        """Generate zero-shot splits where each test set has one puzzle and training is empty"""
-        # Read puzzle IDs from SED-100 dataset
-        df = pd.read_csv(Path("SED_100/analysis/representative_sample.csv"))
-        puzzle_ids = df["puzzle_id"].tolist()
-        
-        # Create splits: empty train set, single puzzle test set
-        zero_shot_splits = []
-        for puzzle_id in puzzle_ids:
-            train_ids = []  # Empty training set
-            test_ids = [puzzle_id]  # Single puzzle test set
-            zero_shot_splits.append((train_ids, test_ids))
-        
-        return zero_shot_splits
+def generate_zero_shot_splits(count: int = None) -> List[Tuple[List[int], List[int]]]:
+    """Generate zero-shot splits where each test set has one puzzle and training is empty
+    
+    Args:
+        count: Number of problems to use (uses all if None)
+    """
+    # Read puzzle IDs from dataset
+    df = pd.read_csv(Path(data_dir) /"exploration_results.csv")
+    puzzle_ids = df["puzzle_id"].tolist()
+    
+    # Use only first count problems if specified
+    if count is not None:
+        puzzle_ids = puzzle_ids[:count]
+    
+    # Create splits: empty train set, single puzzle test set
+    zero_shot_splits = []
+    for puzzle_id in puzzle_ids:
+        train_ids = []  # Empty training set
+        test_ids = [puzzle_id]  # Single puzzle test set
+        zero_shot_splits.append((train_ids, test_ids))
+    
+    return zero_shot_splits
 
-def generate_few_shot_splits(group_size: int = 5) -> List[Tuple[List[int], List[int]]]:
+def generate_few_shot_splits(group_size: int = 5, count: int = None) -> List[Tuple[List[int], List[int]]]:
     """Generate few-shot splits with reciprocal train/test groups
     
     Args:
         group_size: Number of puzzles in each training/testing group
+        count: Number of problems to use (uses all if None)
         
     Returns:
         List of (train_ids, test_ids) tuples for each split
     """
     # Read puzzle IDs
-    df = pd.read_csv(Path("SED_100/analysis/representative_sample.csv"))
+    df = pd.read_csv(Path(data_dir) /"exploration_results.csv")
     puzzle_ids = df["puzzle_id"].tolist()
+    
+    # Use only first count problems if specified
+    if count is not None:
+        puzzle_ids = puzzle_ids[:count]
     
     # Shuffle puzzle IDs
     np.random.seed(42)  # For reproducibility
@@ -388,9 +401,8 @@ def generate_few_shot_splits(group_size: int = 5) -> List[Tuple[List[int], List[
     
     # Generate reciprocal splits
     few_shot_splits = []
-    # print(len(groups))
     for p in range(len(groups)//2):
-        i  = 2*p
+        i = 2*p
         j = 2*p + 1
         few_shot_splits.append((groups[i], groups[j]))
         few_shot_splits.append((groups[j], groups[i]))
@@ -398,23 +410,15 @@ def generate_few_shot_splits(group_size: int = 5) -> List[Tuple[List[int], List[
     return few_shot_splits
 
 
-
 # Example usage
 if __name__ == "__main__":
-    data_dir = "MIX_3_3_3_SED_10"
-    pipeline = SEDPipeline(data_dir)
+    data_dir = "MIX_3_2_3_SED_20"
+    pipeline = SEDPipeline(data_dir, max_attempts=10)  # Set max_attempts in constructor
 
-    # splits = generate_zero_shot_splits()
-
-    # splits = generate_few_shot_splits() 
-
-    splits = [([1],[2]), ([2], [3]), ([3], [4])]
-
-    # print(len(splits))  
+    splits = generate_few_shot_splits(group_size=1, count=10)
     
-    # Example test parameters
     test_params = {
-        'prompt_titles': ['problem_defined'],
+        'prompt_titles': ['go_step_by_step'],
         'give_explanation_flags': [1],
         'ask_explanation_flags': [1],
         'models': ['gpt-4o']

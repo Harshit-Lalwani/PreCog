@@ -1,0 +1,4 @@
+venv/
+
+# Keep requirements.txt
+!requirements.txt

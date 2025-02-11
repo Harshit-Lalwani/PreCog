@@ -264,33 +264,46 @@ Example Split:
                 'pattern_score': puzzle['pattern_score']
             }
         
-def generate_zero_shot_splits() -> List[Tuple[List[int], List[int]]]:
-        """Generate zero-shot splits where each test set has one puzzle and training is empty"""
-        # Read puzzle IDs from SED-100 dataset
-        df = pd.read_csv(Path("SED_100/analysis/representative_sample.csv"))
-        puzzle_ids = df["puzzle_id"].tolist()
-        
-        # Create splits: empty train set, single puzzle test set
-        zero_shot_splits = []
-        for puzzle_id in puzzle_ids:
-            train_ids = []  # Empty training set
-            test_ids = [puzzle_id]  # Single puzzle test set
-            zero_shot_splits.append((train_ids, test_ids))
-        
-        return zero_shot_splits
+def generate_zero_shot_splits(count: int = None) -> List[Tuple[List[int], List[int]]]:
+    """Generate zero-shot splits where each test set has one puzzle and training is empty
+    
+    Args:
+        count: Number of problems to use (uses all if None)
+    """
+    # Read puzzle IDs from dataset
+    df = pd.read_csv(Path(data_dir) /"exploration_results.csv")
+    puzzle_ids = df["puzzle_id"].tolist()
+    
+    # Use only first count problems if specified
+    if count is not None:
+        puzzle_ids = puzzle_ids[:count]
+    
+    # Create splits: empty train set, single puzzle test set
+    zero_shot_splits = []
+    for puzzle_id in puzzle_ids:
+        train_ids = []  # Empty training set
+        test_ids = [puzzle_id]  # Single puzzle test set
+        zero_shot_splits.append((train_ids, test_ids))
+    
+    return zero_shot_splits
 
-def generate_few_shot_splits(group_size: int = 5) -> List[Tuple[List[int], List[int]]]:
+def generate_few_shot_splits(group_size: int = 5, count: int = None) -> List[Tuple[List[int], List[int]]]:
     """Generate few-shot splits with reciprocal train/test groups
     
     Args:
         group_size: Number of puzzles in each training/testing group
+        count: Number of problems to use (uses all if None)
         
     Returns:
         List of (train_ids, test_ids) tuples for each split
     """
-    # Read puzzle IDs - Convert string to Path
-    df = pd.read_csv(Path(data_dir) / "exploration_results.csv")
+    # Read puzzle IDs
+    df = pd.read_csv(Path(data_dir) /"exploration_results.csv")
     puzzle_ids = df["puzzle_id"].tolist()
+    
+    # Use only first count problems if specified
+    if count is not None:
+        puzzle_ids = puzzle_ids[:count]
     
     # Shuffle puzzle IDs
     np.random.seed(42)  # For reproducibility
@@ -301,28 +314,25 @@ def generate_few_shot_splits(group_size: int = 5) -> List[Tuple[List[int], List[
     
     # Generate reciprocal splits
     few_shot_splits = []
-    # print(len(groups))
     for p in range(len(groups)//2):
-        i  = 2*p
+        i = 2*p
         j = 2*p + 1
         few_shot_splits.append((groups[i], groups[j]))
         few_shot_splits.append((groups[j], groups[i]))
     
     return few_shot_splits
 
-
-
 # Example usage
 if __name__ == "__main__":
-    data_dir = Path("MIX_3_3_3_SED_10")  # Convert to Path object
+    data_dir = Path("MIX_3_2_3_SED_20")
     pipeline = SEDPipeline(data_dir)
 
-    # splits = generate_zero_shot_splits()
-    splits = generate_few_shot_splits()  
+    # Use only first 3 problems
+    # splits = generate_zero_shot_splits(count=4)
+    splits = generate_few_shot_splits(group_size=2, count=12)
     
-    print(len(splits))  
+    print(len(splits))
     
-    # Example test parameters
     test_params = {
         'prompt_titles': ['go_step_by_step'],
         'give_explanation_flags': [1],
